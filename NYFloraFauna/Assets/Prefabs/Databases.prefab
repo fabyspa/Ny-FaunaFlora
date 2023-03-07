@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4333776204369620919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4333776204369620917}
+  - component: {fileID: 4333776204369620916}
+  m_Layer: 0
+  m_Name: Databases
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4333776204369620917
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4333776204369620919}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.12704505, y: -0.19634236, z: -0.11133751}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4333776204369620916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4333776204369620919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27176290246ea2f42a3e2ba0a9458721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blankRiserva:
+    type: 
+    name: 
+    coord: 
+    descr: 
+  riservaDatabase:
+  - type: Foresta Demaniale
+    name: Ex poligono militare di Rotta dei Cavalli
+    coord: 42.50135, 13.4302
+    descr: "Dal punto di vista geologico i terreni sono caratterizzati da un susseguirsi
+      di formazioni geologiche in un insieme piuttosto frammentato. In queste zone
+      sono comuni gli affioramenti di calcari e di marne argillose, mentre a sud
+      affiorano le ofioliti nei versanti collinari che scendono fino al torrente
+      Lotro. La formazione geologica maggiormente caratterizzante del versante orientale
+      \xE8 quella delle serpentiniti, che nella zona lungo il torrente Lotro presentano
+      insediamenti della vegetazione tipica di questi substrati, di notevole valore
+      fitogeografico ed buono stato di conservazione. Nel versante nord-occidentale
+      i terreni presentano caratteristiche similari alle arenarie del Monte Falterona,
+      e la formazione geologica prevalente \xE8 il macigno toscano. In questa zona
+      una parte ricade all\u2019interno della ZSC \u201CAlta Valle Santa\u201D."
+  - type: Riserva Naturale Biogenetica
+    name: Riserva Naturale Biogenetica Pania di Corfino
+    coord: 44.1892526,10.395061
+    descr: La Riserva prende il nome dal rilievo Pania di Corfino, massiccio montuoso
+      calcareo di 1603 m s.l.m., ai piedi del quale si estendono ampie faggete. La
+      Riserva occupa il versante sud-est del rilievo fino al torrente Fiume di Corfino.
+  - type: Foresta Demaniale
+    name: Ferraiolo-Badia Tedalda
+    coord: 43.669, 12.175
+    descr: i terreni si estendono lungo la dorsale appenninica e sono caratterizzati
+      da argille marnose e arenarie variamente cementate della Formazione Marnoso-Arenacea
+      e marne e calcari marnosi del Bisciaro (Epoca Miocenica, Era Terziaria).
+  riservaDatabaseType: []
+  type:
+  - Riserva Naturale Biogenetica
+  - Foresta Demaniale
