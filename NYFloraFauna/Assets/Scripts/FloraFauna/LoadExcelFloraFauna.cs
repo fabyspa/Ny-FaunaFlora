@@ -11,21 +11,23 @@ public class LoadExcelFloraFauna : MonoBehaviour
     //inizializzo un oggetto Riserva
     public Fauna blankFauna;
     public List<Fauna> faunaDatabase = new List<Fauna>();
-    //public List<Riserva> riservaDatabaseType = new List<Riserva>();
-    //public List<Riserva> ordenList = new List<Riserva>();
-   // public Image _image;
-    //public List<string> type = new List<string>();
-    //[SerializeField] GameObject scrolling;
+    public List<Fauna> faunaDatabaseType = new List<Fauna>();
+    public List<Fauna> ordenList = new List<Fauna>();
+    // public Image _image;
+    [SerializeField]
+    public GameObject info;
+    public List<string> type = new List<string>();
+    [SerializeField] GameObject scrolling;
     //[SerializeField] VariableGameObjectListBankRiserva VariableGameObjectListBankRiserva;
-    //public bool loadedItems = false;
-    //public string actualType;
+    public bool loadedItems = false;
+    public string actualType;
     //public Dictionary<GameObject, float[]> coord2position = new Dictionary<GameObject, float[]>();
     //public GameObject _oldGameObjecct;
     //public Transform parent;
     //public List<GameObject> pointList = new List<GameObject>();
     //public Dictionary<string, string> ita2engType = new Dictionary<string, string>();
     ////Ogetto contenente l'item attivo in questo momento
-    //public Riserva aItem;
+    public Fauna aItem;
     //[SerializeField] GameObject point;
 
 
@@ -33,9 +35,9 @@ public class LoadExcelFloraFauna : MonoBehaviour
     public void Start()
     {
         LoadItemData();
-        //scrolling.GetComponent<VariableStringListBankRiserva>().ChangeContents();
-        //SortListByType();
-        //GameObject.FindGameObjectWithTag("Info").GetComponent<VariableGameObjectListBankRiserva>().ChangeInfoContents("Tutte");
+        scrolling.GetComponent<VariableStringListBankFauna>().ChangeContents();
+        SortListByType();
+        info.GetComponent<VariableGameObjectListBankFauna>().ChangeInfoContents("Tutte");
         // Debug.Log("ITEM "+aItem.coord);
     }
 
@@ -46,8 +48,8 @@ public class LoadExcelFloraFauna : MonoBehaviour
 
         //clear database
         faunaDatabase.Clear();
-       // riservaDatabaseType.Clear();
-       //type.Clear();
+        faunaDatabaseType.Clear();
+        type.Clear();
         //READ CSV FILE
         List<Dictionary<string, object>> data = CSVReader.Read("Fauna");
         for (var i = 0; i < data.Count; i++)
@@ -73,8 +75,8 @@ public class LoadExcelFloraFauna : MonoBehaviour
             AddFauna(classe, nomeComune, nomeLatino, ADistr,Aprotetta,descr);
 
         }
-        //loadedItems = true;
-       // GetRiservaTypes();
+        loadedItems = true;
+         GetFaunaTypes();
        // AddState();
         /* InstantiatePoints(riservaDatabase,tipo);*/
     }
@@ -212,46 +214,46 @@ public class LoadExcelFloraFauna : MonoBehaviour
     //}
 
     ////torna tutti i tipi di riserve diverse
-    //public void GetRiservaTypes()
-    //{
-    //    if (loadedItems == false) LoadItemData();
+    public void GetFaunaTypes()
+    {
+        if (loadedItems == false) LoadItemData();
         
-    //    foreach (Riserva r in riservaDatabase)
-    //    {
-    //        if (!type.Contains(r.type)){
-    //            type.Add(r.type);
-    //        }
+        foreach (Fauna r in faunaDatabase)
+        {
+           if (!type.Contains(r.classe)){
+                type.Add(r.classe);
+            }
 
     //        if (r.type_eng != "")
     //        {
     //            ita2engType.Add(r.type_eng, r.type);
     //        }
-    //    }
+        }
 
     //    //Debug.Log(type);
-    //}
+    }
 
-    //public  List<Riserva> LoadRiservaByType(string type)
-    //{
-    //    if (actualType != type)
-    //    {
-    //        riservaDatabaseType.Clear();
-    //        if (loadedItems == false) LoadItemData();
-    //        foreach (Riserva r in riservaDatabase)
-    //        {
-    //            if (r.type.ToUpper() == type.ToUpper())
-    //            {
-    //                //r.sprite = UpdateImage(r.name);
-    //                riservaDatabaseType.Add(r);
-    //            }
-    //        }
-    //        actualType = type;
+    public List<Fauna> LoadFaunaByType(string type)
+    {
+        if (actualType != type)
+        {
+            faunaDatabaseType.Clear();
+            if (loadedItems == false) LoadItemData();
+            foreach (Fauna r in faunaDatabase)
+            {
+                if (r.classe.ToUpper() == type.ToUpper())
+                {
+                    //r.sprite = UpdateImage(r.name);
+                    faunaDatabaseType.Add(r);
+                }
+            }
+            actualType = type;
 
-    //    }
+        }
 
-    //    return riservaDatabaseType;
+        return faunaDatabaseType;
 
-    //}
+    }
     //public Riserva LoadRiservaByName(string name)
     //{
 
@@ -266,7 +268,7 @@ public class LoadExcelFloraFauna : MonoBehaviour
 
     //public Riserva GetRiservaByCoord(GameObject p)
     //{
-        
+
     //    foreach(Riserva r in riservaDatabase)
     //    {
     //        float[] coord = Convert_coordinates.remapLatLng(r.coord);
@@ -280,19 +282,19 @@ public class LoadExcelFloraFauna : MonoBehaviour
     //            //Debug.Log("SELEZIONATA "+ r.name);
     //            return r;
     //        }
-           
+
     //    }
     //    return null;
     //}
 
-    //public List<Riserva> SortListByType()
-    //{
-    //    foreach (string t in type)
-    //    {
-    //        ordenList.AddRange(LoadRiservaByType(t));
-    //    }
-    //    return ordenList;
+    public List<Fauna> SortListByType()
+    {
+        foreach (string t in type)
+        {
+            ordenList.AddRange(LoadFaunaByType(t));
+        }
+        return ordenList;
 
-    //}
+    }
 
 }

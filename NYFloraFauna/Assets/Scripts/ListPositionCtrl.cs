@@ -18,7 +18,7 @@ namespace AirFishLab.ScrollingList
     {
         public string tagscroll;
         public string centeredBoxAfterScroll;
-        LoadExcel loadexcel;
+        LoadExcelFloraFauna loadexcel;
         #region Enums
 
         
@@ -230,7 +230,7 @@ namespace AirFishLab.ScrollingList
         {
             float GetAligningDistance() => _deltaDistanceToCenter;
             PositionState GetPositionState() => _positionState;
-            loadexcel = GameObject.FindObjectOfType<LoadExcel>();
+            loadexcel = GameObject.FindObjectOfType<LoadExcelFloraFauna>();
             m_MyEvent.AddListener(() => CenteredBoxisChanged());
             //info = GameObject.FindGameObjectWithTag("Info");
             var overGoingThreshold = unitPos * 0.3f;
@@ -462,7 +462,6 @@ namespace AirFishLab.ScrollingList
             {
                 if (tagscroll == "Type")
                 {
-                    Debug.Log("type: " + GetCenteredBox().GetComponentInChildren<Text>().text);
                     var newCenteredBoxAfterScroll = GetCenteredBox().GetComponentInChildren<Text>().text;
                     if (m_MyEvent != null && centeredBoxAfterScroll != newCenteredBoxAfterScroll)
                     {
@@ -471,14 +470,14 @@ namespace AirFishLab.ScrollingList
                     }
 
                 }
-                if (tagscroll == "Info")
-                {
-                    var newInfoCenteredBoxAfterScroll = GetCenteredBox().GetComponentInChildren<Text>().text;
-                    Riserva _centerRiserva = loadexcel.LoadRiservaByName(newInfoCenteredBoxAfterScroll);
-                    loadexcel.aItem = _centerRiserva;
-                    loadexcel.ChangeStateTo(loadexcel.coord2position.FirstOrDefault(x => Enumerable.SequenceEqual(x.Value, Convert_coordinates.remapLatLng(loadexcel.aItem.coord))).Key, "selected");
+                //if (tagscroll == "Info")
+                //{
+                //    var newInfoCenteredBoxAfterScroll = GetCenteredBox().GetComponentInChildren<Text>().text;
+                //    Riserva _centerRiserva = loadexcel.LoadRiservaByName(newInfoCenteredBoxAfterScroll);
+                //    loadexcel.aItem = _centerRiserva;
+                //    loadexcel.ChangeStateTo(loadexcel.coord2position.FirstOrDefault(x => Enumerable.SequenceEqual(x.Value, Convert_coordinates.remapLatLng(loadexcel.aItem.coord))).Key, "selected");
 
-                }
+                //}
             }
 
             // Not to update the state of box after the last frame of movement
@@ -495,17 +494,18 @@ namespace AirFishLab.ScrollingList
         void CenteredBoxisChanged()
         {
             
-            var info= GameObject.FindGameObjectWithTag("Info");
-           // var firstFilter = GameObject.FindGameObjectsWithTag("FirstFilter");
+            CircularScrollingListFauna circularScrollingListFauna = loadexcel.info.GetComponent<CircularScrollingListFauna>();
 
-            #nullable enable
-            VariableGameObjectListBankRiserva? list = (VariableGameObjectListBankRiserva?) info.GetComponent<CircularScrollingListRiserva>().listBank;
-            if(list!=null)
+            // var firstFilter = GameObject.FindGameObjectsWithTag("FirstFilter");
+#nullable enable
+            VariableGameObjectListBankFauna? list = (VariableGameObjectListBankFauna?) circularScrollingListFauna.listBank;
+            if (list != null)
             {
+                Debug.Log("DENTRO");
                 list.ChangeInfoContents(centeredBoxAfterScroll);
             }
 
-            #nullable disable
+#nullable disable
             // list.ChangeInfoContents(centeredBoxAfterScroll);
             //foreach (VariableStringListBankRiserva v in _variable)
             //{
@@ -531,12 +531,10 @@ namespace AirFishLab.ScrollingList
         {
             var minDeltaDistance = Mathf.Infinity;
             ListBox candidateBox = null;
-
             foreach (var listBox in _listBoxes) {
                 // Skip the disabled box in linear mode
                 if (!listBox.isActiveAndEnabled)
                     continue;
-
                 var localPos = listBox.transform.localPosition;
                 var deltaDistance = -_getFactor(localPos);
 
@@ -548,7 +546,7 @@ namespace AirFishLab.ScrollingList
             }
 
             _deltaDistanceToCenter = minDeltaDistance;
-
+            
             if (_centeredBox != candidateBox) {
                 _listSetting.onCenteredContentChanged?.Invoke(candidateBox.contentID);
                 candidateBox.PopToFront();

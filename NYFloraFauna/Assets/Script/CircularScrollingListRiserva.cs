@@ -233,7 +233,7 @@ namespace AirFishLab.ScrollingList
             {
                 var centeredBox = _listPositionCtrl.GetCenteredBox();
                 var numOfContents = _listBank.GetListLength();
-                //Debug.Log(centeredContentID);
+               Debug.Log(centeredBox);
                 if (centeredContentID < 0)
                     centeredContentID =
                         centeredBox.contentID == int.MinValue

@@ -40,14 +40,10 @@ public static class Convert_coordinates
                     else
                     {
                         xy[i] = ExtensionMethods.Remap(v, xfrom1, xto1, xfrom2, xto2, decimalp);
-                        Debug.Log(v);
-
                     }
                 }
      
         }
-        Debug.Log(string.Join(",", xy));
-
         return xy;
     }
 }
