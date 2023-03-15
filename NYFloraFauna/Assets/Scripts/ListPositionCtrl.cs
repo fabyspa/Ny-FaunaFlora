@@ -47,6 +47,7 @@ namespace AirFishLab.ScrollingList
 
         #region Referenced Components
         UnityEvent m_MyEvent = new UnityEvent();
+        UnityEvent scheda_MyEvent = new UnityEvent();
 
         /// <summary>
         /// The setting of the list
@@ -232,6 +233,7 @@ namespace AirFishLab.ScrollingList
             PositionState GetPositionState() => _positionState;
             loadexcel = GameObject.FindObjectOfType<LoadExcelFloraFauna>();
             m_MyEvent.AddListener(() => CenteredBoxisChanged());
+            scheda_MyEvent.AddListener(() => CenteredBoxisChangedScheda());
             //info = GameObject.FindGameObjectWithTag("Info");
             var overGoingThreshold = unitPos * 0.3f;
 
@@ -470,14 +472,18 @@ namespace AirFishLab.ScrollingList
                     }
 
                 }
-                //if (tagscroll == "Info")
-                //{
-                //    var newInfoCenteredBoxAfterScroll = GetCenteredBox().GetComponentInChildren<Text>().text;
-                //    Riserva _centerRiserva = loadexcel.LoadRiservaByName(newInfoCenteredBoxAfterScroll);
-                //    loadexcel.aItem = _centerRiserva;
-                //    loadexcel.ChangeStateTo(loadexcel.coord2position.FirstOrDefault(x => Enumerable.SequenceEqual(x.Value, Convert_coordinates.remapLatLng(loadexcel.aItem.coord))).Key, "selected");
-
-                //}
+                if (tagscroll == "Info")
+                {
+                    var newInfoCenteredBoxAfterScroll = GetCenteredBox().GetComponentInChildren<Text>().text;
+                    Fauna _centerFauna = loadexcel.LoadFaunaByName(newInfoCenteredBoxAfterScroll);
+                    loadexcel.aItem = _centerFauna;
+                    if (m_MyEvent != null && centeredBoxAfterScroll != newInfoCenteredBoxAfterScroll)
+                    {
+                        centeredBoxAfterScroll = newInfoCenteredBoxAfterScroll;
+                        scheda_MyEvent.Invoke();
+                    }
+                    //loadexcel.ChangeStateTo(loadexcel.coord2position.FirstOrDefault(x => Enumerable.SequenceEqual(x.Value, Convert_coordinates.remapLatLng(loadexcel.aItem.coord))).Key, "selected");
+                }
             }
 
             // Not to update the state of box after the last frame of movement
@@ -490,19 +496,24 @@ namespace AirFishLab.ScrollingList
             _listSetting.onMovementEnd?.Invoke();
             
         }
-
+        void CenteredBoxisChangedScheda()
+        {
+           
+        }
         void CenteredBoxisChanged()
         {
-            
-            CircularScrollingListFauna circularScrollingListFauna = loadexcel.info.GetComponent<CircularScrollingListFauna>();
+
+            CircularScrollingListFauna circularScrollingListFaunaInfo = loadexcel.info.GetComponent<CircularScrollingListFauna>();
+            CircularScrollingListFauna circularScrollingListFaunaScheda = loadexcel.scheda.GetComponent<CircularScrollingListFauna>();
 
             // var firstFilter = GameObject.FindGameObjectsWithTag("FirstFilter");
 #nullable enable
-            VariableGameObjectListBankFauna? list = (VariableGameObjectListBankFauna?) circularScrollingListFauna.listBank;
-            if (list != null)
+            VariableGameObjectListBankFauna? listInfo = (VariableGameObjectListBankFauna?)circularScrollingListFaunaInfo.listBank;
+            VariableGameObjectListBankFauna? listScheda = (VariableGameObjectListBankFauna?)circularScrollingListFaunaScheda.listBank;
+            if (listInfo != null && listScheda!=null)
             {
-                Debug.Log("DENTRO");
-                list.ChangeInfoContents(centeredBoxAfterScroll);
+                listInfo.ChangeInfoContents(centeredBoxAfterScroll);
+                listScheda.ChangeInfoContents(centeredBoxAfterScroll);
             }
 
 #nullable disable

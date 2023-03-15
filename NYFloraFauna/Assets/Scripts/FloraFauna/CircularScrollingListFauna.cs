@@ -283,6 +283,7 @@ namespace AirFishLab.ScrollingList
         {
             if (_hasNoContent)
                 return;
+            GameObject.FindGameObjectWithTag("Scheda").GetComponent<CircularScrollingListFauna>()._listPositionCtrl.InputPositionHandler(eventData, TouchPhase.Began);
 
             _listPositionCtrl.InputPositionHandler(eventData, TouchPhase.Began);
         }
@@ -291,7 +292,7 @@ namespace AirFishLab.ScrollingList
         {
             if (_hasNoContent)
                 return;
-
+            GameObject.FindGameObjectWithTag("Scheda").GetComponent<CircularScrollingListFauna>()._listPositionCtrl.InputPositionHandler(eventData, TouchPhase.Moved);
             _listPositionCtrl.InputPositionHandler(eventData, TouchPhase.Moved);
         }
 
@@ -307,16 +308,8 @@ namespace AirFishLab.ScrollingList
                 return;
 
             UpdateTagScroll();
-      
+            GameObject.FindGameObjectWithTag("Scheda").GetComponent<CircularScrollingListFauna>()._listPositionCtrl.InputPositionHandler(eventData, TouchPhase.Ended);
 
-            //Debug.Log(GetCenteredBox().GetComponentInChildren<Text>().text );
-            //if (this.gameObject.transform.parent.name != "Info")
-            //{
-            //    var centeredBox = GetCenteredBox().GetComponentInChildren<Text>().text;
-            //   // Debug.Log(centeredBox);
-
-            //    _info.gameObject.GetComponent<VariableStringListBankRiserva>().ChangeInfoContents(centeredBox);
-            //}
 
             _listPositionCtrl.InputPositionHandler(eventData, TouchPhase.Ended);
             //Debug.Log(string.Join("," ,eventData));
@@ -326,6 +319,7 @@ namespace AirFishLab.ScrollingList
         {
             if (_hasNoContent)
                 return;
+            GameObject.FindGameObjectWithTag("Scheda").GetComponent<CircularScrollingListFauna>()._listPositionCtrl.ScrollHandler(eventData);
 
             _listPositionCtrl.ScrollHandler(eventData);
         }
