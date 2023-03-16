@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -13,7 +14,12 @@ namespace AirFishLab.ScrollingList
     public class CircularScrollingListFauna : MonoBehaviour,
         IBeginDragHandler, IDragHandler, IEndDragHandler, IScrollHandler
     {
+        private GameObject info;
+        private GameObject scheda;
+
         public string tagScroll;
+
+        public bool _toFix;
         #region Enum Definitions
 
         /// <summary>
@@ -113,6 +119,10 @@ namespace AirFishLab.ScrollingList
         private void Awake()
         {
             GetComponentReference();
+
+            info =  GameObject.FindGameObjectWithTag("Info");
+            scheda = GameObject.FindGameObjectWithTag("Scheda");
+
         }
 
         private void Start()
@@ -278,12 +288,29 @@ namespace AirFishLab.ScrollingList
         #endregion
 
         #region Event System Callback
+        public void UpdateTagScroll()
+        {
+            tagScroll = this.gameObject.tag.ToString();
+            _listPositionCtrl.tagscroll = tagScroll;
+        }
 
+        private PointerEventData eventData;
+        private TouchPhase touch;
+        void MoveScrollUp(PointerEventData e, TouchPhase t)
+        {
+            _toFix = true;
+
+            scheda.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.InputPositionHandler(e, t);
+
+        }
         public void OnBeginDrag(PointerEventData eventData)
         {
             if (_hasNoContent)
                 return;
-            GameObject.FindGameObjectWithTag("Scheda").GetComponent<CircularScrollingListFauna>()._listPositionCtrl.InputPositionHandler(eventData, TouchPhase.Began);
+            UpdateTagScroll();
+
+            if (tagScroll == "Info")
+                MoveScrollUp(eventData, TouchPhase.Began);
 
             _listPositionCtrl.InputPositionHandler(eventData, TouchPhase.Began);
         }
@@ -292,23 +319,21 @@ namespace AirFishLab.ScrollingList
         {
             if (_hasNoContent)
                 return;
-            GameObject.FindGameObjectWithTag("Scheda").GetComponent<CircularScrollingListFauna>()._listPositionCtrl.InputPositionHandler(eventData, TouchPhase.Moved);
+            if (tagScroll == "Info")
+                MoveScrollUp(eventData, TouchPhase.Moved);
+
+
             _listPositionCtrl.InputPositionHandler(eventData, TouchPhase.Moved);
         }
 
-        public void UpdateTagScroll()
-        {
-            tagScroll = this.gameObject.tag.ToString();
-            _listPositionCtrl.tagscroll = tagScroll;
-        }
-
+       
         public void OnEndDrag(PointerEventData eventData)
         {
             if (_hasNoContent)
                 return;
 
-            UpdateTagScroll();
-            GameObject.FindGameObjectWithTag("Scheda").GetComponent<CircularScrollingListFauna>()._listPositionCtrl.InputPositionHandler(eventData, TouchPhase.Ended);
+            if (tagScroll == "Info")
+                MoveScrollUp(eventData,TouchPhase.Ended);
 
 
             _listPositionCtrl.InputPositionHandler(eventData, TouchPhase.Ended);
@@ -319,7 +344,9 @@ namespace AirFishLab.ScrollingList
         {
             if (_hasNoContent)
                 return;
-            GameObject.FindGameObjectWithTag("Scheda").GetComponent<CircularScrollingListFauna>()._listPositionCtrl.ScrollHandler(eventData);
+
+            if (tagScroll == "Info")
+                MoveScrollUp(eventData, TouchPhase.Ended);
 
             _listPositionCtrl.ScrollHandler(eventData);
         }
@@ -332,6 +359,13 @@ namespace AirFishLab.ScrollingList
                 return;
 
             _listPositionCtrl.Update();
+
+            if (info.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem() == scheda.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem())
+            {
+                _toFix = false;
+            }
+            else
+                _toFix = true;
         }
 
         private void LateUpdate()
@@ -341,7 +375,41 @@ namespace AirFishLab.ScrollingList
 
             _listPositionCtrl.LateUpdate();
 
-           
+
+            if (_toFix)
+                FixCardInfo();
+
+        }
+
+        private void FixCardInfo()
+        {
+
+           //_toFix = false;
+            int indice_i = 0;
+            int indice_j = 0;
+
+
+            if (info.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem() != scheda.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem())
+            {
+                for (int i = 0; i < info.GetComponent<VariableGameObjectListBankFauna>()._contents.Length; i++)
+                {
+                    if (info.GetComponent<VariableGameObjectListBankFauna>()._contents[i].nomeComune == info.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem().nomeComune)
+                    {
+                        indice_i = i;
+                    }
+                }
+                for (int j = 0; j < info.GetComponent<VariableGameObjectListBankFauna>()._contents.Length; j++)
+                {
+                    if (scheda.GetComponent<VariableGameObjectListBankFauna>()._contents[j].nomeComune == scheda.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem().nomeComune)
+                    {
+                        indice_j = j;
+                    }
+                }
+                int diff = indice_i - indice_j;
+                scheda.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.SetUnitMove(-3 * diff);
+            }
+
+         
         }
 
 #if UNITY_EDITOR

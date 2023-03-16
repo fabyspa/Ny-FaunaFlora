@@ -106,7 +106,7 @@ namespace AirFishLab.ScrollingList
         /// <summary>
         /// The controller for handling the input action and returning the moving distance
         /// </summary>
-        private IMovementCtrl _movementCtrl;
+        public IMovementCtrl _movementCtrl;
         /// <summary>
         /// The local position of the pointer in the last handler call
         /// </summary>
@@ -145,7 +145,7 @@ namespace AirFishLab.ScrollingList
         /// Is the current movement the ending movement?
         /// </summary>
         /// Mainly for indicating the movement status in the dragging mode
-        private bool _isEndingMovement;
+        public bool _isEndingMovement;
 
         #endregion
 
@@ -474,7 +474,7 @@ namespace AirFishLab.ScrollingList
                 }
                 if (tagscroll == "Info")
                 {
-                    var newInfoCenteredBoxAfterScroll = GetCenteredBox().GetComponentInChildren<Text>().text;
+                   var newInfoCenteredBoxAfterScroll = GetCenteredBox().GetComponentInChildren<Text>().text;
                     Fauna _centerFauna = loadexcel.LoadFaunaByName(newInfoCenteredBoxAfterScroll);
                     loadexcel.aItem = _centerFauna;
                     if (m_MyEvent != null && centeredBoxAfterScroll != newInfoCenteredBoxAfterScroll)
@@ -484,6 +484,7 @@ namespace AirFishLab.ScrollingList
                     }
                     //loadexcel.ChangeStateTo(loadexcel.coord2position.FirstOrDefault(x => Enumerable.SequenceEqual(x.Value, Convert_coordinates.remapLatLng(loadexcel.aItem.coord))).Key, "selected");
                 }
+
             }
 
             // Not to update the state of box after the last frame of movement
