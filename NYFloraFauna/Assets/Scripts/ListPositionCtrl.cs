@@ -47,6 +47,7 @@ namespace AirFishLab.ScrollingList
 
         #region Referenced Components
         UnityEvent m_MyEvent = new UnityEvent();
+        UnityEvent info_MyEvent = new UnityEvent();
         UnityEvent scheda_MyEvent = new UnityEvent();
 
         /// <summary>
@@ -234,6 +235,7 @@ namespace AirFishLab.ScrollingList
             loadexcel = GameObject.FindObjectOfType<LoadExcelFloraFauna>();
             m_MyEvent.AddListener(() => CenteredBoxisChanged());
             scheda_MyEvent.AddListener(() => CenteredBoxisChangedScheda());
+            info_MyEvent.AddListener(() => CenteredBoxisChangedInfo());
             //info = GameObject.FindGameObjectWithTag("Info");
             var overGoingThreshold = unitPos * 0.3f;
 
@@ -472,18 +474,19 @@ namespace AirFishLab.ScrollingList
                     }
 
                 }
-                if (tagscroll == "Info")
-                {
-                   var newInfoCenteredBoxAfterScroll = GetCenteredBox().GetComponentInChildren<Text>().text;
-                    Fauna _centerFauna = loadexcel.LoadFaunaByName(newInfoCenteredBoxAfterScroll);
-                    loadexcel.aItem = _centerFauna;
-                    if (m_MyEvent != null && centeredBoxAfterScroll != newInfoCenteredBoxAfterScroll)
-                    {
-                        centeredBoxAfterScroll = newInfoCenteredBoxAfterScroll;
-                        scheda_MyEvent.Invoke();
-                    }
-                    //loadexcel.ChangeStateTo(loadexcel.coord2position.FirstOrDefault(x => Enumerable.SequenceEqual(x.Value, Convert_coordinates.remapLatLng(loadexcel.aItem.coord))).Key, "selected");
-                }
+               
+                //if (tagscroll == "Info")
+                //{
+                //   var newInfoCenteredBoxAfterScroll = GetCenteredBox().GetComponentInChildren<Text>().text;
+                //    Fauna _centerFauna = loadexcel.LoadFaunaByName(newInfoCenteredBoxAfterScroll);
+                //    loadexcel.aItem = _centerFauna;
+                //    if (m_MyEvent != null && centeredBoxAfterScroll != newInfoCenteredBoxAfterScroll)
+                //    {
+                //        centeredBoxAfterScroll = newInfoCenteredBoxAfterScroll;
+                //        scheda_MyEvent.Invoke();
+                //    }
+                //    //loadexcel.ChangeStateTo(loadexcel.coord2position.FirstOrDefault(x => Enumerable.SequenceEqual(x.Value, Convert_coordinates.remapLatLng(loadexcel.aItem.coord))).Key, "selected");
+                //}
 
             }
 
@@ -492,6 +495,34 @@ namespace AirFishLab.ScrollingList
 
             if (!_isEndingMovement)
                 return;
+            else
+            {
+                if (tagscroll == "Info")
+                {
+                    var newInfoCenteredBoxAfterScroll = GetCenteredBox().GetComponentInChildren<Text>().text;
+                    Fauna _centerFauna = loadexcel.LoadFaunaByName(newInfoCenteredBoxAfterScroll);
+                    loadexcel.aItem = _centerFauna;
+                    if (m_MyEvent != null && centeredBoxAfterScroll != newInfoCenteredBoxAfterScroll)
+                    {
+                        centeredBoxAfterScroll = newInfoCenteredBoxAfterScroll;
+                        info_MyEvent.Invoke();
+                    }
+                    //loadexcel.ChangeStateTo(loadexcel.coord2position.FirstOrDefault(x => Enumerable.SequenceEqual(x.Value, Convert_coordinates.remapLatLng(loadexcel.aItem.coord))).Key, "selected");
+                }
+                
+                if (tagscroll == "Scheda")
+                {
+                    var newSchedaCenteredBoxAfterScroll = GetCenteredBox().GetComponentInChildren<Text>().text;
+                    Fauna _centerFauna = loadexcel.LoadFaunaByName(newSchedaCenteredBoxAfterScroll);
+                    loadexcel.aItem = _centerFauna;
+                    if (m_MyEvent != null && centeredBoxAfterScroll != newSchedaCenteredBoxAfterScroll)
+                    {
+                        centeredBoxAfterScroll = newSchedaCenteredBoxAfterScroll;
+                        scheda_MyEvent.Invoke();
+                    }
+                    //loadexcel.ChangeStateTo(loadexcel.coord2position.FirstOrDefault(x => Enumerable.SequenceEqual(x.Value, Convert_coordinates.remapLatLng(loadexcel.aItem.coord))).Key, "selected");
+                }
+            }
            
             _isEndingMovement = false;
             _listSetting.onMovementEnd?.Invoke();
@@ -499,7 +530,22 @@ namespace AirFishLab.ScrollingList
         }
         void CenteredBoxisChangedScheda()
         {
-           
+            Debug.Log("FINE MOVIMENTO SCHEDA");
+            tagscroll = null;
+            CircularScrollingListFauna circularScrollingListFaunaScheda = loadexcel.scheda.GetComponent<CircularScrollingListFauna>();
+            circularScrollingListFaunaScheda._toFixScheda = false;
+            circularScrollingListFaunaScheda._toFixInfo = false;
+        } 
+        
+        void CenteredBoxisChangedInfo()
+        {
+            Debug.Log("FINE MOVIMENTO INFO");
+
+            tagscroll = null;
+            CircularScrollingListFauna circularScrollingListFaunaInfo = loadexcel.info.GetComponent<CircularScrollingListFauna>();
+            circularScrollingListFaunaInfo._toFixInfo = false;
+            circularScrollingListFaunaInfo._toFixScheda = false;
+
         }
         void CenteredBoxisChanged()
         {

@@ -459,8 +459,7 @@ namespace AirFishLab.ScrollingList
                 return;
             else
             {
-
-                //Debug.Log("isEndingMovement");
+                Debug.Log("isEndingMovement");
                 var newCenteredBoxAfterScroll = GetCenteredBox().GetComponentInChildren<Text>().text;
                 if(m_MyEvent!=null && centeredBoxAfterScroll != newCenteredBoxAfterScroll)
                 {

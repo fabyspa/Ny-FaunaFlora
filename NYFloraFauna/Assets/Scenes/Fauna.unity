@@ -1334,7 +1334,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagScroll: 
-  _toFix: 0
+  _toFixInfo: 0
+  _toFixScheda: 0
   _listBank: {fileID: 317315569}
   _listBoxes:
   - {fileID: 1665857117}
@@ -4549,7 +4550,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagScroll: 
-  _toFix: 0
+  _toFixInfo: 0
+  _toFixScheda: 0
   _listBank: {fileID: 817779959}
   _listBoxes:
   - {fileID: 1345560219}
@@ -7323,15 +7325,15 @@ RectTransform:
   - {fileID: 654003699}
   - {fileID: 860989773}
   - {fileID: 1482775706}
-  - {fileID: 522885010}
   - {fileID: 1004969020}
+  - {fileID: 522885010}
   m_Father: {fileID: 1544163520}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 14.9, y: 0.00012207031}
-  m_SizeDelta: {x: 4604, y: 1477.5}
+  m_AnchoredPosition: {x: -14.9, y: 0.00012207031}
+  m_SizeDelta: {x: 3860, y: 1432.9}
   m_Pivot: {x: 0.5, y: 0.00000008195639}
 --- !u!114 &1476369183
 MonoBehaviour:
@@ -7360,14 +7362,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagScroll: 
-  _toFix: 0
+  _toFixInfo: 0
+  _toFixScheda: 0
   _listBank: {fileID: 1476369183}
   _listBoxes:
   - {fileID: 654003702}
   - {fileID: 860989776}
   - {fileID: 1524653650}
-  - {fileID: 522885011}
   - {fileID: 1004969021}
+  - {fileID: 522885011}
   _setting:
     _listType: 0
     _controlMode: 0
@@ -7378,7 +7381,7 @@ MonoBehaviour:
     _centerSelectedBox: 1
     _reverseOrder: 1
     _initializeOnStart: 1
-    _boxDensity: 1
+    _boxDensity: 2
     _boxPositionCurve:
       serializedVersion: 2
       m_Curve:
@@ -7440,22 +7443,31 @@ MonoBehaviour:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
+        time: 0.0041656494
         value: 1
-        inSlope: 0
-        outSlope: -2.5
+        inSlope: -2.665783
+        outSlope: -2.665783
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0
+        outWeight: 0.048507463
+      - serializedVersion: 3
+        time: 0.073840074
+        value: 0.8254707
+        inSlope: -2.347426
+        outSlope: -2.347426
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
         value: 0
-        inSlope: 0
-        outSlope: 0
+        inSlope: -0.028004175
+        outSlope: -0.028004175
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
+        inWeight: 0.10261196
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -7464,22 +7476,22 @@ MonoBehaviour:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: -1
-        value: 1
-        inSlope: 0
-        outSlope: 0
+        time: 0
+        value: 0
+        inSlope: 10.214248
+        outSlope: 10.214248
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0
+        outWeight: 0.04838854
       - serializedVersion: 3
-        time: 1
+        time: 0.25
         value: 1
-        inSlope: 0
-        outSlope: 0
+        inSlope: -0.000001252862
+        outSlope: -0.000001252862
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
+        inWeight: 0.09514958
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
