@@ -4,7 +4,7 @@ using UnityEngine;
 using AirFishLab.ScrollingList;
 using System.Linq;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 
 public class LoadExcelFloraFauna : MonoBehaviour
 {
@@ -19,9 +19,6 @@ public class LoadExcelFloraFauna : MonoBehaviour
     public bool loadedItems = false;
     public string actualType;
     public Fauna aItem;
-
-
-
     public void Start()
     {
         LoadItemData();
@@ -40,21 +37,39 @@ public class LoadExcelFloraFauna : MonoBehaviour
         faunaDatabaseType.Clear();
         type.Clear();
         //READ CSV FILE
-        List<Dictionary<string, object>> data = CSVReader.Read("Fauna");
+        if (SceneManager.GetActiveScene().name=="Fauna")
+        {
+            List<Dictionary<string, object>> data = CSVReader.Read("Fauna");
+            InstantiateFloraFauna(data);
+
+
+        }
+        else if(SceneManager.GetActiveScene().name == "Flora")
+        {
+            Debug.Log("FLORA");
+            List<Dictionary<string, object>> data = CSVReader.Read("FloraBiodiversita");
+            InstantiateFloraFauna(data);
+
+        }
+
+    }
+
+    void InstantiateFloraFauna(List<Dictionary<string, object>> data)
+    {
         for (var i = 0; i < data.Count; i++)
         {
-            string classe = data[i]["Classe"].ToString();
-            string nomeComune = data[i]["Nome comune"].ToString();
+            string descr = data[i]["Descrizione ITA"].ToString();
+            string classe = data[i]["Tipologia ITA"].ToString();
             string nomeLatino = data[i]["Nome latino"].ToString();
-            string ADistr = data[i]["AREALE DI DISTRIBUZIONE"].ToString();
-            string Aprotetta = data[i]["AREA PROTETTA RAGGRUPPAMENTO CC BIODIVERSITA'"].ToString();
-            string descr = data[i]["DESCRIZIONE"].ToString();
-            AddFauna(classe, nomeComune, nomeLatino, ADistr,Aprotetta,descr);
+            string Aprotetta = data[i]["Area protetta raggruppamento cc biodiversita"].ToString();
+            string ADistr = data[i]["Areale di distribuzione"].ToString();
+            string nomeComune = data[i]["Nome ITA"].ToString();
+            if(classe!="")
+            AddFauna(classe, nomeComune, nomeLatino, ADistr, Aprotetta, descr);
 
         }
         loadedItems = true;
-         GetFaunaTypes();
-
+        GetFaunaTypes();
     }
 
     void AddFauna(string classe, string nomeComune, string nomeLatino,  string ADistr, string AProtetta, string descr)

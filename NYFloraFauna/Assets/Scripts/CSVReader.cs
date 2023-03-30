@@ -9,10 +9,9 @@ public class CSVReader
     static string SPLIT_RE = @",(?=(?:[^""]*""[^""]*"")*(?![^""]*""))";
     static string LINE_SPLIT_RE = @"\r\n|\n\r|\n|\r";
     static char[] TRIM_CHARS = { '\"' };
- 
+    static public List<Dictionary<string, object>> list= new List<Dictionary<string, object>>();
     public static List<Dictionary<string, object>> Read(string file)
     {
-        var list = new List<Dictionary<string, object>>();
         TextAsset data = Resources.Load(file) as TextAsset;
         
         var lines = Regex.Split(data.text, LINE_SPLIT_RE);
@@ -52,6 +51,7 @@ public class CSVReader
                 entry[header[j]] = finalvalue;
                 //Debug.Log(finalvalue);
             }
+            Debug.Log(entry.ToString());
             list.Add(entry);
         }
         return list;

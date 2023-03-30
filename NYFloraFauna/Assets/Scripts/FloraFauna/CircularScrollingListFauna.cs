@@ -302,7 +302,7 @@ namespace AirFishLab.ScrollingList
         void MoveScrollUp(PointerEventData e, TouchPhase t)
         {
             scheda.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.InputPositionHandler(e, t);
-            //if(t!=TouchPhase.Began)
+            if(t!=TouchPhase.Ended)
             _toFixScheda = true;
         } 
         
@@ -311,7 +311,7 @@ namespace AirFishLab.ScrollingList
             //_toFix = true;
 
             info.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.InputPositionHandler(e, t);
-            //if (t != TouchPhase.Began)
+            if (t != TouchPhase.Ended)
                 _toFixInfo = true;
 
 
@@ -365,10 +365,10 @@ namespace AirFishLab.ScrollingList
             if (_hasNoContent)
                 return;
 
-            if (tagScroll == "Info")
-                MoveScrollUp(eventData, TouchPhase.Ended);
-             if (tagScroll == "Scheda")
-                MoveScrollDown(eventData, TouchPhase.Ended);
+            //if (tagScroll == "Info")
+            //    MoveScrollUp(eventData, TouchPhase.Ended);
+            // if (tagScroll == "Scheda")
+            //    MoveScrollDown(eventData, TouchPhase.Ended);
 
             _listPositionCtrl.ScrollHandler(eventData);
         }
@@ -442,42 +442,42 @@ namespace AirFishLab.ScrollingList
                 {
                     for (int i = 0; i < info.GetComponent<VariableGameObjectListBankFauna>()._contents.Length; i++)
                     {
-                        if (info.GetComponent<VariableGameObjectListBankFauna>()._contents[i].nomeComune == info.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem().nomeComune)
+                        if (info.GetComponent<VariableGameObjectListBankFauna>()._contents[i].nomeLatino == info.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem().nomeLatino)
                         {
                             indice_i = i;
                         }
                     }
-                    for (int j = 0; j < info.GetComponent<VariableGameObjectListBankFauna>()._contents.Length; j++)
-                    {
-                        if (scheda.GetComponent<VariableGameObjectListBankFauna>()._contents[j].nomeComune == scheda.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem().nomeComune)
-                        {
-                            indice_j = j;
-                        }
-                    }
-                    int diff = indice_i - indice_j;
-                    scheda.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.SetUnitMove(-3 * diff);
+                    //for (int j = 0; j < info.GetComponent<VariableGameObjectListBankFauna>()._contents.Length; j++)
+                    //{
+                    //    if (scheda.GetComponent<VariableGameObjectListBankFauna>()._contents[j].nomeComune == scheda.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem().nomeComune)
+                    //    {
+                    //        indice_j = j;
+                    //    }
+                    //}
+                    //int diff = indice_i - indice_j;
+                    scheda.GetComponent<CircularScrollingListFauna>().SelectContentID(indice_i);
                 }
             }
             else if (_toFixInfo)
             {
                 if (info.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem() != scheda.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem())
                 {
-                    for (int i = 0; i < info.GetComponent<VariableGameObjectListBankFauna>()._contents.Length; i++)
-                    {
-                        if (info.GetComponent<VariableGameObjectListBankFauna>()._contents[i].nomeComune == info.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem().nomeComune)
-                        {
-                            indice_i = i;
-                        }
-                    }
+                    //for (int i = 0; i < info.GetComponent<VariableGameObjectListBankFauna>()._contents.Length; i++)
+                    //{
+                    //    if (info.GetComponent<VariableGameObjectListBankFauna>()._contents[i].nomeLatino == info.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem().nomeLatino)
+                    //    {
+                    //        indice_i = i;
+                    //    }
+                    //}
                     for (int j = 0; j < info.GetComponent<VariableGameObjectListBankFauna>()._contents.Length; j++)
                     {
-                        if (scheda.GetComponent<VariableGameObjectListBankFauna>()._contents[j].nomeComune == scheda.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem().nomeComune)
+                        if (scheda.GetComponent<VariableGameObjectListBankFauna>()._contents[j].nomeLatino == scheda.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem().nomeLatino)
                         {
                             indice_j = j;
                         }
                     }
-                    int diff = indice_j - indice_i;
-                    info.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.SetUnitMove(-3 * diff);
+                   //int diff = indice_j - indice_i;
+                    info.GetComponent<CircularScrollingListFauna>().SelectContentID(indice_j);
                 }
 
             }//scheda.GetComponent<CircularScrollingListFauna>().SelectContentID(indice_i);
