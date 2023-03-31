@@ -6,7 +6,7 @@ namespace AirFishLab.ScrollingList.Demo
     public class GameObjectListBoxFauna : ListBox
     {
         [SerializeField]
-        private Text _name;
+        private Text _name, _nameENG;
         [SerializeField]
         private Image _image;
         private Sprite tex;
@@ -16,7 +16,10 @@ namespace AirFishLab.ScrollingList.Demo
         {
             var dataWrapper = (VariableGameObjectListBankFauna.DataWrapper) content;
             _name.text = dataWrapper.data.nomeComune;
+            _nameENG.text = dataWrapper.data.nameENG;
+
             _image.sprite = UpdateImage(dataWrapper.data.nomeComune);
+
         }
         public Sprite UpdateImage(string _name)
         {

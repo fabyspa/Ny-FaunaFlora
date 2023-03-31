@@ -13,6 +13,9 @@ public class Fauna
     //public Sprite sprite;
     public string AProtetta;
     public string descr;
+    public string descrENG;
+    public string typeENG;
+    public string nameENG;
     
     // Update is called once per frame
     public Fauna( Fauna r)
@@ -23,5 +26,8 @@ public class Fauna
         ADistr = r.ADistr;
         AProtetta = r.AProtetta;
         descr = r.descr;
+        descrENG = r.descrENG;
+        nameENG= r.nameENG;
+        typeENG= r.typeENG;
     }
 }

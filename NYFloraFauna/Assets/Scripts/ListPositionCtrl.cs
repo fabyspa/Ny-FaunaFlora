@@ -530,7 +530,6 @@ namespace AirFishLab.ScrollingList
         }
         void CenteredBoxisChangedScheda()
         {
-            Debug.Log("FINE MOVIMENTO SCHEDA");
             tagscroll = null;
             CircularScrollingListFauna circularScrollingListFaunaScheda = loadexcel.scheda.GetComponent<CircularScrollingListFauna>();
             circularScrollingListFaunaScheda._toFixScheda = false;
@@ -539,10 +538,10 @@ namespace AirFishLab.ScrollingList
         
         void CenteredBoxisChangedInfo()
         {
-            Debug.Log("FINE MOVIMENTO INFO");
-
+            
             tagscroll = null;
             CircularScrollingListFauna circularScrollingListFaunaInfo = loadexcel.info.GetComponent<CircularScrollingListFauna>();
+
             circularScrollingListFaunaInfo._toFixInfo = false;
             circularScrollingListFaunaInfo._toFixScheda = false;
 
