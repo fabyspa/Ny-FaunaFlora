@@ -129,7 +129,7 @@ namespace AirFishLab.ScrollingList
         /// <summary>
         /// The factor for reversing the selection distance
         /// </summary>
-        private int _selectionDistanceFactor;
+        public int _selectionDistanceFactor;
         /// <summary>
         /// The factor for reversing the scrolling direction
         /// </summary>

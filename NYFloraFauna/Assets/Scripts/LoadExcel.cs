@@ -225,7 +225,7 @@ public class LoadExcel : MonoBehaviour
                 type.Add(r.type);
             }
 
-            if (r.type_eng != "")
+            if (r.type_eng != "" && !ita2engType.ContainsKey(r.type_eng))
             {
                 ita2engType.Add(r.type_eng, r.type);
             }

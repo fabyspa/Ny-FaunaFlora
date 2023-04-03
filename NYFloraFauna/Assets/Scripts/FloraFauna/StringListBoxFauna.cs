@@ -6,7 +6,7 @@ namespace AirFishLab.ScrollingList
     public class StringListBoxFauna : ListBox
     {
         [SerializeField]
-        private Text _textITA;//, _textENG;
+        private Text _textITA, _textENG;
 
         private LoadExcelFloraFauna loadexcel;
 
@@ -18,8 +18,14 @@ namespace AirFishLab.ScrollingList
         {
             var dataWrapper = (VariableStringListBankFauna.DataWrapper)content;
             _textITA.text = dataWrapper.data;
-            //if (dataWrapper.data == "Tutte") _textENG.text = "All";
-            //else _textENG.text= loadexcel.ita2engType.FirstOrDefault(x => x.Value == dataWrapper.data).Key;
+            if (loadexcel == null)
+            {
+                loadexcel = FindObjectOfType<LoadExcelFloraFauna>();
+
+                if (dataWrapper.data == "Tutte") _textENG.text = "All";
+                else _textENG.text = loadexcel.ita2engType.FirstOrDefault(x => x.Value == dataWrapper.data).Key;
+            }
+            
         }
     }
 }

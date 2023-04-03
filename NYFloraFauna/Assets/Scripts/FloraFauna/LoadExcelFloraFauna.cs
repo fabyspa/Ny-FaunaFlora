@@ -5,6 +5,7 @@ using AirFishLab.ScrollingList;
 using System.Linq;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class LoadExcelFloraFauna : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class LoadExcelFloraFauna : MonoBehaviour
     [SerializeField]
     public GameObject regGameObject;
     private char[] delimiters = { ',', ' ' };
+
+    public Dictionary<string, string> ita2engType = new Dictionary<string, string>();
 
     public void Start()
     {
@@ -72,6 +75,11 @@ public class LoadExcelFloraFauna : MonoBehaviour
             string Aprotetta = data[i]["Area protetta raggruppamento cc biodiversita"].ToString();
             string ADistr = data[i]["Areale di distribuzione"].ToString();
             string nomeComune = data[i]["Nome ITA"].ToString();
+            string nameENG = data[i]["Nome ENG"].ToString();
+            string typeENG = data[i]["Tipologia ENG"].ToString();
+            string descrENG = data[i]["Descrizione ENG"].ToString();
+
+           
             string[] regioni = data[i]["Regione"].ToString().Split(delimiters);
             if (classe!="")
             AddFauna(classe, nomeComune, nomeLatino, ADistr, Aprotetta, descr,regioni);
@@ -91,12 +99,16 @@ public class LoadExcelFloraFauna : MonoBehaviour
         tempItem.ADistr = ADistr;
         tempItem.AProtetta = AProtetta;
         tempItem.descr = descr;
+        tempItem.typeENG = typeENG;
+        tempItem.descrENG = descrENG;
+        tempItem.nameENG = nomeENG;
         tempItem.regioni = regioni;
         faunaDatabase.Add(tempItem);
     }
 
     public void GetFaunaTypes()
     {
+        var index = 0;
         if (loadedItems == false) LoadItemData();
         
         foreach (Fauna r in faunaDatabase)
@@ -104,7 +116,23 @@ public class LoadExcelFloraFauna : MonoBehaviour
            if (!type.Contains(r.classe)){
                 type.Add(r.classe);
             }
+
+            if (!ita2engType.ContainsValue(r.classe))
+            {
+                if (r.typeENG != "")
+                {
+                    ita2engType.Add(r.typeENG, r.classe);
+                }
+                else
+                {
+                    ita2engType.Add("val" + index, r.classe);
+                    index++;
+                }
+            }
+            
+
         }
+        Debug.Log(String.Join(",", ita2engType.Keys.ToArray()));
 
     }
 
