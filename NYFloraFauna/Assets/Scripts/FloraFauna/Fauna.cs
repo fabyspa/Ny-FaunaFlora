@@ -13,7 +13,8 @@ public class Fauna
     //public Sprite sprite;
     public string AProtetta;
     public string descr;
-    
+    public string[] regioni;
+
     // Update is called once per frame
     public Fauna( Fauna r)
     {
@@ -23,5 +24,6 @@ public class Fauna
         ADistr = r.ADistr;
         AProtetta = r.AProtetta;
         descr = r.descr;
+        regioni = r.regioni;
     }
 }

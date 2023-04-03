@@ -35,7 +35,6 @@ public static class Convert_coordinates
                     {
                         xy[i] = ExtensionMethods.Remap(v, yfrom1, yto1, yfrom2, yto2, decimalp);
                         // Debug.Log(v);
-
                     }
                     else
                     {

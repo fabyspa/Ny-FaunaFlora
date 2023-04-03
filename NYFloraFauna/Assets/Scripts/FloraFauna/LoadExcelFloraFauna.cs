@@ -12,13 +12,19 @@ public class LoadExcelFloraFauna : MonoBehaviour
     public List<Fauna> faunaDatabase = new List<Fauna>();
     public List<Fauna> faunaDatabaseType = new List<Fauna>();
     public List<Fauna> ordenList = new List<Fauna>();
+    public Dictionary<GameObject, string[]> regioniSplit = new Dictionary<GameObject, string[]>();
     [SerializeField]
     public GameObject info,scheda;
     public List<string> type = new List<string>();
+    public List<string> regioni = new List<string>();
     [SerializeField] GameObject scrolling;
     public bool loadedItems = false;
     public string actualType;
     public Fauna aItem;
+    [SerializeField]
+    public GameObject regGameObject;
+    private char[] delimiters = { ',', ' ' };
+
     public void Start()
     {
         LoadItemData();
@@ -26,6 +32,8 @@ public class LoadExcelFloraFauna : MonoBehaviour
         SortListByType();
         info.GetComponent<VariableGameObjectListBankFauna>().ChangeInfoContents("Tutte");
         scheda.GetComponent<VariableGameObjectListBankFauna>().ChangeInfoContents("Tutte");
+        scheda.GetComponentInChildren<VariableGameObjectListBankFauna>().ChangeInfoContents("Tutte");
+        
     }
 
     
@@ -51,7 +59,7 @@ public class LoadExcelFloraFauna : MonoBehaviour
             InstantiateFloraFauna(data);
 
         }
-
+        GetFaunaReg();
     }
 
     void InstantiateFloraFauna(List<Dictionary<string, object>> data)
@@ -64,15 +72,16 @@ public class LoadExcelFloraFauna : MonoBehaviour
             string Aprotetta = data[i]["Area protetta raggruppamento cc biodiversita"].ToString();
             string ADistr = data[i]["Areale di distribuzione"].ToString();
             string nomeComune = data[i]["Nome ITA"].ToString();
-            if(classe!="")
-            AddFauna(classe, nomeComune, nomeLatino, ADistr, Aprotetta, descr);
+            string[] regioni = data[i]["Regione"].ToString().Split(delimiters);
+            if (classe!="")
+            AddFauna(classe, nomeComune, nomeLatino, ADistr, Aprotetta, descr,regioni);
 
         }
         loadedItems = true;
         GetFaunaTypes();
     }
 
-    void AddFauna(string classe, string nomeComune, string nomeLatino,  string ADistr, string AProtetta, string descr)
+    void AddFauna(string classe, string nomeComune, string nomeLatino,  string ADistr, string AProtetta, string descr,string[] regioni)
     {
         Fauna tempItem = new Fauna(blankFauna);
 
@@ -82,6 +91,7 @@ public class LoadExcelFloraFauna : MonoBehaviour
         tempItem.ADistr = ADistr;
         tempItem.AProtetta = AProtetta;
         tempItem.descr = descr;
+        tempItem.regioni = regioni;
         faunaDatabase.Add(tempItem);
     }
 
@@ -139,4 +149,29 @@ public class LoadExcelFloraFauna : MonoBehaviour
         return null;
 
     }
+
+    //Crea una lista con tutte le regioni
+    public void GetFaunaReg()
+    {
+        foreach (Fauna f in faunaDatabase)
+        {
+            foreach(string s in f.regioni)
+            {
+
+                if (!regioni.Contains(s) && s != "")
+                {
+                    regioni.Add(s);
+                }
+            }
+            
+        }
+
+    }
+
+
+
+
+
+
+
 }
