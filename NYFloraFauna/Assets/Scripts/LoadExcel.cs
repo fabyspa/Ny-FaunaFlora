@@ -132,8 +132,7 @@ public class LoadExcel : MonoBehaviour
             if(!coord2position.ContainsKey(instanciated)) coord2position.Add(instanciated,coord);
 
            // Debug.Log(string.Join(",", coord2position));
-        }
-       
+        } 
     }
 
     public void CoordToPositionMap()

@@ -17,6 +17,8 @@ public class Fauna
     public string typeENG;
     public string nameENG;
     
+    public string[] regioni;
+
     // Update is called once per frame
     public Fauna( Fauna r)
     {
@@ -29,5 +31,6 @@ public class Fauna
         descrENG = r.descrENG;
         nameENG= r.nameENG;
         typeENG= r.typeENG;
+        regioni = r.regioni;
     }
 }

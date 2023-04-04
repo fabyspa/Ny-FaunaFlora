@@ -13,14 +13,20 @@ public class LoadExcelFloraFauna : MonoBehaviour
     public List<Fauna> faunaDatabase = new List<Fauna>();
     public List<Fauna> faunaDatabaseType = new List<Fauna>();
     public List<Fauna> ordenList = new List<Fauna>();
+    public Dictionary<GameObject, string[]> regioniSplit = new Dictionary<GameObject, string[]>();
     [SerializeField]
     public GameObject info,scheda;
     public List<string> type = new List<string>();
+    public List<string> regioni = new List<string>();
     [SerializeField] GameObject scrolling;
     public bool loadedItems = false;
     public string actualType;
     public Fauna aItem;
     public Dictionary<string, string> ita2engType = new Dictionary<string, string>();
+
+    [SerializeField]
+    public GameObject regGameObject;
+    private char[] delimiters = { ',', ' ' };
 
     public void Start()
     {
@@ -29,6 +35,8 @@ public class LoadExcelFloraFauna : MonoBehaviour
         SortListByType();
         info.GetComponent<VariableGameObjectListBankFauna>().ChangeInfoContents("Tutte");
         scheda.GetComponent<VariableGameObjectListBankFauna>().ChangeInfoContents("Tutte");
+        scheda.GetComponentInChildren<VariableGameObjectListBankFauna>().ChangeInfoContents("Tutte");
+        
     }
 
     
@@ -54,7 +62,7 @@ public class LoadExcelFloraFauna : MonoBehaviour
             InstantiateFloraFauna(data);
 
         }
-
+        GetFaunaReg();
     }
 
     void InstantiateFloraFauna(List<Dictionary<string, object>> data)
@@ -70,9 +78,11 @@ public class LoadExcelFloraFauna : MonoBehaviour
             string nameENG = data[i]["Nome ENG"].ToString();
             string typeENG = data[i]["Tipologia ENG"].ToString();
             string descrENG = data[i]["Descrizione ENG"].ToString();
+            string[] regioni = data[i]["Regione"].ToString().Split(delimiters);
 
             if(classe!="")
             AddFauna(classe, nomeComune, nomeLatino, ADistr, Aprotetta, descr, nameENG, typeENG, descrENG);
+            
 
         }
         loadedItems = true;
@@ -166,4 +176,29 @@ public class LoadExcelFloraFauna : MonoBehaviour
         return null;
 
     }
+
+    //Crea una lista con tutte le regioni
+    public void GetFaunaReg()
+    {
+        foreach (Fauna f in faunaDatabase)
+        {
+            foreach(string s in f.regioni)
+            {
+
+                if (!regioni.Contains(s) && s != "")
+                {
+                    regioni.Add(s);
+                }
+            }
+            
+        }
+
+    }
+
+
+
+
+
+
+
 }
