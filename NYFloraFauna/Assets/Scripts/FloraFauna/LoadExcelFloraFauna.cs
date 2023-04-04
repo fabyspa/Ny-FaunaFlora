@@ -81,7 +81,7 @@ public class LoadExcelFloraFauna : MonoBehaviour
             string[] regioni = data[i]["Regione"].ToString().Split(delimiters);
 
             if(classe!="")
-            AddFauna(classe, nomeComune, nomeLatino, ADistr, Aprotetta, descr, nameENG, typeENG, descrENG);
+            AddFauna(classe, nomeComune, nomeLatino, ADistr, Aprotetta, descr, nameENG, typeENG, descrENG, regioni);
             
 
         }
@@ -89,7 +89,7 @@ public class LoadExcelFloraFauna : MonoBehaviour
         GetFaunaTypes();
     }
 
-    void AddFauna(string classe, string nomeComune, string nomeLatino,  string ADistr, string AProtetta, string descr, string nomeENG, string typeENG, string descrENG)
+    void AddFauna(string classe, string nomeComune, string nomeLatino,  string ADistr, string AProtetta, string descr, string nomeENG, string typeENG, string descrENG, string[] regioni)
     {
         Fauna tempItem = new Fauna(blankFauna);
 
@@ -102,6 +102,7 @@ public class LoadExcelFloraFauna : MonoBehaviour
         tempItem.typeENG = typeENG;
         tempItem.descrENG = descrENG;
         tempItem.nameENG = nomeENG;
+        tempItem.regioni = regioni;
         faunaDatabase.Add(tempItem);
     }
 

@@ -18,6 +18,8 @@ namespace AirFishLab.ScrollingList.Demo
         public bool isLoaded=false;
         LoadExcelFloraFauna loadExcel;
         private GameObject parent;
+        private List<string> loadedRegions;
+
 
 
         protected override void UpdateDisplayContent(object content)
@@ -34,6 +36,8 @@ namespace AirFishLab.ScrollingList.Demo
              _vector.sprite = UpdateImageIcon(dataWrapper.data.nomeComune);
             if(isLoaded==false)
             LoadGameObject();
+            ActivateRegions(dataWrapper.data.regioni);
+
         }
         public Sprite UpdateImageIcon(string _name)
         {
@@ -67,6 +71,8 @@ namespace AirFishLab.ScrollingList.Demo
             {
                 Debug.Log("img: " + _name);
                 tex = Resources.Load<Sprite>("Images_FLORAFAUNA/Italy_FLORAFAUNA/" + _name);
+                loadedRegions.Add(_name);
+
                 return tex;
 
             }
@@ -88,7 +94,23 @@ namespace AirFishLab.ScrollingList.Demo
         //        }
         //    }
         //}
+        public void ActivateRegions(string[] regioni)
+        {
 
+            foreach (string s in regioni)
+            {
+                foreach (string i in loadedRegions)
+                {
+                    if (s == i)
+                    {
+                        //Debug.Log("aaaaaaa " + s);
+                        this.transform.Find("Italia").Find(s).GetComponent<Image>().enabled = true;
+                    }
+                }
+
+            }
+
+        }
 
         public void LoadGameObject()
         {
@@ -98,15 +120,19 @@ namespace AirFishLab.ScrollingList.Demo
             Vector3 pos =new Vector3(regGameObject.transform.position.x, regGameObject.transform.position.y, 0);
             Vector3 localSpacePosition = transform.InverseTransformPoint(pos);
             List<string> listaRegioni = loadExcel.regioni;
-            for(int i = 0; i < listaRegioni.Count; i++)
+            loadedRegions = new List<string>();
+            for (int i = 0; i < listaRegioni.Count; i++)
             {
-               
-                Sprite regioniSprite=  LoadRegion(listaRegioni[i]);
-                if (regioniSprite != null) { 
-                var instanciated = Instantiate(regGameObject, this.transform.Find("Italia").Find("Base").transform.position, Quaternion.identity, parent.transform);
-                instanciated.GetComponent<Image>().sprite = LoadRegion(listaRegioni[i]);
+
+                Sprite regioniSprite = LoadRegion(listaRegioni[i]);
+
+                if (regioniSprite != null)
+                {
+                    var instanciated = Instantiate(regGameObject, this.transform.Find("Italia").Find("Base").transform.position, Quaternion.identity, parent.transform);
+                    instanciated.GetComponent<Image>().sprite = LoadRegion(listaRegioni[i]);
+                    instanciated.name = listaRegioni[i];
                 }
-                Debug.Log(listaRegioni[i]);
+                //Debug.Log(listaRegioni[i]);
             }
             isLoaded = true;
         }
