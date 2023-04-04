@@ -36,7 +36,7 @@ namespace AirFishLab.ScrollingList
 
         public void ChangeInfoContents(string type)
         {
-            Debug.Log("CHANGEINFOCONTENTS");
+            //Debug.Log("CHANGEINFOCONTENTS");
             loadexcel = GameObject.FindObjectOfType<LoadExcelFloraFauna>();
             _contentsList.Clear();
             

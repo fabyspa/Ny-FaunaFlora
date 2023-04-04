@@ -24,7 +24,7 @@ public class LoadExcelFloraFauna : MonoBehaviour
     public Fauna aItem;
     [SerializeField]
     public GameObject regGameObject;
-    private char[] delimiters = { ',', ' ' };
+    private char[] delimiters = { ','/*, ' ' */};
 
     public Dictionary<string, string> ita2engType = new Dictionary<string, string>();
 
@@ -195,11 +195,4 @@ public class LoadExcelFloraFauna : MonoBehaviour
         }
 
     }
-
-
-
-
-
-
-
 }
