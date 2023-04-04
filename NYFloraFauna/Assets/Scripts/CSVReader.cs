@@ -51,7 +51,7 @@ public class CSVReader
                 entry[header[j]] = finalvalue;
                 //Debug.Log(finalvalue);
             }
-            Debug.Log(entry.ToString());
+            //Debug.Log(entry.ToString());
             list.Add(entry);
         }
         return list;

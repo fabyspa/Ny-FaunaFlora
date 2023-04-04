@@ -23,7 +23,7 @@ public class LoadExcelFloraFauna : MonoBehaviour
     public Fauna aItem;
     [SerializeField]
     public GameObject regGameObject;
-    private char[] delimiters = { ',', ' ' };
+    private char[] delimiters = { ','/*, ' ' */};
 
     public void Start()
     {
@@ -167,11 +167,4 @@ public class LoadExcelFloraFauna : MonoBehaviour
         }
 
     }
-
-
-
-
-
-
-
 }

@@ -294,7 +294,7 @@ namespace AirFishLab.ScrollingList
         #region Event System Callback
         public void UpdateTagScroll()
         {
-            Debug.Log("TAGSCROLL= " + this.gameObject.tag.ToString());
+            //Debug.Log("TAGSCROLL= " + this.gameObject.tag.ToString());
             tagScroll = this.gameObject.tag.ToString();
             _listPositionCtrl.tagscroll = tagScroll;
 
