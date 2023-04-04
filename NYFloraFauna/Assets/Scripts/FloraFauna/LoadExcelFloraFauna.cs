@@ -26,7 +26,7 @@ public class LoadExcelFloraFauna : MonoBehaviour
 
     [SerializeField]
     public GameObject regGameObject;
-    private char[] delimiters = { ',', ' ' };
+    private char[] delimiters = { ','/*, ' '*/ };
 
     public void Start()
     {
@@ -50,7 +50,7 @@ public class LoadExcelFloraFauna : MonoBehaviour
         //READ CSV FILE
         if (SceneManager.GetActiveScene().name=="Fauna")
         {
-            List<Dictionary<string, object>> data = CSVReader.Read("Fauna");
+            List<Dictionary<string, object>> data = CSVReader.Read("FAUNA_Nuovo");
             InstantiateFloraFauna(data);
 
 
