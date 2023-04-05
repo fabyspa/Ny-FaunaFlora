@@ -42,7 +42,6 @@ public class LoadExcelFloraFauna : MonoBehaviour
 
     public void LoadItemData()
     {
-
         faunaDatabase.Clear();
         faunaDatabaseType.Clear();
         type.Clear();
@@ -51,15 +50,12 @@ public class LoadExcelFloraFauna : MonoBehaviour
         {
             List<Dictionary<string, object>> data = CSVReader.Read("FAUNA_Nuovo");
             InstantiateFloraFauna(data);
-
-
         }
         else if(SceneManager.GetActiveScene().name == "Flora")
         {
             Debug.Log("FLORA");
-            List<Dictionary<string, object>> data = CSVReader.Read("FloraBiodiversita");
+            List<Dictionary<string, object>> data = CSVReader.Read("FLORA_Nuovo");
             InstantiateFloraFauna(data);
-
         }
         GetFaunaReg();
     }
@@ -81,8 +77,6 @@ public class LoadExcelFloraFauna : MonoBehaviour
 
             if(classe!="")
             AddFauna(classe, nomeComune, nomeLatino, ADistr, Aprotetta, descr, nameENG, typeENG, descrENG, regioni);
-            
-
         }
         loadedItems = true;
         GetFaunaTypes();
@@ -128,8 +122,6 @@ public class LoadExcelFloraFauna : MonoBehaviour
                     index++;
                 }
             }
-            
-
         }
         Debug.Log(String.Join(",", ita2engType.Keys.ToArray()));
 
@@ -149,7 +141,6 @@ public class LoadExcelFloraFauna : MonoBehaviour
                 }
             }
             actualType = type;
-
         }
 
         return faunaDatabaseType;
@@ -194,11 +185,5 @@ public class LoadExcelFloraFauna : MonoBehaviour
         }
 
     }
-
-
-
-
-
-
 
 }

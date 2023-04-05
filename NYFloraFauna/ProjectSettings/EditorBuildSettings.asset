@@ -5,12 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: Assets/Scenes/OLD/MASTER.unity
-    guid: b211618796bef954f9fffc7539430fa9
+  - enabled: 1
+    path: Assets/Scenes/Master.unity
+    guid: cade2332b21bcb64292c3f30a3c4bb0b
+  - enabled: 1
+    path: Assets/Scenes/Flora.unity
+    guid: 2b24105317ca36f4e8a4cc27b75705ee
   - enabled: 1
     path: Assets/Scenes/Fauna.unity
     guid: 57f086d23209f8945a125b96f8cf35ea
