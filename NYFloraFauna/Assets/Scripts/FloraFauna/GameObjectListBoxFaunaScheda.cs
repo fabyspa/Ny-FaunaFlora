@@ -69,7 +69,6 @@ namespace AirFishLab.ScrollingList.Demo
             //InstRegion();
             if (Resources.Load<Sprite>("Images_FLORAFAUNA/Italy_FLORAFAUNA/" + _name) != null)
             {
-                Debug.Log("img: " + _name);
                 tex = Resources.Load<Sprite>("Images_FLORAFAUNA/Italy_FLORAFAUNA/" + _name);
                 loadedRegions.Add(_name);
 

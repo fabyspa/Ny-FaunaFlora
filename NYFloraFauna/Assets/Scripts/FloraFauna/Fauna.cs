@@ -6,6 +6,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Fauna
 {
+    public int index;
     public string classe; //mammiferp,anfibi ecc..
     public string nomeComune; //capriolo,capra..
     public string nomeLatino;
