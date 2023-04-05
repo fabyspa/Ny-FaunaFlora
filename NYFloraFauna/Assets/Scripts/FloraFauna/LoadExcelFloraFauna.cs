@@ -26,7 +26,7 @@ public class LoadExcelFloraFauna : MonoBehaviour
 
     [SerializeField]
     public GameObject regGameObject;
-    private char[] delimiters = { ','/*, ' '*/ };
+    private char[] delimiters = {','};
 
     public void Start()
     {
@@ -189,6 +189,7 @@ public class LoadExcelFloraFauna : MonoBehaviour
                 if (!regioni.Contains(s) && s != "")
                 {
                     regioni.Add(s);
+                    Debug.Log("regioni:" + s);
                 }
             }
             
