@@ -35,8 +35,7 @@ public class LoadExcelFloraFauna : MonoBehaviour
         SortListByType();
         info.GetComponent<VariableGameObjectListBankFauna>().ChangeInfoContents("Tutte");
         scheda.GetComponent<VariableGameObjectListBankFauna>().ChangeInfoContents("Tutte");
-        scheda.GetComponentInChildren<VariableGameObjectListBankFauna>().ChangeInfoContents("Tutte");
-        
+        scheda.GetComponentInChildren<VariableGameObjectListBankFauna>().ChangeInfoContents("Tutte");    
     }
 
     
@@ -189,7 +188,6 @@ public class LoadExcelFloraFauna : MonoBehaviour
                 if (!regioni.Contains(s) && s != "")
                 {
                     regioni.Add(s);
-                    Debug.Log("regioni:" + s);
                 }
             }
             

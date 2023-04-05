@@ -79,31 +79,15 @@ namespace AirFishLab.ScrollingList.Demo
             return null;
         }
 
-
-
-        //prende in input la stringa con le regioni e la spitta in array
-        //public void UpdateItaly(string regioni)
-        //{
-        //    if (reg != null)
-        //    {
-        //        for (int i = 0; i < reg.Length; i++)
-        //        { 
-        //            var instanciated = Instantiate(regGameObject);
-        //            Sprite s = regGameObject.GetComponent<Sprite>();
-        //            s = LoadRegion(reg[i]);
-        //        }
-        //    }
-        //}
         public void ActivateRegions(string[] regioni)
         {
-
+            ClearRegions();
             foreach (string s in regioni)
             {
                 foreach (string i in loadedRegions)
                 {
                     if (s == i)
                     {
-                        //Debug.Log("aaaaaaa " + s);
                         this.transform.Find("Italia").Find(s).GetComponent<Image>().enabled = true;
                     }
                 }
@@ -111,7 +95,14 @@ namespace AirFishLab.ScrollingList.Demo
             }
 
         }
-
+        public void ClearRegions()
+        {
+            foreach (string i in loadedRegions)
+            {
+                this.transform.Find("Italia").Find(i).GetComponent<Image>().enabled = false;
+                
+            }
+        }
         public void LoadGameObject()
         {
             loadExcel = GameObject.FindObjectOfType<LoadExcelFloraFauna>();
