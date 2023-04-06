@@ -110,7 +110,7 @@ namespace AirFishLab.ScrollingList
         /// <summary>
         /// Is the list initialized?
         /// </summary>
-        private bool _isInitialized;
+        public bool _isInitialized;
         /// <summary>
         /// Does the list bank has no content?
         /// </summary>

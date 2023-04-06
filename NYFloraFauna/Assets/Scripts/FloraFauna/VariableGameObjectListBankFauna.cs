@@ -44,6 +44,7 @@ namespace AirFishLab.ScrollingList
             {
                 foreach (Fauna r in loadexcel.ordenList)
                 {
+                    //Debug.Log("PRRROVAAA"+r.nomeComune);
                     _contentsList.Add(r);
                 }
                 loadexcel.faunaDatabaseType.Clear();
@@ -77,7 +78,27 @@ namespace AirFishLab.ScrollingList
            
         }
 
-        
+        //public void ChangeInfoContents()
+        //{
+        //    loadexcel = GameObject.FindObjectOfType<LoadExcelParchi>();
+        //    _contentsList.Clear();
+
+        //    foreach (Parco r in loadexcel.parchiDatabase)
+        //    {
+        //        _contentsList.Add(r);
+        //    }
+        //    _contents = _contentsList.ToArray();
+        //    _circularList.Refresh();
+        //    GetCenterItem();
+        //    loadexcel.InstantiatePoints(loadexcel.parchiDatabase);
+
+
+
+        //    //loadexcel.AddState();
+        //    var myKey = loadexcel.coord2position.FirstOrDefault(x => Enumerable.SequenceEqual(x.Value, Convert_coordinates.remapLatLng(loadexcel.aItem.coord))).Key;
+        //    loadexcel._oldGameObjecct = myKey;
+        //}
+
 
         public Fauna GetCenterItem()
         {

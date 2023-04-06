@@ -15,7 +15,7 @@ public class LoadExcelFloraFauna : MonoBehaviour
     public List<Fauna> ordenList = new List<Fauna>();
     public Dictionary<GameObject, string[]> regioniSplit = new Dictionary<GameObject, string[]>();
     [SerializeField]
-    public GameObject info,scheda;
+    public GameObject info, scheda;
     public List<string> type = new List<string>();
     public List<string> regioni = new List<string>();
     [SerializeField] GameObject scrolling;
@@ -184,6 +184,18 @@ public class LoadExcelFloraFauna : MonoBehaviour
             
         }
 
+    }
+
+    public void ResetScroll()
+    {
+        var i = FindObjectOfType<CircularScrollingListFauna>();
+        i._isInitialized = false;
+        i.Initialize();
+
+        info.GetComponent<VariableGameObjectListBankFauna>().ChangeInfoContents("Tutte");
+
+
+        
     }
 
 }
