@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace AirFishLab.ScrollingList
 {
-    public class VariableGameObjectListBankFauna : BaseListBank
+    public class VariableGameObjectListBankFlora : BaseListBank
     {
 
         LoadExcelFloraFauna loadexcel;

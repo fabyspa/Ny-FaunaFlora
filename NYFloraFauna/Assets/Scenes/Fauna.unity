@@ -2005,7 +2005,7 @@ GameObject:
   - component: {fileID: 406894374}
   m_Layer: 5
   m_Name: btnRight
-  m_TagString: Untagged
+  m_TagString: FLORA
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6876,7 +6876,7 @@ GameObject:
   - component: {fileID: 1116337153}
   m_Layer: 5
   m_Name: btnLeft
-  m_TagString: Untagged
+  m_TagString: FAUNA
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7262,6 +7262,7 @@ MonoBehaviour:
     nameENG: 
     regioni: []
   faunaDatabase: []
+  floraDatabase: []
   faunaDatabaseType: []
   ordenList: []
   info: {fileID: 317315564}

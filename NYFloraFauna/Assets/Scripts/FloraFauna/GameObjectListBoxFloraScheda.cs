@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 namespace AirFishLab.ScrollingList.Demo
 {
-    public class GameObjectListBoxFaunaScheda : ListBox
+    public class GameObjectListBoxFloraScheda : ListBox
     {
         [SerializeField]
         private Text _name, _latinName, _descr, _type, _descrENG, _nameENG, _typeENG;

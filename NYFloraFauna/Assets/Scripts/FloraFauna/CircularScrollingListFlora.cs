@@ -13,7 +13,7 @@ namespace AirFishLab.ScrollingList
     /// <summary>
     /// Manage and control the circular scrolling list
     /// </summary>
-    public class CircularScrollingListFauna : MonoBehaviour,
+    public class CircularScrollingListFlora: MonoBehaviour,
         IBeginDragHandler, IDragHandler, IEndDragHandler, IScrollHandler
     {
         private GameObject info;

@@ -12,6 +12,7 @@ public class CSVReader
     static public List<Dictionary<string, object>> list= new List<Dictionary<string, object>>();
     public static List<Dictionary<string, object>> Read(string file)
     {
+        list.Clear();
         TextAsset data = Resources.Load(file) as TextAsset;
         
         var lines = Regex.Split(data.text, LINE_SPLIT_RE);
@@ -51,7 +52,6 @@ public class CSVReader
                 entry[header[j]] = finalvalue;
                 //Debug.Log(finalvalue);
             }
-            Debug.Log(entry.ToString());
             list.Add(entry);
         }
         return list;

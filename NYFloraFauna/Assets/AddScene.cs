@@ -29,9 +29,9 @@ public class AddScene : MonoBehaviour
         var asyncLoadLevel1 = SceneManager.LoadSceneAsync(Loader.SceneName.FAUNA.ToString(), LoadSceneMode.Additive);
         while (!asyncLoadLevel1.isDone)
         {
-            Debug.Log("Loading the Scene");
             yield return null;
         }
+        LoadExcelFloraFauna loadExcelFloraFauna = GameObject.FindObjectOfType<LoadExcelFloraFauna>();
         currentScene = Loader.SceneName.FAUNA;
         Loader.SetCurrentScene(currentScene);
 

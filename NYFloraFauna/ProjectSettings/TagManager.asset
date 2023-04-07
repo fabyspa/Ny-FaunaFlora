@@ -11,6 +11,8 @@ TagManager:
   - FirstFilter
   - Scheda
   - TOGGLE
+  - FLORA
+  - FAUNA
   layers:
   - Default
   - TransparentFX

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Fauna
 {
+    public int florafauna;
     public string classe; //mammiferp,anfibi ecc..
     public string nomeComune; //capriolo,capra..
     public string nomeLatino;
@@ -22,6 +23,7 @@ public class Fauna
     // Update is called once per frame
     public Fauna( Fauna r)
     {
+        florafauna= r.florafauna;
         classe = r.classe;
         nomeComune = r.nomeComune;
         nomeLatino = r.nomeLatino;

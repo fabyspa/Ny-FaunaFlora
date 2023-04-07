@@ -1049,7 +1049,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1476369184}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AirFishLab.ScrollingList.CircularScrollingListFauna,
           Assembly-CSharp
         m_MethodName: MoveOneUnitDown
@@ -2186,7 +2186,7 @@ GameObject:
   - component: {fileID: 466086453}
   m_Layer: 5
   m_Name: btnRight
-  m_TagString: Untagged
+  m_TagString: FLORA
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2756,7 +2756,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1476369184}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AirFishLab.ScrollingList.CircularScrollingListFauna,
           Assembly-CSharp
         m_MethodName: MoveOneUnitUp
@@ -4309,7 +4309,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1476369184}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AirFishLab.ScrollingList.CircularScrollingListFauna,
           Assembly-CSharp
         m_MethodName: MoveOneUnitDown
@@ -6942,7 +6942,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1476369184}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AirFishLab.ScrollingList.CircularScrollingListFauna,
           Assembly-CSharp
         m_MethodName: MoveOneUnitUp
@@ -7024,6 +7024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blankFauna:
+    florafauna: 0
     classe: 
     nomeComune: 
     nomeLatino: 
@@ -7035,6 +7036,8 @@ MonoBehaviour:
     nameENG: 
     regioni: []
   faunaDatabase: []
+  floraDatabase: []
+  tempList: []
   faunaDatabaseType: []
   ordenList: []
   info: {fileID: 317315564}
@@ -7042,9 +7045,9 @@ MonoBehaviour:
   type: []
   regioni: []
   scrolling: {fileID: 817779955}
-  loadedItems: 0
   actualType: 
   aItem:
+    florafauna: 0
     classe: 
     nomeComune: 
     nomeLatino: 
@@ -7055,6 +7058,7 @@ MonoBehaviour:
     typeENG: 
     nameENG: 
     regioni: []
+  loaded: 0
   regGameObject: {fileID: 3221979440998860468, guid: fa899a469d671f048bc64efcbf259fe1, type: 3}
 --- !u!1 &1223540144 stripped
 GameObject:
@@ -8723,11 +8727,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1476369178}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4299c9ea58570784dbc62228c054bce7, type: 3}
+  m_Script: {fileID: 11500000, guid: ad14693ccc5eb664cb5b6eb50e2507fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _contents: []
-  _circularList: {fileID: 1476369184}
+  _circularList: {fileID: 0}
 --- !u!114 &1476369184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8737,7 +8741,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1476369178}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf19196137b248144b9c1d51bd817e24, type: 3}
+  m_Script: {fileID: 11500000, guid: 45595684d96914047b375187779a26b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tagScroll: 
@@ -8754,11 +8758,11 @@ MonoBehaviour:
     _listType: 0
     _controlMode: 0
     _alignMiddle: 1
-    _reverseDirection: 0
-    _direction: 1
+    _reverseDirection: 1
+    _direction: 0
     _centeredContentID: 0
-    _centerSelectedBox: 1
-    _reverseOrder: 1
+    _centerSelectedBox: 0
+    _reverseOrder: 0
     _initializeOnStart: 1
     _boxDensity: 1
     _boxPositionCurve:
@@ -8789,8 +8793,8 @@ MonoBehaviour:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: -0.9746208
-        value: 0.4928894
+        time: -1
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -8798,17 +8802,8 @@ MonoBehaviour:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0
-        value: 0.9928932
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1.0507507
-        value: 0.49768066
+        time: 1
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -8822,31 +8817,22 @@ MonoBehaviour:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.0041656494
+        time: 0
         value: 1
-        inSlope: -2.665783
-        outSlope: -2.665783
+        inSlope: 0
+        outSlope: -2.5
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0.048507463
-      - serializedVersion: 3
-        time: 0.073840074
-        value: 0.8254707
-        inSlope: -2.347426
-        outSlope: -2.347426
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0
       - serializedVersion: 3
         time: 1
         value: 0
-        inSlope: -0.028004175
-        outSlope: -0.028004175
+        inSlope: 0
+        outSlope: 0
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.10261196
+        inWeight: 0
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -8857,20 +8843,20 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 0
         value: 0
-        inSlope: 10.214248
-        outSlope: 10.214248
+        inSlope: 0
+        outSlope: 8
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0.04838854
+        outWeight: 0
       - serializedVersion: 3
         time: 0.25
         value: 1
-        inSlope: -0.000001252862
-        outSlope: -0.000001252862
+        inSlope: 0
+        outSlope: 0
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.09514958
+        inWeight: 0
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -9088,7 +9074,7 @@ GameObject:
   - component: {fileID: 1495018620}
   m_Layer: 5
   m_Name: btnLeft
-  m_TagString: Untagged
+  m_TagString: FAUNA
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

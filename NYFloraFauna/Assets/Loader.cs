@@ -14,8 +14,10 @@ public class Loader
     private static bool isParkSceneLoaded;
     private static bool isRiservaSceneLoaded;
     private static bool toggle;
+    private static bool firstTime = true;
     public static void SwitchScene()
     {
+        Debug.Log("bjhdsbcjhbs");
         // Salva lo stato degli oggetti della scena corrente
         SaveToggleState();
         // Carica la nuova scena
@@ -28,9 +30,17 @@ public class Loader
         }
         else
         {
+            Debug.Log("Flora");
             currentScene = SceneName.FLORA;
             // Abilita/disabilita i GameObject delle scene in base alla scena corrente
             EnableDisableSceneObjects();
+            if (firstTime)
+            {
+                LoadExcelFloraFauna loadExcelFloraFauna = GameObject.FindObjectOfType<LoadExcelFloraFauna>();
+                loadExcelFloraFauna.Init();
+                firstTime = false;
+            }
+            
         }
         // Carica lo stato degli oggetti della nuova scena
         LoadSceneState();
@@ -41,7 +51,6 @@ public class Loader
         {
             GameObject[] objectsInScene = SceneManager.GetSceneByName(SceneName.FAUNA.ToString()).GetRootGameObjects();
             // Salva lo stato di ogni oggetto
-            Debug.Log(SceneManager.GetActiveScene().name);
             foreach (GameObject obj in objectsInScene)
             {
                 obj.SetActive(false);
