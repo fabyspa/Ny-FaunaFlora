@@ -12,6 +12,8 @@ namespace AirFishLab.ScrollingList
     {
         public abstract object GetListContent(int index);
         public abstract int GetListLength();
+
+
     }
 
 /* The example of the ListBank
@@ -20,7 +22,7 @@ namespace AirFishLab.ScrollingList
     {
         private int[] contents = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-
+       
         public override object GetListContent(int index)
         {
             return contents[index].ToString();

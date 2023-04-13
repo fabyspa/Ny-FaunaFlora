@@ -21,7 +21,13 @@ namespace AirFishLab.ScrollingList
         private readonly DataWrapper _dataWrapper = new DataWrapper();
         private Image _image;
 
-       
+        public List<Fauna> GetListContents()
+        {
+            if(_contentsList.Count != 0)
+            return _contentsList;
+            else
+            return null;
+        }
 
         public override object GetListContent(int index)
         {
@@ -36,6 +42,7 @@ namespace AirFishLab.ScrollingList
 
         public void ChangeInfoContents(string type)
         {
+            int i = 0;
             loadexcel = GameObject.FindObjectOfType<LoadExcelFloraFauna>();
             _contentsList.Clear();
             
@@ -43,8 +50,9 @@ namespace AirFishLab.ScrollingList
             {
                 foreach (Fauna r in loadexcel.ordenList)
                 {
-                    //Debug.Log("PRRROVAAA"+r.nomeComune);
+                    r.index = i;
                     _contentsList.Add(r);
+                    i++;
                 }
                 loadexcel.faunaDatabaseType.Clear();
                 loadexcel.faunaDatabaseType.AddRange(loadexcel.ordenList);
@@ -60,13 +68,26 @@ namespace AirFishLab.ScrollingList
                 loadexcel.LoadFaunaByType(type);
                 _contentsList.Clear();
                 foreach (Fauna r in loadexcel.faunaDatabaseType)
-                { 
+                {
+                    r.index = i;
                     _contentsList.Add(r);
+                    i++;
                 }
-
+                if (_contentsList.Count <= 5)
+                {
+                    //foreach (Fauna r in loadexcel.faunaDatabaseType)
+                    //{
+                    //    Fauna f = new Fauna(r);
+                    //    f.index = i;
+                    //    _contentsList.Add(f);
+                    //    i++;
+                    //}
+                    //_contents = _contentsList.ToArray();
+                    //_circularList.Refresh();
+                }
                 _contents = _contentsList.ToArray();
                 _circularList.Refresh();
-                 GetCenterItem();
+                GetCenterItem();
 
                
 
