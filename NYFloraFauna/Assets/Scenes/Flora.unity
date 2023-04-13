@@ -1978,7 +1978,7 @@ MonoBehaviour:
     _reverseDirection: 1
     _direction: 1
     _centeredContentID: 1
-    _centerSelectedBox: 1
+    _centerSelectedBox: 0
     _reverseOrder: 0
     _initializeOnStart: 1
     _boxDensity: 1
@@ -2043,8 +2043,8 @@ MonoBehaviour:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.0083351135
-        value: 0.30018997
+        time: 0.004169464
+        value: 0.25307083
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -2052,13 +2052,13 @@ MonoBehaviour:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.28749847
+        time: 0.25
         value: 0.0023498535
-        inSlope: 0.009201688
-        outSlope: 0.009201688
+        inSlope: -2.1055353
+        outSlope: -2.1055353
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.6065569
+        inWeight: 0.22413956
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -6741,6 +6741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blankFauna:
+    index: 0
     classe: 
     nomeComune: 
     nomeLatino: 
@@ -6762,6 +6763,7 @@ MonoBehaviour:
   regioni: []
   actualType: 
   aItem:
+    index: 0
     classe: 
     nomeComune: 
     nomeLatino: 
@@ -8426,8 +8428,8 @@ MonoBehaviour:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.008334352
-        value: 0.2860501
+        time: 0.0041648876
+        value: 0.25068024
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -8436,12 +8438,12 @@ MonoBehaviour:
         outWeight: 0
       - serializedVersion: 3
         time: 0.25416565
-        value: 0.0047302246
-        inSlope: -1.470107
-        outSlope: -1.470107
+        value: -0.0023498535
+        inSlope: -2.0922809
+        outSlope: -2.0922809
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.32203245
+        inWeight: 0.19999531
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2

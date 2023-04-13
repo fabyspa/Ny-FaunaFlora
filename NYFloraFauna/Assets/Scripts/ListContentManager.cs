@@ -179,16 +179,7 @@ namespace AirFishLab.ScrollingList
 
             if (Mathf.Abs(difference) > halfNumOfContent)
             {
-                int before = (int)Mathf.Sign(difference);
                 difference -= (int)Mathf.Sign(difference) * numOfContent;
-                int after =(int)Mathf.Sign(difference);
-                if (before * after == -1)
-                {
-                    //siamo a fine lista e torniamo da capo
-                    Debug.Log("fine lista");
-                }
-                else Debug.Log("non fine lista");
-
             }
 
 
