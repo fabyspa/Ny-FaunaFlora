@@ -16,8 +16,8 @@ namespace AirFishLab.ScrollingList
     public class CircularScrollingListFlora: MonoBehaviour,
         IBeginDragHandler, IDragHandler, IEndDragHandler, IScrollHandler
     {
-        private GameObject info;
-        private GameObject scheda;
+        [SerializeField]
+        private GameObject info,scheda;
         public string tagScroll;
 
         public bool _toFixInfo;
@@ -122,9 +122,6 @@ namespace AirFishLab.ScrollingList
         private void Awake()
         {
             GetComponentReference();
-
-            info =  GameObject.FindGameObjectWithTag("Info");
-            scheda = GameObject.FindGameObjectWithTag("Scheda");
 
         }
 
@@ -306,8 +303,8 @@ namespace AirFishLab.ScrollingList
         }
         void MoveScrollUp(PointerEventData e, TouchPhase t)
         {
-            scheda.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.InputPositionHandler(e, t);
-            scheda.GetComponent<CircularScrollingListFauna>()._toFixInfo = false;
+            scheda.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.InputPositionHandler(e, t);
+            scheda.GetComponent<CircularScrollingListFlora>()._toFixInfo = false;
             _toFixScheda= true;  
         } 
         
@@ -316,8 +313,8 @@ namespace AirFishLab.ScrollingList
             Debug.Log("move");
 
             //centeredContentId = GetCenteredContentID();
-            info.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.InputPositionHandler(e, t);
-            info.GetComponent<CircularScrollingListFauna>()._toFixScheda = false;
+            info.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.InputPositionHandler(e, t);
+            info.GetComponent<CircularScrollingListFlora>()._toFixScheda = false;
             _toFixInfo = true;
             
    
@@ -410,7 +407,7 @@ namespace AirFishLab.ScrollingList
         }
 
         private bool SameItem() {
-            if (info.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem() != scheda.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem())
+            if (info.GetComponent<VariableGameObjectListBankFlora>().GetCenterItem() != scheda.GetComponent<VariableGameObjectListBankFlora>().GetCenterItem())
                 return false;
             return true;    
         }
@@ -425,22 +422,22 @@ namespace AirFishLab.ScrollingList
             {
                 if (!SameItem())
                 {
-                    for (int i = 0; i < info.GetComponent<VariableGameObjectListBankFauna>()._contents.Length; i++)
+                    for (int i = 0; i < info.GetComponent<VariableGameObjectListBankFlora>()._contents.Length; i++)
                     {
-                        if (info.GetComponent<VariableGameObjectListBankFauna>()._contents[i].nomeLatino == info.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem().nomeLatino)
+                        if (info.GetComponent<VariableGameObjectListBankFlora>()._contents[i].nomeLatino == info.GetComponent<VariableGameObjectListBankFlora>().GetCenterItem().nomeLatino)
                         {
                             indice_i = i;
                         }
                     }
-                    //for (int j = 0; j < info.GetComponent<VariableGameObjectListBankFauna>()._contents.Length; j++)
+                    //for (int j = 0; j < info.GetComponent<VariableGameObjectListBankFlora>()._contents.Length; j++)
                     //{
-                    //    if (scheda.GetComponent<VariableGameObjectListBankFauna>()._contents[j].nomeComune == scheda.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem().nomeComune)
+                    //    if (scheda.GetComponent<VariableGameObjectListBankFlora>()._contents[j].nomeComune == scheda.GetComponent<VariableGameObjectListBankFlora>().GetCenterItem().nomeComune)
                     //    {
                     //        indice_j = j;
                     //    }
                     //}
                     //int diff = indice_i - indice_j;
-                    scheda.GetComponent<CircularScrollingListFauna>().SelectContentID(indice_i);
+                    scheda.GetComponent<CircularScrollingListFlora>().SelectContentID(indice_i);
                     //oldContentId = centeredContentId;
                 }
                 //_toFixScheda= false;
@@ -449,28 +446,28 @@ namespace AirFishLab.ScrollingList
             {
                 if (!SameItem())
                 {
-                    //for (int i = 0; i < info.GetComponent<VariableGameObjectListBankFauna>()._contents.Length; i++)
+                    //for (int i = 0; i < info.GetComponent<VariableGameObjectListBankFlora>()._contents.Length; i++)
                     //{
-                    //    if (info.GetComponent<VariableGameObjectListBankFauna>()._contents[i].nomeLatino == info.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem().nomeLatino)
+                    //    if (info.GetComponent<VariableGameObjectListBankFlora>()._contents[i].nomeLatino == info.GetComponent<VariableGameObjectListBankFlora>().GetCenterItem().nomeLatino)
                     //    {
                     //        indice_i = i;
                     //    }
                     //}
-                    for (int j = 0; j < info.GetComponent<VariableGameObjectListBankFauna>()._contents.Length; j++)
+                    for (int j = 0; j < info.GetComponent<VariableGameObjectListBankFlora>()._contents.Length; j++)
                     {
-                        if (scheda.GetComponent<VariableGameObjectListBankFauna>()._contents[j].nomeLatino == scheda.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem().nomeLatino)
+                        if (scheda.GetComponent<VariableGameObjectListBankFlora>()._contents[j].nomeLatino == scheda.GetComponent<VariableGameObjectListBankFlora>().GetCenterItem().nomeLatino)
                         {
                             indice_j = j;
                         }
                     }
                     //int diff = indice_j - indice_i;
-                     info.GetComponent<CircularScrollingListFauna>().SelectContentID(indice_j);
+                     info.GetComponent<CircularScrollingListFlora>().SelectContentID(indice_j);
                     //oldContentId = centeredContentId;
 
                 }
                 //_toFixInfo= false;
 
-            }//scheda.GetComponent<CircularScrollingListFauna>().SelectContentID(indice_i);
+            }//scheda.GetComponent<CircularScrollingListFlora>().SelectContentID(indice_i);
                 //_toFix = false;
 
          

@@ -8,19 +8,19 @@ namespace AirFishLab.ScrollingList
         [SerializeField]
         private Text _textITA, _textENG;
 
-        private LoadExcelFloraFauna loadexcel;
+        private LoadExcelFlora loadexcel;
 
         private void Start()
         {
-            loadexcel = FindObjectOfType<LoadExcelFloraFauna>();
+            loadexcel = FindObjectOfType<LoadExcelFlora>();
         }
         protected override void UpdateDisplayContent(object content)
         {
-            var dataWrapper = (VariableStringListBankFauna.DataWrapper)content;
+            var dataWrapper = (VariableStringListBankFlora.DataWrapper)content;
             _textITA.text = dataWrapper.data;
             if (loadexcel == null)
             {
-                loadexcel = FindObjectOfType<LoadExcelFloraFauna>();
+                loadexcel = FindObjectOfType<LoadExcelFlora>();
 
                 if (dataWrapper.data == "Tutte") _textENG.text = "All";
                 else _textENG.text = loadexcel.ita2engType.FirstOrDefault(x => x.Value == dataWrapper.data).Key;

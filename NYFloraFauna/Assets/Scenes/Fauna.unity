@@ -1617,7 +1617,7 @@ GameObject:
   - component: {fileID: 317315570}
   - component: {fileID: 317315569}
   m_Layer: 0
-  m_Name: CircularScrollingList
+  m_Name: CircularScrollingListFAUNA
   m_TagString: Info
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4847,7 +4847,7 @@ GameObject:
   - component: {fileID: 817779959}
   - component: {fileID: 817779960}
   m_Layer: 0
-  m_Name: CircularScrollingList
+  m_Name: CircularScrollingListFAUNA
   m_TagString: Type
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7250,6 +7250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828dd0deaf48efe459ef6c4539e4d5e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  change: 1
   blankFauna:
     classe: 
     nomeComune: 
@@ -7262,15 +7263,14 @@ MonoBehaviour:
     nameENG: 
     regioni: []
   faunaDatabase: []
-  floraDatabase: []
+  tempList: []
   faunaDatabaseType: []
   ordenList: []
   info: {fileID: 317315564}
   scheda: {fileID: 1476369178}
+  scrolling: {fileID: 817779955}
   type: []
   regioni: []
-  scrolling: {fileID: 817779955}
-  loadedItems: 0
   actualType: 
   aItem:
     classe: 
@@ -7283,6 +7283,7 @@ MonoBehaviour:
     typeENG: 
     nameENG: 
     regioni: []
+  loaded: 0
   regGameObject: {fileID: 3221979440998860468, guid: fa899a469d671f048bc64efcbf259fe1, type: 3}
 --- !u!1 &1223540144 stripped
 GameObject:
@@ -8911,7 +8912,7 @@ GameObject:
   - component: {fileID: 1476369184}
   - component: {fileID: 1476369183}
   m_Layer: 0
-  m_Name: CircularScrollingList
+  m_Name: CircularScrollingListFAUNA
   m_TagString: Scheda
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

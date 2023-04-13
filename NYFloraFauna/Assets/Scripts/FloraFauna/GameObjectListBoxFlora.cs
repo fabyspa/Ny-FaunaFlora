@@ -14,7 +14,7 @@ namespace AirFishLab.ScrollingList.Demo
         
         protected override void UpdateDisplayContent(object content)
         {
-            var dataWrapper = (VariableGameObjectListBankFauna.DataWrapper) content;
+            var dataWrapper = (VariableGameObjectListBankFlora.DataWrapper) content;
             _name.text = dataWrapper.data.nomeComune;
             _nameENG.text = dataWrapper.data.nameENG;
 

@@ -12,11 +12,11 @@ namespace AirFishLab.ScrollingList
     public class VariableGameObjectListBankFlora : BaseListBank
     {
 
-        LoadExcelFloraFauna loadexcel;
+        LoadExcelFlora loadexcel;
         private List<Fauna> _contentsList = new List<Fauna>();
         public Fauna[] _contents;
         [SerializeField]
-        private CircularScrollingListFauna _circularList;
+        private CircularScrollingListFlora _circularList;
         [SerializeField]
         private readonly DataWrapper _dataWrapper = new DataWrapper();
         private Image _image;
@@ -36,11 +36,12 @@ namespace AirFishLab.ScrollingList
 
         public void ChangeInfoContents(string type)
         {
-            loadexcel = GameObject.FindObjectOfType<LoadExcelFloraFauna>();
+            loadexcel = GameObject.FindObjectOfType<LoadExcelFlora>();
             _contentsList.Clear();
             
             if (type == "Tutte")
             {
+                Debug.Log("TUTTE" + loadexcel.ordenList.Count);
                 foreach (Fauna r in loadexcel.ordenList)
                 {
                     //Debug.Log("PRRROVAAA"+r.nomeComune);
@@ -106,7 +107,7 @@ namespace AirFishLab.ScrollingList
             //Debug.Log("size " + size);
             GameObject obj = this.transform.GetChild(size - 1).gameObject;
             //Debug.Log(obj.GetComponentInChildren<Text>().text);
-            foreach (Fauna r in loadexcel.SwitchDB())
+            foreach (Fauna r in loadexcel.floraDatabase)
             {
                 //Debug.Log("obj " + obj.GetComponentInChildren<Text>().text);
                 if(r.nomeComune== obj.GetComponentInChildren<Text>().text)

@@ -31,7 +31,6 @@ public class AddScene : MonoBehaviour
         {
             yield return null;
         }
-        LoadExcelFloraFauna loadExcelFloraFauna = GameObject.FindObjectOfType<LoadExcelFloraFauna>();
         currentScene = Loader.SceneName.FAUNA;
         Loader.SetCurrentScene(currentScene);
 

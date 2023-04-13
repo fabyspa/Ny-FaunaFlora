@@ -16,7 +16,7 @@ namespace AirFishLab.ScrollingList.Demo
         [SerializeField]
         private Sprite emptySprite;
         public bool isLoaded=false;
-        LoadExcelFloraFauna loadExcel;
+        LoadExcelFlora loadExcel;
         private GameObject parent;
         private List<string> loadedRegions;
 
@@ -24,7 +24,7 @@ namespace AirFishLab.ScrollingList.Demo
 
         protected override void UpdateDisplayContent(object content)
         {
-            var dataWrapper = (VariableGameObjectListBankFauna.DataWrapper) content;
+            var dataWrapper = (VariableGameObjectListBankFlora.DataWrapper) content;
             _name.text = dataWrapper.data.nomeComune;
             _latinName.text = dataWrapper.data.nomeLatino;
             _descr.text = dataWrapper.data.descr;
@@ -104,7 +104,7 @@ namespace AirFishLab.ScrollingList.Demo
         }
         public void LoadGameObject()
         {
-            loadExcel = GameObject.FindObjectOfType<LoadExcelFloraFauna>();
+            loadExcel = GameObject.FindObjectOfType<LoadExcelFlora>();
             parent = this.transform.Find("Italia").gameObject;
             regGameObject = loadExcel.regGameObject;
             Vector3 pos =new Vector3(regGameObject.transform.position.x, regGameObject.transform.position.y, 0);

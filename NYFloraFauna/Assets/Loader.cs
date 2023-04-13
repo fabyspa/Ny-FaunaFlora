@@ -25,6 +25,7 @@ public class Loader
         {
             currentScene = SceneName.FAUNA;
             // Abilita/disabilita i GameObject delle scene in base alla scena corrente
+
             EnableDisableSceneObjects();
 
         }
@@ -34,12 +35,6 @@ public class Loader
             currentScene = SceneName.FLORA;
             // Abilita/disabilita i GameObject delle scene in base alla scena corrente
             EnableDisableSceneObjects();
-            if (firstTime)
-            {
-                LoadExcelFloraFauna loadExcelFloraFauna = GameObject.FindObjectOfType<LoadExcelFloraFauna>();
-                loadExcelFloraFauna.Init();
-                firstTime = false;
-            }
             
         }
         // Carica lo stato degli oggetti della nuova scena
@@ -47,6 +42,7 @@ public class Loader
     }
     public static void EnableDisableSceneObjects()
     {
+
         if (currentScene == SceneName.FLORA && SceneManager.GetSceneByName(SceneName.FLORA.ToString()).isLoaded)
         {
             GameObject[] objectsInScene = SceneManager.GetSceneByName(SceneName.FAUNA.ToString()).GetRootGameObjects();
@@ -143,7 +139,7 @@ public class Loader
         }
         if (scene == SceneName.FLORA)
         {
-            LoadExcelFloraFauna loadExcel = GameObject.FindObjectOfType<LoadExcelFloraFauna>();
+            LoadExcelFlora loadExcel = GameObject.FindObjectOfType<LoadExcelFlora>();
             loadExcel.ResetScroll();
         }
     }

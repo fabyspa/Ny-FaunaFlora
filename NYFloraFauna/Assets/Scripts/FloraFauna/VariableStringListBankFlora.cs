@@ -8,18 +8,18 @@ namespace AirFishLab.ScrollingList
     public class VariableStringListBankFlora : BaseListBank
     {
 
-        LoadExcelFloraFauna loadexcel;
+        LoadExcelFlora loadexcel;
 
         private List<string> _contentsList = new List<string>();
         public string[] _contents;
         [SerializeField]
-        private CircularScrollingListFauna _circularList;
+        private CircularScrollingListFlora _circularList;
         private readonly DataWrapper _dataWrapper = new DataWrapper();
         public void ChangeContents()
         {
             _contentsList.Add("Tutte");
 
-            loadexcel = GameObject.FindObjectOfType<LoadExcelFloraFauna>();
+            loadexcel = GameObject.FindObjectOfType<LoadExcelFlora>();
 
             foreach (string t in loadexcel.type)
             {

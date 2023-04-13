@@ -106,7 +106,7 @@ namespace AirFishLab.ScrollingList
             //Debug.Log("size " + size);
             GameObject obj = this.transform.GetChild(size - 1).gameObject;
             //Debug.Log(obj.GetComponentInChildren<Text>().text);
-            foreach (Fauna r in loadexcel.SwitchDB())
+            foreach (Fauna r in loadexcel.faunaDatabase)
             {
                 //Debug.Log("obj " + obj.GetComponentInChildren<Text>().text);
                 if(r.nomeComune== obj.GetComponentInChildren<Text>().text)

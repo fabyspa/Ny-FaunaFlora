@@ -7,10 +7,10 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
 
-public class LoadExcelFloraFauna : MonoBehaviour
+public class LoadExcelFlora : MonoBehaviour
 {
     public Fauna blankFauna;
-    public List<Fauna> faunaDatabase = new List<Fauna>();
+    public List<Fauna> floraDatabase = new List<Fauna>();
     public List<Fauna> tempList = new List<Fauna>();
     public List<Fauna> faunaDatabaseType = new List<Fauna>();
     public List<Fauna> ordenList = new List<Fauna>();
@@ -31,15 +31,18 @@ public class LoadExcelFloraFauna : MonoBehaviour
     public void Start()
     {
         LoadItemData();
-      
-        Debug.Log("FAUNAAAA");
-        scrolling.GetComponent<VariableStringListBankFauna>().ChangeContents();
+        Debug.Log("FLORAAAA");
+
+        scrolling.GetComponent<VariableStringListBankFlora>().ChangeContents();
         SortListByType();
-        info.GetComponent<VariableGameObjectListBankFauna>().ChangeInfoContents("Tutte");
-        scheda.GetComponent<VariableGameObjectListBankFauna>().ChangeInfoContents("Tutte");
-        scheda.GetComponentInChildren<VariableGameObjectListBankFauna>().ChangeInfoContents("Tutte");
+        info.GetComponent<VariableGameObjectListBankFlora>().ChangeInfoContents("Tutte");
+        scheda.GetComponent<VariableGameObjectListBankFlora>().ChangeInfoContents("Tutte");
+        scheda.GetComponentInChildren<VariableGameObjectListBankFlora>().ChangeInfoContents("Tutte");
+        
        
     }
+
+
 
     public void LoadItemData()
     {
@@ -48,11 +51,11 @@ public class LoadExcelFloraFauna : MonoBehaviour
         type.Clear();
         ita2engType.Clear();
         //READ CSV FILE
-        
-            Debug.Log("loaded" + loaded);
-            List<Dictionary<string, object>> data = CSVReader.Read("FAUNA_Nuovo");
-            InstantiateFloraFauna(data);
-       
+        Debug.Log("FLORA");
+        List<Dictionary<string, object>>  data = CSVReader.Read("FLORA_Nuovo");
+        InstantiateFloraFauna(data);
+        loaded = true;
+      
         GetFaunaReg();
     }
 
@@ -70,16 +73,14 @@ public class LoadExcelFloraFauna : MonoBehaviour
             string typeENG = data[i]["Tipologia ENG"].ToString();
             string descrENG = data[i]["Descrizione ENG"].ToString();
             string[] regioni = data[i]["Regione"].ToString().Split(delimiters);
-
-            //0=fauna 1=flora
-          
-                AddFauna(classe, nomeComune, nomeLatino, ADistr, Aprotetta, descr, nameENG, typeENG, descrENG, regioni);
-
+            
+            AddFauna(classe, nomeComune, nomeLatino, ADistr, Aprotetta, descr, nameENG, typeENG, descrENG, regioni);
+            
         }
         GetFaunaTypes();
     }
 
-    void AddFauna( string classe, string nomeComune, string nomeLatino,  string ADistr, string AProtetta, string descr, string nomeENG, string typeENG, string descrENG, string[] regioni)
+    void AddFauna(string classe, string nomeComune, string nomeLatino,  string ADistr, string AProtetta, string descr, string nomeENG, string typeENG, string descrENG, string[] regioni)
     {
         Fauna tempItem = new Fauna(blankFauna);
         tempItem.classe = classe;
@@ -92,17 +93,16 @@ public class LoadExcelFloraFauna : MonoBehaviour
         tempItem.descrENG = descrENG;
         tempItem.nameENG = nomeENG;
         tempItem.regioni = regioni;
-      
-            faunaDatabase.Add(tempItem);
+        
+        floraDatabase.Add(tempItem);
 
+        
     }
-
-   
     public void GetFaunaTypes()
     {
         var index = 0;
         
-        foreach (Fauna r in faunaDatabase)
+        foreach (Fauna r in floraDatabase)
         {
            if (!type.Contains(r.classe)){
                 type.Add(r.classe);
@@ -133,7 +133,7 @@ public class LoadExcelFloraFauna : MonoBehaviour
     {
         if (actualType != type)
             faunaDatabaseType.Clear();
-            foreach (Fauna r in faunaDatabase)
+            foreach (Fauna r in floraDatabase)
             {
                 if (r.classe.ToUpper() == type.ToUpper())
                 {
@@ -157,7 +157,7 @@ public class LoadExcelFloraFauna : MonoBehaviour
     public Fauna LoadFaunaByName(string name)
     {
 
-        foreach (Fauna r in faunaDatabase)
+        foreach (Fauna r in floraDatabase)
         {
             if (r.nomeComune == name) return r;
         }
@@ -169,7 +169,7 @@ public class LoadExcelFloraFauna : MonoBehaviour
     //Crea una lista con tutte le regioni
     public void GetFaunaReg()
     {
-        foreach (Fauna f in faunaDatabase)
+        foreach (Fauna f in floraDatabase)
         {
             foreach(string s in f.regioni)
             {
@@ -186,13 +186,25 @@ public class LoadExcelFloraFauna : MonoBehaviour
 
     public void ResetScroll()
     {
-
+        if (SceneManager.GetActiveScene().name == "Fauna")
+        {
             var i = FindObjectOfType<CircularScrollingListFauna>();
             i._isInitialized = false;
             i.Initialize();
 
             info.GetComponent<VariableGameObjectListBankFauna>().ChangeInfoContents("Tutte");
-      
+        }
+       
+        if(SceneManager.GetActiveScene().name =="Flora")
+        {
+            var i = FindObjectOfType<CircularScrollingListFlora>();
+            i._isInitialized = false;
+            i.Initialize();
+
+            info.GetComponent<VariableGameObjectListBankFlora>().ChangeInfoContents("Tutte");
+        }
+
+        
     }
 
 }

@@ -12,9 +12,8 @@ public class CSVReader
     static public List<Dictionary<string, object>> list= new List<Dictionary<string, object>>();
     public static List<Dictionary<string, object>> Read(string file)
     {
-        list.Clear();
         TextAsset data = Resources.Load(file) as TextAsset;
-        
+        list.Clear();
         var lines = Regex.Split(data.text, LINE_SPLIT_RE);
 
         if (lines.Length <= 1)
