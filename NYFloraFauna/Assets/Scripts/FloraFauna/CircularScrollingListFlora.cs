@@ -303,7 +303,7 @@ namespace AirFishLab.ScrollingList
         }
         void MoveScrollUp(PointerEventData e, TouchPhase t)
         {
-            scheda.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.InputPositionHandler(e, t);
+            //scheda.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.InputPositionHandler(e, t);
             scheda.GetComponent<CircularScrollingListFlora>()._toFixInfo = false;
             _toFixScheda= true;  
         } 
@@ -313,7 +313,7 @@ namespace AirFishLab.ScrollingList
             Debug.Log("move");
 
             //centeredContentId = GetCenteredContentID();
-            info.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.InputPositionHandler(e, t);
+            //info.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.InputPositionHandler(e, t);
             info.GetComponent<CircularScrollingListFlora>()._toFixScheda = false;
             _toFixInfo = true;
             
@@ -424,7 +424,7 @@ namespace AirFishLab.ScrollingList
                 {
                     for (int i = 0; i < info.GetComponent<VariableGameObjectListBankFlora>()._contents.Length; i++)
                     {
-                        if (info.GetComponent<VariableGameObjectListBankFlora>()._contents[i].nomeLatino == info.GetComponent<VariableGameObjectListBankFlora>().GetCenterItem().nomeLatino)
+                        if (info.GetComponent<VariableGameObjectListBankFlora>()._contents[i].nomeComune == info.GetComponent<VariableGameObjectListBankFlora>().GetCenterItem().nomeComune)
                         {
                             indice_i = i;
                         }
@@ -455,7 +455,7 @@ namespace AirFishLab.ScrollingList
                     //}
                     for (int j = 0; j < info.GetComponent<VariableGameObjectListBankFlora>()._contents.Length; j++)
                     {
-                        if (scheda.GetComponent<VariableGameObjectListBankFlora>()._contents[j].nomeLatino == scheda.GetComponent<VariableGameObjectListBankFlora>().GetCenterItem().nomeLatino)
+                        if (scheda.GetComponent<VariableGameObjectListBankFlora>()._contents[j].nomeComune == scheda.GetComponent<VariableGameObjectListBankFlora>().GetCenterItem().nomeComune)
                         {
                             indice_j = j;
                         }
