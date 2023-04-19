@@ -100,7 +100,7 @@ public class ButtonPoint : Button
                    if (loadexcel.riservaDatabase.Count==loadexcel.riservaDatabaseType.Count && diff == (val-1)/2) diff++;
 
                     Debug.Log("NUMERO DI PASSI sinistra" + diff +" per raggiungere" + riserva.name +" da "+ info.GetComponent<VariableGameObjectListBankRiserva>().GetCenterItem().name);
-                    info.GetComponent<CircularScrollingListRiserva>()._listPositionCtrl.SetUnitMove(3 * Mathf.Abs(diff));
+                    info.GetComponent<CircularScrollingListRiserva>()._listPositionCtrl.SetUnitMove(1 * Mathf.Abs(diff));
                     loadexcel.aItem = riserva;
                 }
                 else
@@ -109,7 +109,7 @@ public class ButtonPoint : Button
                     if (loadexcel.riservaDatabase.Count == loadexcel.riservaDatabaseType.Count  &&  diff == - (val - 1) / 2) diff--;
 
                     Debug.Log("NUMERO DI PASSI destra" + diff + " per raggiungere" + riserva.name + "da " + info.GetComponent<VariableGameObjectListBankRiserva>().GetCenterItem().name);
-                    info.GetComponent<CircularScrollingListRiserva>()._listPositionCtrl.SetUnitMove(-3 * Mathf.Abs(diff));
+                    info.GetComponent<CircularScrollingListRiserva>()._listPositionCtrl.SetUnitMove(-1 * Mathf.Abs(diff));
                     loadexcel.aItem = riserva;
 
                 }

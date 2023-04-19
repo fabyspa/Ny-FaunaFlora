@@ -211,7 +211,7 @@ namespace AirFishLab.ScrollingList
             if (_hasNoContent)
                 return;
 
-            _listPositionCtrl.SetUnitMove(3);
+            _listPositionCtrl.SetUnitMove(1);
         }
 
         /// <summary>
@@ -222,7 +222,7 @@ namespace AirFishLab.ScrollingList
             if (_hasNoContent)
                 return;
 
-            _listPositionCtrl.SetUnitMove(-3);
+            _listPositionCtrl.SetUnitMove(-1);
         }
 
         /// <summary>

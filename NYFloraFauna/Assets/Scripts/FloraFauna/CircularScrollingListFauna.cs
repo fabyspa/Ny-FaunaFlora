@@ -221,7 +221,7 @@ namespace AirFishLab.ScrollingList
             if (_hasNoContent)
                 return;
 
-            _listPositionCtrl.SetUnitMove(30);
+            _listPositionCtrl.SetUnitMove(1);
         }
 
         /// <summary>
@@ -232,7 +232,7 @@ namespace AirFishLab.ScrollingList
             if (_hasNoContent)
                 return;
 
-            _listPositionCtrl.SetUnitMove(-30);
+            _listPositionCtrl.SetUnitMove(-1);
         }
 
         /// <summary>
@@ -312,6 +312,7 @@ namespace AirFishLab.ScrollingList
         }
         void MoveScrollUp(PointerEventData e, TouchPhase t)
         {
+            Debug.Log("move up");
             scheda.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.InputPositionHandler(e, t);
             scheda.GetComponent<CircularScrollingListFauna>()._toFixInfo = false;
             _toFixScheda= true;  
@@ -319,8 +320,7 @@ namespace AirFishLab.ScrollingList
         
         void MoveScrollDown(PointerEventData e, TouchPhase t)
         {
-            Debug.Log("move");
-
+            Debug.Log("move down");
             //centeredContentId = GetCenteredContentID();
             //if(_listBank.GetListLength()>4)
             info.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.InputPositionHandler(e, t);
@@ -371,7 +371,7 @@ namespace AirFishLab.ScrollingList
             //_toFixScheda = false;
             //_toFixInfo = false;
             _listPositionCtrl.InputPositionHandler(eventData, TouchPhase.Ended);
-            //Debug.Log(string.Join("," ,eventData));
+            Debug.Log("OnEndDrag"+tagScroll + string.Join("," ,eventData));
         }
 
         public void OnScroll(PointerEventData eventData)
@@ -473,7 +473,7 @@ namespace AirFishLab.ScrollingList
                             indice_j = j;
                         }
                     }
-                        info.GetComponent<CircularScrollingListFauna>().SelectContentID(indice_j);
+                    info.GetComponent<CircularScrollingListFauna>().SelectContentID(indice_j);
                     //else
                      //info.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.SetUnitMove(-3*diff);
                     //oldContentId = centeredContentId;

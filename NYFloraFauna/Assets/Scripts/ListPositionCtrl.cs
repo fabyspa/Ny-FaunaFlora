@@ -20,6 +20,7 @@ namespace AirFishLab.ScrollingList
         public string centeredBoxAfterScroll;
         LoadExcelFloraFauna loadexcelFauna;
         LoadExcelFlora loadexcelFlora;
+
         #region Enums
 
 
@@ -460,7 +461,10 @@ namespace AirFishLab.ScrollingList
             if (!_toRunLateUpdate)
                 return;
             // Update the state of the boxes
+            Debug.Log("FindDeltaDistanceToCenter");
             FindDeltaDistanceToCenter();
+
+
             if (_listSetting.listType == CircularScrollingList.ListType.Linear)
                 UpdatePositionState();
 
@@ -675,6 +679,7 @@ namespace AirFishLab.ScrollingList
         /// </summary>
         private void FindDeltaDistanceToCenter()
         {
+            Debug.Log("FindDeltaDistance");
             var minDeltaDistance = Mathf.Infinity;
             ListBox candidateBox = null;
             foreach (var listBox in _listBoxes)
@@ -709,6 +714,7 @@ namespace AirFishLab.ScrollingList
         /// <param name="unit">The number of units</param>
         public void SetUnitMove(int unit)
         {
+            Debug.Log("SetUnitMove" + unit);
             _movementCtrl.SetMovement(unit * unitPos, false);
 
             _toRunLateUpdate = true;
@@ -727,6 +733,8 @@ namespace AirFishLab.ScrollingList
                 _positionState = PositionState.Bottom;
             else
                 _positionState = PositionState.Middle;
+
+            Debug.Log("UpdatePositionState" + _positionState);
         }
 
         #endregion
