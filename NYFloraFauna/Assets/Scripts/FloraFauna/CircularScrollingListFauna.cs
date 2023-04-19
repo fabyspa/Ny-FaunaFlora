@@ -313,7 +313,7 @@ namespace AirFishLab.ScrollingList
         void MoveScrollUp(PointerEventData e, TouchPhase t)
         {
             Debug.Log("move up");
-            scheda.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.InputPositionHandler(e, t);
+            //scheda.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.InputPositionHandler(e, t);
             scheda.GetComponent<CircularScrollingListFauna>()._toFixInfo = false;
             _toFixScheda= true;  
         } 
@@ -323,7 +323,7 @@ namespace AirFishLab.ScrollingList
             Debug.Log("move down");
             //centeredContentId = GetCenteredContentID();
             //if(_listBank.GetListLength()>4)
-            info.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.InputPositionHandler(e, t);
+            //info.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.InputPositionHandler(e, t);
             info.GetComponent<CircularScrollingListFauna>()._toFixScheda = false;
             _toFixInfo = true;
             
