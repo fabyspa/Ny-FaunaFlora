@@ -440,7 +440,7 @@ namespace AirFishLab.ScrollingList
                     scheda.GetComponent<CircularScrollingListFlora>().SelectContentID(indice_i);
                     //oldContentId = centeredContentId;
                 }
-                //_toFixScheda= false;
+                            
             }
             else if (_toFixInfo)
             {
@@ -465,12 +465,11 @@ namespace AirFishLab.ScrollingList
                     //oldContentId = centeredContentId;
 
                 }
-                //_toFixInfo= false;
-
+                
             }//scheda.GetComponent<CircularScrollingListFlora>().SelectContentID(indice_i);
-                //_toFix = false;
+             //_toFix = false;
 
-         
+
         }
 
 #if UNITY_EDITOR

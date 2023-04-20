@@ -8,6 +8,7 @@ using AirFishLab.ScrollingList.MovementCtrl;
 using UnityEngine.Events;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 namespace AirFishLab.ScrollingList
 {
@@ -237,7 +238,7 @@ namespace AirFishLab.ScrollingList
             PositionState GetPositionState() => _positionState;
             m_MyEvent.AddListener(() => CenteredBoxisChanged());
             scheda_MyEvent.AddListener(() => CenteredBoxisChangedScheda());
-            info_MyEvent.AddListener(() => CenteredBoxisChangedInfo());
+            info_MyEvent.AddListener(() => CenteredBoxisChangedInfoHandler());
             //info = GameObject.FindGameObjectWithTag("Info");
             var overGoingThreshold = unitPos * 0.3f;
 
@@ -571,7 +572,18 @@ namespace AirFishLab.ScrollingList
 
             }
         }
-        void CenteredBoxisChangedScheda()
+        public void CenteredBoxisChangedInfoHandler()
+        {
+            if (SceneManager.GetActiveScene().name == "Flora")
+                loadexcelFlora.gameObject.GetComponent<ScrollCoroutineHandler>().ScrollScheda(this);
+
+            if (SceneManager.GetActiveScene().name == "Fauna")
+                loadexcelFauna.gameObject.GetComponent<ScrollCoroutineHandler>().ScrollScheda(this);
+
+        }
+        
+       
+        public void CenteredBoxisChangedScheda()
         {
             tagscroll = null;
             if (SceneManager.GetActiveScene().name == "Fauna")
@@ -592,7 +604,7 @@ namespace AirFishLab.ScrollingList
 
         }
 
-        void CenteredBoxisChangedInfo()
+        public IEnumerator CenteredBoxisChangedInfo()
         {
 
             tagscroll = null;
@@ -601,20 +613,22 @@ namespace AirFishLab.ScrollingList
                 loadexcelFauna = GameObject.FindObjectOfType<LoadExcelFloraFauna>();
 
                 CircularScrollingListFauna circularScrollingListFaunaInfo = loadexcelFauna.info.GetComponent<CircularScrollingListFauna>();
+                yield return new WaitForSeconds(0.5f);
 
                 circularScrollingListFaunaInfo._toFixInfo = false;
                 circularScrollingListFaunaInfo._toFixScheda = false;
+
             }
             if (SceneManager.GetActiveScene().name == "Flora")
             {
                 loadexcelFlora = GameObject.FindObjectOfType<LoadExcelFlora>();
 
                 CircularScrollingListFlora circularScrollingListFloraInfo = loadexcelFlora.info.GetComponent<CircularScrollingListFlora>();
+                yield return new WaitForSeconds(0.5f);
 
                 circularScrollingListFloraInfo._toFixInfo = false;
                 circularScrollingListFloraInfo._toFixScheda = false;
             }
-
 
         }
         void CenteredBoxisChanged()
