@@ -11,17 +11,18 @@ public class Fauna
     public string nomeComune; //capriolo,capra..
     public string nomeLatino;
     public string ADistr;
-    //public Sprite sprite;
     public string AProtetta;
     public string descr;
     public string descrENG;
     public string typeENG;
     public string nameENG;
-    
+    public string livC;
+    public bool specB;
+
     public string[] regioni;
 
     // Update is called once per frame
-    public Fauna( Fauna r)
+    public Fauna(Fauna r)
     {
         classe = r.classe;
         nomeComune = r.nomeComune;
@@ -33,5 +34,7 @@ public class Fauna
         nameENG= r.nameENG;
         typeENG= r.typeENG;
         regioni = r.regioni;
+        livC = r.livC;
+        specB = r.specB;
     }
 }

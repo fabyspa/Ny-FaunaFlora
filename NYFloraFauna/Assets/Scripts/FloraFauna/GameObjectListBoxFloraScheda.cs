@@ -19,6 +19,8 @@ namespace AirFishLab.ScrollingList.Demo
         LoadExcelFlora loadExcel;
         private GameObject parent;
         private List<string> loadedRegions;
+        [SerializeField]
+        private GameObject infos;
 
 
 
@@ -34,7 +36,15 @@ namespace AirFishLab.ScrollingList.Demo
             _type.text = dataWrapper.data.classe;
              _image.sprite = UpdateImage(dataWrapper.data.nomeComune);
              _vector.sprite = UpdateImageIcon(dataWrapper.data.nomeComune);
-            if(isLoaded==false)
+
+            Debug.Log("Info aggiuntive");
+            infos.transform.GetChild(0).GetComponentInChildren<Text>().text = dataWrapper.data.ADistr;
+            infos.transform.GetChild(1).GetComponentInChildren<Text>().text = dataWrapper.data.AProtetta;
+            infos.transform.GetChild(2).GetComponentInChildren<Text>().text = dataWrapper.data.livC;
+            if (dataWrapper.data.specB)
+                infos.transform.GetChild(3).gameObject.SetActive(true);
+
+            if (isLoaded==false)
             LoadGameObject();
             ActivateRegions(dataWrapper.data.regioni);
 
