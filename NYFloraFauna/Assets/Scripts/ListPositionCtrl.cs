@@ -617,55 +617,92 @@ namespace AirFishLab.ScrollingList
 
 
         }
-        void CenteredBoxisChanged()
+        public void CenteredBoxisChanged()
         {
-            if (SceneManager.GetActiveScene().name == "Fauna")
-            {
-                loadexcelFauna = GameObject.FindObjectOfType<LoadExcelFloraFauna>();
+            //            if (SceneManager.GetActiveScene().name == "Fauna")
+            //            {
+            //                loadexcelFauna = GameObject.FindObjectOfType<LoadExcelFloraFauna>();
 
-                CircularScrollingListFauna circularScrollingListFaunaInfo = loadexcelFauna.info.GetComponent<CircularScrollingListFauna>();
-                CircularScrollingListFauna circularScrollingListFaunaScheda = loadexcelFauna.scheda.GetComponent<CircularScrollingListFauna>();
+            //                CircularScrollingListFauna circularScrollingListFaunaInfo = loadexcelFauna.info.GetComponent<CircularScrollingListFauna>();
+            //                CircularScrollingListFauna circularScrollingListFaunaScheda = loadexcelFauna.scheda.GetComponent<CircularScrollingListFauna>();
 
-                // var firstFilter = GameObject.FindGameObjectsWithTag("FirstFilter");
-#nullable enable
-                VariableGameObjectListBankFauna? listInfo = (VariableGameObjectListBankFauna?)circularScrollingListFaunaInfo.listBank;
-                VariableGameObjectListBankFauna? listScheda = (VariableGameObjectListBankFauna?)circularScrollingListFaunaScheda.listBank;
-                if (listInfo != null && listScheda != null)
+            //                // var firstFilter = GameObject.FindGameObjectsWithTag("FirstFilter");
+            //#nullable enable
+            //                VariableGameObjectListBankFauna? listInfo = (VariableGameObjectListBankFauna?)circularScrollingListFaunaInfo.listBank;
+            //                VariableGameObjectListBankFauna? listScheda = (VariableGameObjectListBankFauna?)circularScrollingListFaunaScheda.listBank;
+            //                if (listInfo != null && listScheda != null)
+            //                {
+            //                    listInfo.ChangeInfoContents(centeredBoxAfterScroll);
+            //                    listScheda.ChangeInfoContents(centeredBoxAfterScroll);
+            //#nullable disable
+            //                }
+            //            }
+            //            if (SceneManager.GetActiveScene().name == "Flora")
+            //            {
+            //                loadexcelFlora = GameObject.FindObjectOfType<LoadExcelFlora>();
+
+            //                CircularScrollingListFlora circularScrollingListFloraInfo = loadexcelFlora.info.GetComponent<CircularScrollingListFlora>();
+            //                CircularScrollingListFlora circularScrollingListFloraScheda = loadexcelFlora.scheda.GetComponent<CircularScrollingListFlora>();
+
+            //                // var firstFilter = GameObject.FindGameObjectsWithTag("FirstFilter");
+            //#nullable enable
+            //                VariableGameObjectListBankFlora? listInfo = (VariableGameObjectListBankFlora?)circularScrollingListFloraInfo.listBank;
+            //                VariableGameObjectListBankFlora? listScheda = (VariableGameObjectListBankFlora?)circularScrollingListFloraScheda.listBank;
+            //                if (listInfo != null && listScheda != null)
+            //                {
+            //                    listInfo.ChangeInfoContents(centeredBoxAfterScroll);
+            //                    listScheda.ChangeInfoContents(centeredBoxAfterScroll);
+            //                }
+            //            }
+            //#nullable disable
+            //            // list.ChangeInfoContents(centeredBoxAfterScroll);
+            //            //foreach (VariableStringListBankRiserva v in _variable)
+            //            //{
+            //            //    Debug.Log(v.gameObject.name);
+            //            //    if (v.gameObject.transform.parent.name == "Info")
+            //            //    {
+            //            //        v.ChangeInfoContents(centeredBoxAfterScroll);
+
+            //            //    }
+            //            //}
+
+
+            var info = loadexcelFauna.info;
+            if (tagscroll == "Type")
                 {
-                    listInfo.ChangeInfoContents(centeredBoxAfterScroll);
-                    listScheda.ChangeInfoContents(centeredBoxAfterScroll);
-#nullable disable
+                Debug.Log("Ciao");
+                    foreach (ListBox i in _listBoxes)
+                    {
+                        Text ita = i.gameObject.transform.GetChild(0).GetComponentInChildren<Text>();
+                        Text eng = i.gameObject.transform.GetChild(1).GetComponentInChildren<Text>();
+                        //Text t = i.GetComponentInChildren<Text>();
+                        if (i != GetCenteredBox())
+                        {
+                            ita.fontStyle = FontStyle.Normal;
+                            ita.fontSize = 25;
+                            eng.fontStyle = FontStyle.Normal;
+                            eng.fontSize = 25;
+                        }
+                        else
+                        {
+                            ita.fontSize = 30;
+                            ita.fontStyle = FontStyle.Bold;
+                            eng.fontSize = 30;
+                            eng.fontStyle = FontStyle.Bold;
+                        }
+                    }
                 }
-            }
-            if (SceneManager.GetActiveScene().name == "Flora")
-            {
-                loadexcelFlora = GameObject.FindObjectOfType<LoadExcelFlora>();
 
-                CircularScrollingListFlora circularScrollingListFloraInfo = loadexcelFlora.info.GetComponent<CircularScrollingListFlora>();
-                CircularScrollingListFlora circularScrollingListFloraScheda = loadexcelFlora.scheda.GetComponent<CircularScrollingListFlora>();
 
-                // var firstFilter = GameObject.FindGameObjectsWithTag("FirstFilter");
+
 #nullable enable
-                VariableGameObjectListBankFlora? listInfo = (VariableGameObjectListBankFlora?)circularScrollingListFloraInfo.listBank;
-                VariableGameObjectListBankFlora? listScheda = (VariableGameObjectListBankFlora?)circularScrollingListFloraScheda.listBank;
-                if (listInfo != null && listScheda != null)
+                VariableGameObjectListBankFauna? list = (VariableGameObjectListBankFauna?)info.GetComponent<CircularScrollingListFauna>().listBank;
+                if (list != null)
                 {
-                    listInfo.ChangeInfoContents(centeredBoxAfterScroll);
-                    listScheda.ChangeInfoContents(centeredBoxAfterScroll);
+                    list.ChangeInfoContents(centeredBoxAfterScroll);
                 }
-            }
-#nullable disable
-            // list.ChangeInfoContents(centeredBoxAfterScroll);
-            //foreach (VariableStringListBankRiserva v in _variable)
-            //{
-            //    Debug.Log(v.gameObject.name);
-            //    if (v.gameObject.transform.parent.name == "Info")
-            //    {
-            //        v.ChangeInfoContents(centeredBoxAfterScroll);
 
-            //    }
-            //}
-
+            
         }
 
         #endregion

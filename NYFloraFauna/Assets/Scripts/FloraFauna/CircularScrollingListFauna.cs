@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
@@ -155,6 +156,7 @@ namespace AirFishLab.ScrollingList
             InitializeListComponents();
             // Make the list position ctrl initialize its position state
             _listPositionCtrl.LateUpdate();
+            if (SceneManager.GetActiveScene().name == Loader.SceneName.FAUNA.ToString()) _listPositionCtrl.CenteredBoxisChanged();
             _listPositionCtrl.InitialImageSorting();
             _isInitialized = true;
         }
