@@ -3693,13 +3693,13 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: AirFishLab.ScrollingList.CircularScrollingListFauna,
           Assembly-CSharp
         m_MethodName: MoveOneUnitUp
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Scheda
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &504473585
@@ -6230,13 +6230,13 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: AirFishLab.ScrollingList.CircularScrollingListFauna,
           Assembly-CSharp
         m_MethodName: MoveOneUnitDown
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Scheda
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &769360177
@@ -13220,13 +13220,13 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: AirFishLab.ScrollingList.CircularScrollingListFauna,
           Assembly-CSharp
         m_MethodName: MoveOneUnitDown
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Info
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1554780623
@@ -16254,13 +16254,13 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: AirFishLab.ScrollingList.CircularScrollingListFauna,
           Assembly-CSharp
         m_MethodName: MoveOneUnitUp
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Info
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1861153937
@@ -16959,7 +16959,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8791586502965261609, guid: 4b8f836d14335b74a9becd41cd7dd85b, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8791586502965261609, guid: 4b8f836d14335b74a9becd41cd7dd85b, type: 3}
       propertyPath: m_TargetGraphic

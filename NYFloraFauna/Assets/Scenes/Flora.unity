@@ -7205,7 +7205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8791586502965261609, guid: 4b8f836d14335b74a9becd41cd7dd85b, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8791586502965261609, guid: 4b8f836d14335b74a9becd41cd7dd85b, type: 3}
       propertyPath: m_TargetGraphic
