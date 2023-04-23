@@ -461,7 +461,6 @@ namespace AirFishLab.ScrollingList
             if (!_toRunLateUpdate)
                 return;
             // Update the state of the boxes
-            Debug.Log("FindDeltaDistanceToCenter");
             FindDeltaDistanceToCenter();
 
 
@@ -601,18 +600,25 @@ namespace AirFishLab.ScrollingList
                 loadexcelFauna = GameObject.FindObjectOfType<LoadExcelFloraFauna>();
 
                 CircularScrollingListFauna circularScrollingListFaunaInfo = loadexcelFauna.info.GetComponent<CircularScrollingListFauna>();
-
-                circularScrollingListFaunaInfo._toFixInfo = false;
-                circularScrollingListFaunaInfo._toFixScheda = false;
+                if (circularScrollingListFaunaInfo == null)  Debug.Log("Circular scrolling list not found");
+                else
+                {
+                    circularScrollingListFaunaInfo._toFixInfo = false;
+                    circularScrollingListFaunaInfo._toFixScheda = false;
+                }
+               
             }
             if (SceneManager.GetActiveScene().name == "Flora")
             {
                 loadexcelFlora = GameObject.FindObjectOfType<LoadExcelFlora>();
 
                 CircularScrollingListFlora circularScrollingListFloraInfo = loadexcelFlora.info.GetComponent<CircularScrollingListFlora>();
-
-                circularScrollingListFloraInfo._toFixInfo = false;
-                circularScrollingListFloraInfo._toFixScheda = false;
+                if (circularScrollingListFloraInfo == null) Debug.Log("Circular scrolling list not found");
+                else
+                {
+                    circularScrollingListFloraInfo._toFixInfo = false;
+                    circularScrollingListFloraInfo._toFixScheda = false;
+                }
             }
 
 
@@ -716,7 +722,6 @@ namespace AirFishLab.ScrollingList
         /// </summary>
         private void FindDeltaDistanceToCenter()
         {
-            Debug.Log("FindDeltaDistance");
             var minDeltaDistance = Mathf.Infinity;
             ListBox candidateBox = null;
             foreach (var listBox in _listBoxes)
