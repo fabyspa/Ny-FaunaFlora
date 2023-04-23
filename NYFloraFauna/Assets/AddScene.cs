@@ -37,7 +37,6 @@ public class AddScene : MonoBehaviour
         var asyncLoadLevel = SceneManager.LoadSceneAsync(Loader.SceneName.FLORA.ToString(), LoadSceneMode.Additive);
         while (!asyncLoadLevel.isDone)
         {
-            Debug.Log("Loading the Scene");
             yield return null;
         }
 

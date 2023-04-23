@@ -41,7 +41,6 @@ namespace AirFishLab.ScrollingList
             
             if (type == "Tutte")
             {
-                Debug.Log("TUTTE" + loadexcel.ordenList.Count);
                 foreach (Fauna r in loadexcel.ordenList)
                 {
                     //Debug.Log("PRRROVAAA"+r.nomeComune);

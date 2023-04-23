@@ -32,7 +32,6 @@ public class LoadExcelFloraFauna : MonoBehaviour
     {
         LoadItemData();
       
-        Debug.Log("FAUNAAAA");
         scrolling.GetComponent<VariableStringListBankFauna>().ChangeContents();
         SortListByType();
         info.GetComponent<VariableGameObjectListBankFauna>().ChangeInfoContents("Tutte");
@@ -49,7 +48,6 @@ public class LoadExcelFloraFauna : MonoBehaviour
         ita2engType.Clear();
         //READ CSV FILE
         
-            Debug.Log("loaded" + loaded);
             List<Dictionary<string, object>> data = CSVReader.Read("FAUNA_Nuovo");
             InstantiateFloraFauna(data);
        
@@ -128,13 +126,13 @@ public class LoadExcelFloraFauna : MonoBehaviour
             }
 
         }
-        Debug.Log(string.Join(",", ita2engType.Keys));
 
     }
 
     public List<Fauna> LoadFaunaByType(string type)
     {
         if (actualType != type)
+        {
             faunaDatabaseType.Clear();
             foreach (Fauna r in faunaDatabase)
             {
@@ -144,6 +142,7 @@ public class LoadExcelFloraFauna : MonoBehaviour
                 }
             }
             actualType = type;
+        }
         return faunaDatabaseType;
     }
 

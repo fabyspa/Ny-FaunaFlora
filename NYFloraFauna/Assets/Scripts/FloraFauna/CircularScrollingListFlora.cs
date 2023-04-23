@@ -385,7 +385,8 @@ namespace AirFishLab.ScrollingList
                 return;
 
             _listPositionCtrl.Update();
-
+            if (_toFixScheda || _toFixInfo)
+                FixCardInfo();
         }
 
         private void LateUpdate()
@@ -401,8 +402,7 @@ namespace AirFishLab.ScrollingList
                 //else _toFixInfo = false;
                 //if (centeredContentId!=oldContentId && tagScroll == "Info") _toFixScheda= true;
                 //else _toFixScheda= false;
-                if (_toFixScheda||_toFixInfo)
-                FixCardInfo();
+               
 
         }
 

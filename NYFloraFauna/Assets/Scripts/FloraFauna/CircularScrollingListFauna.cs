@@ -314,7 +314,6 @@ namespace AirFishLab.ScrollingList
         }
         void MoveScrollUp(PointerEventData e, TouchPhase t)
         {
-            Debug.Log("move up");
             //scheda.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.InputPositionHandler(e, t);
             scheda.GetComponent<CircularScrollingListFauna>()._toFixInfo = false;
             _toFixScheda= true;  
@@ -322,7 +321,6 @@ namespace AirFishLab.ScrollingList
         
         void MoveScrollDown(PointerEventData e, TouchPhase t)
         {
-            Debug.Log("move down");
             //centeredContentId = GetCenteredContentID();
             //if(_listBank.GetListLength()>4)
             //info.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.InputPositionHandler(e, t);
@@ -373,7 +371,6 @@ namespace AirFishLab.ScrollingList
             //_toFixScheda = false;
             //_toFixInfo = false;
             _listPositionCtrl.InputPositionHandler(eventData, TouchPhase.Ended);
-            Debug.Log("OnEndDrag"+tagScroll + string.Join("," ,eventData));
         }
 
         public void OnScroll(PointerEventData eventData)
@@ -397,6 +394,8 @@ namespace AirFishLab.ScrollingList
                 return;
 
             _listPositionCtrl.Update();
+            if (_toFixScheda || _toFixInfo)
+                FixCardInfo();
 
         }
 
@@ -413,8 +412,7 @@ namespace AirFishLab.ScrollingList
                 //else _toFixInfo = false;
                 //if (centeredContentId!=oldContentId && tagScroll == "Info") _toFixScheda= true;
                 //else _toFixScheda= false;
-                if (_toFixScheda||_toFixInfo)
-                FixCardInfo();
+               
 
         }
 
@@ -448,7 +446,7 @@ namespace AirFishLab.ScrollingList
                             indice_j = j;
                         }
                     }
-                    int diff = Mathf.Abs(indice_i - indice_j);
+                    int diff = Mathf.Abs(indice_j - indice_i);
                         scheda.GetComponent<CircularScrollingListFauna>().SelectContentID(indice_i);
                    
                     //else

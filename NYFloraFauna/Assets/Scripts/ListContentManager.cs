@@ -164,6 +164,7 @@ namespace AirFishLab.ScrollingList
         /// <returns>The shortest ID difference</returns>
         public int GetShortestDiff(int fromID, int toID)
         {
+            Debug.Log("GETSHORTESTDIFF");
             if (!IsIDValid(fromID))
                 throw new IndexOutOfRangeException(nameof(fromID));
             if (!IsIDValid(toID))
@@ -176,13 +177,14 @@ namespace AirFishLab.ScrollingList
 
             var numOfContent = _listBank.GetListLength();
             var halfNumOfContent = numOfContent / 2;
-
+            Debug.Log("contenuti" + numOfContent);
             if (Mathf.Abs(difference) > halfNumOfContent)
             {
+                Debug.Log("fast");
                 difference -= (int)Mathf.Sign(difference) * numOfContent;
             }
 
-
+            Debug.Log(difference);
             return difference;
         }
     }

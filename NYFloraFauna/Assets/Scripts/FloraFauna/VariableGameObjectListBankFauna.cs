@@ -42,10 +42,11 @@ namespace AirFishLab.ScrollingList
 
         public void ChangeInfoContents(string type)
         {
+
             int i = 0;
             loadexcel = GameObject.FindObjectOfType<LoadExcelFloraFauna>();
+           
             _contentsList.Clear();
-            
             if (type == "Tutte")
             {
                 foreach (Fauna r in loadexcel.ordenList)
@@ -73,18 +74,7 @@ namespace AirFishLab.ScrollingList
                     _contentsList.Add(r);
                     i++;
                 }
-                if (_contentsList.Count <= 5)
-                {
-                    //foreach (Fauna r in loadexcel.faunaDatabaseType)
-                    //{
-                    //    Fauna f = new Fauna(r);
-                    //    f.index = i;
-                    //    _contentsList.Add(f);
-                    //    i++;
-                    //}
-                    //_contents = _contentsList.ToArray();
-                    //_circularList.Refresh();
-                }
+               
                 _contents = _contentsList.ToArray();
                 _circularList.Refresh();
                 GetCenterItem();
