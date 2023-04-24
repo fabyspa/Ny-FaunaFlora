@@ -156,6 +156,7 @@ namespace AirFishLab.ScrollingList
             InitializeListComponents();
             // Make the list position ctrl initialize its position state
             _listPositionCtrl.LateUpdate();
+            UpdateTagScroll();
             if (SceneManager.GetActiveScene().name == Loader.SceneName.FAUNA.ToString()) _listPositionCtrl.CenteredBoxisChanged();
             _listPositionCtrl.InitialImageSorting();
             _isInitialized = true;
@@ -218,23 +219,28 @@ namespace AirFishLab.ScrollingList
         /// <summary>
         /// Move the list one unit up or right
         /// </summary>
-        public void MoveOneUnitUp()
+        public void MoveOneUnitUp(string tag)
         {
             if (_hasNoContent)
                 return;
             Debug.Log("Movimento bottoni");
+            if(tag== "Info")
             _listPositionCtrl.SetUnitMove(2);
+            else
+            _listPositionCtrl.SetUnitMove(8);
         }
 
         /// <summary>
         /// Move the list one unit down or left
         /// </summary>
-        public void MoveOneUnitDown()
+        public void MoveOneUnitDown(string tag)
         {
             if (_hasNoContent)
                 return;
-
-            _listPositionCtrl.SetUnitMove(-2);
+            if (tag == "Info")
+                _listPositionCtrl.SetUnitMove(-2);
+            else
+                _listPositionCtrl.SetUnitMove(-8);
         }
 
         /// <summary>
@@ -303,10 +309,8 @@ namespace AirFishLab.ScrollingList
         #region Event System Callback
         public void UpdateTagScroll()
         {
-            //_toFixScheda = false;
-            //_toFixInfo = false;
             tagScroll = this.gameObject.tag.ToString();
-            if (_listPositionCtrl.tagscroll!= tagScroll)
+            if (_listPositionCtrl.tagscroll != tagScroll)
             {
                 _listPositionCtrl.tagscroll = tagScroll;
             }

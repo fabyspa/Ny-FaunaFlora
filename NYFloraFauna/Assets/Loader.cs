@@ -17,7 +17,6 @@ public class Loader
     private static bool firstTime = true;
     public static void SwitchScene()
     {
-        Debug.Log("bjhdsbcjhbs");
         // Salva lo stato degli oggetti della scena corrente
         SaveToggleState();
         // Carica la nuova scena
@@ -31,7 +30,6 @@ public class Loader
         }
         else
         {
-            Debug.Log("Flora");
             currentScene = SceneName.FLORA;
             // Abilita/disabilita i GameObject delle scene in base alla scena corrente
             EnableDisableSceneObjects();
