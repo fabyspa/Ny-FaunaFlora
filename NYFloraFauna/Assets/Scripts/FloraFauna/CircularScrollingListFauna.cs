@@ -398,8 +398,10 @@ namespace AirFishLab.ScrollingList
                 return;
 
             _listPositionCtrl.Update();
+
             if (_toFixScheda || _toFixInfo)
                 FixCardInfo();
+
 
         }
 
@@ -410,13 +412,12 @@ namespace AirFishLab.ScrollingList
 
             _listPositionCtrl.LateUpdate();
 
-           
-                
-                //if (centeredContentId!=oldContentId && tagScroll == "Scheda")_toFixInfo = true;
-                //else _toFixInfo = false;
-                //if (centeredContentId!=oldContentId && tagScroll == "Info") _toFixScheda= true;
-                //else _toFixScheda= false;
-               
+
+            //if (centeredContentId!=oldContentId && tagScroll == "Scheda")_toFixInfo = true;
+            //else _toFixInfo = false;
+            //if (centeredContentId!=oldContentId && tagScroll == "Info") _toFixScheda= true;
+            //else _toFixScheda= false;
+
 
         }
 
@@ -452,7 +453,9 @@ namespace AirFishLab.ScrollingList
                     }
                     int diff = Mathf.Abs(indice_j - indice_i);
                         scheda.GetComponent<CircularScrollingListFauna>().SelectContentID(indice_i);
-                   
+                    scheda.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.Update();
+                    scheda.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.LateUpdate();
+
                     //else
                     //    scheda.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.SetUnitMove(3 * diff);
                     //oldContentId = centeredContentId;
@@ -478,8 +481,11 @@ namespace AirFishLab.ScrollingList
                         }
                     }
                     info.GetComponent<CircularScrollingListFauna>().SelectContentID(indice_j);
+                    info.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.Update();
+                    info.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.LateUpdate();
+
                     //else
-                     //info.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.SetUnitMove(-3*diff);
+                    //info.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.SetUnitMove(-3*diff);
                     //oldContentId = centeredContentId;
 
                 }

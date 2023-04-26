@@ -385,8 +385,7 @@ namespace AirFishLab.ScrollingList
                 return;
 
             _listPositionCtrl.Update();
-            if (_toFixScheda || _toFixInfo)
-                FixCardInfo();
+           
         }
 
         private void LateUpdate()
@@ -396,13 +395,14 @@ namespace AirFishLab.ScrollingList
 
             _listPositionCtrl.LateUpdate();
 
-           
-                
-                //if (centeredContentId!=oldContentId && tagScroll == "Scheda")_toFixInfo = true;
-                //else _toFixInfo = false;
-                //if (centeredContentId!=oldContentId && tagScroll == "Info") _toFixScheda= true;
-                //else _toFixScheda= false;
-               
+            if (_toFixScheda || _toFixInfo)
+                FixCardInfo();
+
+            //if (centeredContentId!=oldContentId && tagScroll == "Scheda")_toFixInfo = true;
+            //else _toFixInfo = false;
+            //if (centeredContentId!=oldContentId && tagScroll == "Info") _toFixScheda= true;
+            //else _toFixScheda= false;
+
 
         }
 
@@ -438,6 +438,8 @@ namespace AirFishLab.ScrollingList
                     //}
                     //int diff = indice_i - indice_j;
                     scheda.GetComponent<CircularScrollingListFlora>().SelectContentID(indice_i);
+                    scheda.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.Update();
+                    scheda.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.LateUpdate();
                     //oldContentId = centeredContentId;
                 }
                 //_toFixScheda= false;
@@ -461,7 +463,9 @@ namespace AirFishLab.ScrollingList
                         }
                     }
                     //int diff = indice_j - indice_i;
-                     info.GetComponent<CircularScrollingListFlora>().SelectContentID(indice_j);
+                    info.GetComponent<CircularScrollingListFlora>().SelectContentID(indice_j);
+                    info.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.Update();
+                    info.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.LateUpdate();
                     //oldContentId = centeredContentId;
 
                 }

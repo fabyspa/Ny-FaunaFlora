@@ -446,7 +446,10 @@ namespace AirFishLab.ScrollingList
 
             var distance = _movementCtrl.GetDistance(Time.deltaTime);
             foreach (var listBox in _listBoxes)
+            {
+                Debug.Log(listBox.gameObject.name);
                 listBox.UpdatePosition(distance);
+            }
 
             //Debug.Log(GetCenteredBox());
         }
