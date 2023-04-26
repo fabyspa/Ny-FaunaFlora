@@ -399,8 +399,7 @@ namespace AirFishLab.ScrollingList
 
             _listPositionCtrl.Update();
 
-            if (_toFixScheda || _toFixInfo)
-                FixCardInfo();
+      
 
 
         }
@@ -411,7 +410,8 @@ namespace AirFishLab.ScrollingList
                 return;
 
             _listPositionCtrl.LateUpdate();
-
+            if (_toFixScheda || _toFixInfo)
+                FixCardInfo();
 
             //if (centeredContentId!=oldContentId && tagScroll == "Scheda")_toFixInfo = true;
             //else _toFixInfo = false;
@@ -452,9 +452,12 @@ namespace AirFishLab.ScrollingList
                         }
                     }
                     int diff = Mathf.Abs(indice_j - indice_i);
-                        scheda.GetComponent<CircularScrollingListFauna>().SelectContentID(indice_i);
-                    scheda.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.Update();
-                    scheda.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.LateUpdate();
+                    CircularScrollingListFauna circularScrollingListFauna = scheda.GetComponent<CircularScrollingListFauna>();
+                    if (circularScrollingListFauna._isInitialized == false) circularScrollingListFauna.Initialize();
+
+                    circularScrollingListFauna.SelectContentID(indice_i);
+                    circularScrollingListFauna._listPositionCtrl.Update();
+                    //scheda.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.LateUpdate();
 
                     //else
                     //    scheda.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.SetUnitMove(3 * diff);
@@ -480,9 +483,13 @@ namespace AirFishLab.ScrollingList
                             indice_j = j;
                         }
                     }
-                    info.GetComponent<CircularScrollingListFauna>().SelectContentID(indice_j);
-                    info.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.Update();
-                    info.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.LateUpdate();
+
+                    CircularScrollingListFauna circularScrollingListFauna = info.GetComponent<CircularScrollingListFauna>();
+                    if (circularScrollingListFauna._isInitialized == false) circularScrollingListFauna.Initialize();
+
+                    circularScrollingListFauna.SelectContentID(indice_j);
+                    circularScrollingListFauna._listPositionCtrl.Update();
+                    //info.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.LateUpdate();
 
                     //else
                     //info.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.SetUnitMove(-3*diff);

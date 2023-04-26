@@ -424,7 +424,7 @@ namespace AirFishLab.ScrollingList
                 {
                     for (int i = 0; i < info.GetComponent<VariableGameObjectListBankFlora>()._contents.Length; i++)
                     {
-                        if (info.GetComponent<VariableGameObjectListBankFlora>()._contents[i].nomeComune == info.GetComponent<VariableGameObjectListBankFlora>().GetCenterItem().nomeComune)
+                        if (info.GetComponent<VariableGameObjectListBankFlora>()._contents[i].index == info.GetComponent<VariableGameObjectListBankFlora>().GetCenterItem().index)
                         {
                             indice_i = i;
                         }
@@ -437,9 +437,12 @@ namespace AirFishLab.ScrollingList
                     //    }
                     //}
                     //int diff = indice_i - indice_j;
-                    scheda.GetComponent<CircularScrollingListFlora>().SelectContentID(indice_i);
-                    scheda.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.Update();
-                    scheda.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.LateUpdate();
+                    CircularScrollingListFlora circularScrollingListFlora = scheda.GetComponent<CircularScrollingListFlora>();
+                    if (circularScrollingListFlora._isInitialized == false) circularScrollingListFlora.Initialize();
+                    circularScrollingListFlora.SelectContentID(indice_i);
+
+                    //scheda.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.Update();
+                    circularScrollingListFlora._listPositionCtrl.LateUpdate();
                     //oldContentId = centeredContentId;
                 }
                 //_toFixScheda= false;
@@ -457,15 +460,18 @@ namespace AirFishLab.ScrollingList
                     //}
                     for (int j = 0; j < info.GetComponent<VariableGameObjectListBankFlora>()._contents.Length; j++)
                     {
-                        if (scheda.GetComponent<VariableGameObjectListBankFlora>()._contents[j].nomeComune == scheda.GetComponent<VariableGameObjectListBankFlora>().GetCenterItem().nomeComune)
+                        if (scheda.GetComponent<VariableGameObjectListBankFlora>()._contents[j].index == scheda.GetComponent<VariableGameObjectListBankFlora>().GetCenterItem().index)
                         {
                             indice_j = j;
                         }
                     }
                     //int diff = indice_j - indice_i;
-                    info.GetComponent<CircularScrollingListFlora>().SelectContentID(indice_j);
-                    info.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.Update();
-                    info.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.LateUpdate();
+                    CircularScrollingListFlora circularScrollingListFlora = info.GetComponent<CircularScrollingListFlora>();
+                    if (circularScrollingListFlora._isInitialized == false) circularScrollingListFlora.Initialize();
+
+                    circularScrollingListFlora.SelectContentID(indice_j);
+                    //info.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.Update();
+                    circularScrollingListFlora._listPositionCtrl.LateUpdate();
                     //oldContentId = centeredContentId;
 
                 }

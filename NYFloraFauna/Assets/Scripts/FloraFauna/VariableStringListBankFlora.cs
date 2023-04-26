@@ -25,6 +25,7 @@ namespace AirFishLab.ScrollingList
             {
                 _contentsList.Add(t);
             }
+           
             _contents = _contentsList.ToArray();
 
             _circularList.Refresh();
