@@ -467,7 +467,9 @@ namespace AirFishLab.ScrollingList
                     }
                     //int diff = indice_j - indice_i;
                     CircularScrollingListFlora circularScrollingListFlora = info.GetComponent<CircularScrollingListFlora>();
-                    if (circularScrollingListFlora._isInitialized == false) circularScrollingListFlora.Initialize();
+                    if (circularScrollingListFlora._isInitialized == false) { circularScrollingListFlora.Initialize();
+                        Debug.Log("FALSOOOO");
+                    }
 
                     circularScrollingListFlora.SelectContentID(indice_j);
                     //info.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.Update();
