@@ -775,7 +775,20 @@ namespace AirFishLab.ScrollingList
             {
                 _listSetting.onCenteredContentChanged?.Invoke(candidateBox.contentID);
                 candidateBox.PopToFront();
-                
+                if (tagscroll== "Info")
+                {
+                    Debug.Log("INFO hbbubhubu");
+                    AudioClip clip = SoundManager.GetAudioSourceToReproduce().GetComponent<AudioSource>().clip;
+                    AudioSource audioSource = SoundManager.GetAudioSourceToReproduce().AddComponent<AudioSource>();
+                    audioSource.clip = clip;
+                    audioSource.Play();
+                }
+                else
+                {
+                    Debug.Log("Scheda hbbubhubu");
+                    //SoundManager.GetAudioSourceToReproduce().Play();
+                }
+               
             }
 
             _centeredBox = candidateBox;

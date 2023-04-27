@@ -10,17 +10,18 @@ public static class SoundManager
 {
     public static CircularScrollingListFlora circularScrollingListFlora;
     public static CircularScrollingListFauna circularScrollingListFauna;
-    public static AudioSource GetAudioSourceToReproduce()
+    public static GameObject GetAudioSourceToReproduce()
     {
+        Debug.Log("play");
         if (circularScrollingListFlora != null || circularScrollingListFauna != null)
         {
             if (SceneManager.GetActiveScene().name == "Fauna")
             {
-                return circularScrollingListFauna.gameObject.GetComponent<AudioSource>();
+                return circularScrollingListFauna.gameObject ;
             }
             else if (SceneManager.GetActiveScene().name == "Flora")
             {
-                return circularScrollingListFauna.gameObject.GetComponent<AudioSource>();
+                return circularScrollingListFauna.gameObject; ;
 
             }
             else return null;
