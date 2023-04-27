@@ -449,7 +449,7 @@ namespace AirFishLab.ScrollingList
             {
                 listBox.UpdatePosition(distance);
             }
-            BoldTheCenterItem();
+            //BoldTheCenterItem();
             //Debug.Log(GetCenteredBox());
         }
 
@@ -721,6 +721,7 @@ namespace AirFishLab.ScrollingList
             {
                 Text ita = i.gameObject.transform.GetChild(0).GetComponentInChildren<Text>();
                 Text eng = i.gameObject.transform.GetChild(1).GetComponentInChildren<Text>();
+                RectTransform line = i.gameObject.transform.GetChild(4).GetComponentInChildren<RectTransform>();
                 //Text t = i.GetComponentInChildren<Text>();
                 if (GetCenteredBox() == null) Debug.Log("NULL");
                 if (i != GetCenteredBox())
@@ -729,6 +730,7 @@ namespace AirFishLab.ScrollingList
                     ita.fontSize = 25;
                     eng.fontStyle = FontStyle.Normal;
                     eng.fontSize = 25;
+                    //line.rect = 60;
                 }
                 else
                 {
