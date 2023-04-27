@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace AirFishLab.ScrollingList
@@ -295,9 +296,13 @@ namespace AirFishLab.ScrollingList
 
         public void UpdateTagScroll()
         {
-            tagScroll = this.gameObject.tag.ToString();
-            Debug.Log("TAGSCROLL " + tagScroll);
-            _listPositionCtrl.tagscroll = tagScroll;
+            if( tagScroll != this.gameObject.tag.ToString())
+            {
+                tagScroll= this.gameObject.tag.ToString();
+                _listPositionCtrl.tagscroll = tagScroll;
+                
+            }
+
         }
 
         public void OnEndDrag(PointerEventData eventData)

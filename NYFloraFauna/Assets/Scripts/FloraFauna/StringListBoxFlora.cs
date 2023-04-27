@@ -21,10 +21,10 @@ namespace AirFishLab.ScrollingList
             if (loadexcel == null)
             {
                 loadexcel = FindObjectOfType<LoadExcelFlora>();
-
-                if (dataWrapper.data == "Tutte") _textENG.text = "All";
-                else _textENG.text = loadexcel.ita2engType.FirstOrDefault(x => x.Value == dataWrapper.data).Key;
             }
+            if (dataWrapper.data == "Tutte") _textENG.text = "All";
+            else _textENG.text = loadexcel.ita2engType.FirstOrDefault(x => x.Value == dataWrapper.data).Key;
+            
             
         }
     }

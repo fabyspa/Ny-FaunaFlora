@@ -449,7 +449,7 @@ namespace AirFishLab.ScrollingList
             {
                 listBox.UpdatePosition(distance);
             }
-
+            
             //Debug.Log(GetCenteredBox());
         }
 
@@ -511,6 +511,7 @@ namespace AirFishLab.ScrollingList
                 {
                     if (SceneManager.GetActiveScene().name == "Fauna")
                     {
+                        
                         var newInfoCenteredBoxAfterScroll = GetCenteredBox().GetComponentInChildren<Text>().text;
                         loadexcelFauna = GameObject.FindObjectOfType<LoadExcelFloraFauna>();
                         Fauna _centerFauna = loadexcelFauna.LoadFaunaByName(newInfoCenteredBoxAfterScroll);
@@ -535,6 +536,7 @@ namespace AirFishLab.ScrollingList
                         }
                     }
                     //loadexcel.ChangeStateTo(loadexcel.coord2position.FirstOrDefault(x => Enumerable.SequenceEqual(x.Value, Convert_coordinates.remapLatLng(loadexcel.aItem.coord))).Key, "selected");
+                    
                 }
 
                 if (tagscroll == "Scheda")
@@ -773,6 +775,7 @@ namespace AirFishLab.ScrollingList
             {
                 _listSetting.onCenteredContentChanged?.Invoke(candidateBox.contentID);
                 candidateBox.PopToFront();
+                
             }
 
             _centeredBox = candidateBox;
@@ -804,7 +807,6 @@ namespace AirFishLab.ScrollingList
             else
                 _positionState = PositionState.Middle;
 
-            Debug.Log("UpdatePositionState" + _positionState);
         }
 
         #endregion

@@ -26,7 +26,7 @@ namespace AirFishLab.ScrollingList
         }
         private GameObject info;
         private GameObject scheda;
-        public string tagScroll;
+        public string tagScroll = "";
         private DirectionScroll direction;
         public bool _toFixInfo;
         public bool _toFixScheda;
@@ -313,6 +313,7 @@ namespace AirFishLab.ScrollingList
             if (_listPositionCtrl.tagscroll != tagScroll)
             {
                 _listPositionCtrl.tagscroll = tagScroll;
+                SoundManager.circularScrollingListFauna = this.gameObject.GetComponent<CircularScrollingListFauna>();
             }
 
         }
