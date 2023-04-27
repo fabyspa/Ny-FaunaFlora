@@ -449,7 +449,7 @@ namespace AirFishLab.ScrollingList
             {
                 listBox.UpdatePosition(distance);
             }
-            BoldTheCenterItem();
+            //BoldTheCenterItem();
             //Debug.Log(GetCenteredBox());
         }
 
@@ -585,6 +585,14 @@ namespace AirFishLab.ScrollingList
                 {
                     circularScrollingListFaunaScheda._toFixScheda = false;
                     circularScrollingListFaunaScheda._toFixInfo = false;
+                    var counter = 0;
+
+                    foreach (AudioSource a in circularScrollingListFaunaScheda.gameObject.GetComponents<AudioSource>())
+                    {
+                        if(counter !=0)
+                            GameObject.Destroy(a);
+                        counter++;
+                    }
                 }
             }
             if (SceneManager.GetActiveScene().name == "Flora")
@@ -596,6 +604,14 @@ namespace AirFishLab.ScrollingList
                 {
                     circularScrollingListFloraScheda._toFixScheda = false;
                     circularScrollingListFloraScheda._toFixInfo = false;
+                    var counter = 0;
+
+                    foreach (AudioSource a in circularScrollingListFloraScheda.gameObject.GetComponents<AudioSource>())
+                    {
+                        if (counter != 0)
+                            GameObject.Destroy(a);
+                        counter++;
+                    }
                 }
             }
 
@@ -615,8 +631,16 @@ namespace AirFishLab.ScrollingList
                 {
                     circularScrollingListFaunaInfo._toFixInfo = false;
                     circularScrollingListFaunaInfo._toFixScheda = false;
+                    var counter = 0;
+
+                    foreach (AudioSource a in circularScrollingListFaunaInfo.gameObject.GetComponents<AudioSource>())
+                    {
+                        if(counter!=0)
+                            GameObject.Destroy(a);
+                        counter++;
+                    }
+
                 }
-               
             }
             if (SceneManager.GetActiveScene().name == "Flora")
             {
@@ -628,6 +652,14 @@ namespace AirFishLab.ScrollingList
                 {
                     circularScrollingListFloraInfo._toFixInfo = false;
                     circularScrollingListFloraInfo._toFixScheda = false;
+                    var counter = 0;
+
+                    foreach (AudioSource a in circularScrollingListFloraInfo.gameObject.GetComponents<AudioSource>())
+                    {
+                        if (counter != 0)
+                            GameObject.Destroy(a);
+                        counter++;
+                    }
                 }
             }
 
@@ -775,20 +807,31 @@ namespace AirFishLab.ScrollingList
             {
                 _listSetting.onCenteredContentChanged?.Invoke(candidateBox.contentID);
                 candidateBox.PopToFront();
-                if (tagscroll== "Info")
+
+                if (tagscroll == "Info")
                 {
-                    Debug.Log("INFO hbbubhubu");
-                    AudioClip clip = SoundManager.GetAudioSourceToReproduce().GetComponent<AudioSource>().clip;
-                    AudioSource audioSource = SoundManager.GetAudioSourceToReproduce().AddComponent<AudioSource>();
-                    audioSource.clip = clip;
-                    audioSource.Play();
+                    if (SoundManager.GetAudioSourceToReproduce() != null)
+                    {
+                        AudioClip clip = SoundManager.GetAudioSourceToReproduce().GetComponent<AudioSource>().clip;
+                        AudioSource audioSource = SoundManager.GetAudioSourceToReproduce().AddComponent<AudioSource>();
+                        audioSource.clip = clip;
+                        audioSource.Play();
+                    }
                 }
                 else
                 {
                     Debug.Log("Scheda hbbubhubu");
                     //SoundManager.GetAudioSourceToReproduce().Play();
+                    if (SoundManager.GetAudioSourceToReproduce() != null)
+                    {
+                        AudioClip clip = SoundManager.GetAudioSourceToReproduce().GetComponent<AudioSource>().clip;
+                        AudioSource audioSource = SoundManager.GetAudioSourceToReproduce().AddComponent<AudioSource>();
+                        audioSource.clip = clip;
+                        audioSource.Play();
+                    }
+
                 }
-               
+
             }
 
             _centeredBox = candidateBox;

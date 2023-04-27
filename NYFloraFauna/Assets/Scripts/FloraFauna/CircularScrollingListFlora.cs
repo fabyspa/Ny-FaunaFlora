@@ -304,6 +304,7 @@ namespace AirFishLab.ScrollingList
             if (_listPositionCtrl.tagscroll!= tagScroll)
             {
                 _listPositionCtrl.tagscroll = tagScroll;
+                SoundManager.circularScrollingListFauna = this.gameObject.GetComponent<CircularScrollingListFauna>();
             }
 
         }

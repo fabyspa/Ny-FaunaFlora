@@ -341,10 +341,18 @@ namespace AirFishLab.ScrollingList
             UpdateTagScroll();
             //_toFix = false;
             if (tagScroll == "Info")
+            {
                 MoveScrollUp(eventData, TouchPhase.Began);
-            
+                _listPositionCtrl.tagscroll = tagScroll;
+
+            }
+
             if (tagScroll == "Scheda")
+            {
                 MoveScrollDown(eventData, TouchPhase.Began);
+                _listPositionCtrl.tagscroll = tagScroll;
+
+            }
 
             _listPositionCtrl.InputPositionHandler(eventData, TouchPhase.Began);
         }
