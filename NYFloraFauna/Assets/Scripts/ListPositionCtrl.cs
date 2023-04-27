@@ -449,7 +449,7 @@ namespace AirFishLab.ScrollingList
             {
                 listBox.UpdatePosition(distance);
             }
-            
+            BoldTheCenterItem();
             //Debug.Log(GetCenteredBox());
         }
 
@@ -708,7 +708,7 @@ namespace AirFishLab.ScrollingList
             //        }
             //    }
 
-                BoldTheCenterItem();
+                //BoldTheCenterItem();
 #nullable enable
                
             
