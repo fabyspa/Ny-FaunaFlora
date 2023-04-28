@@ -462,8 +462,11 @@ namespace AirFishLab.ScrollingList
 
         public void LateUpdate()
         {
+            Debug.Log("PRIMALATEUDATE");
             if (!_toRunLateUpdate)
                 return;
+            Debug.Log("DOPOLATEUDATE");
+
             // Update the state of the boxes
             FindDeltaDistanceToCenter();
 
@@ -475,24 +478,6 @@ namespace AirFishLab.ScrollingList
             {
                 return;
             }
-            else
-            {
-                
-
-                //if (tagscroll == "Info")
-                //{
-                //   var newInfoCenteredBoxAfterScroll = GetCenteredBox().GetComponentInChildren<Text>().text;
-                //    Fauna _centerFauna = loadexcel.LoadFaunaByName(newInfoCenteredBoxAfterScroll);
-                //    loadexcel.aItem = _centerFauna;
-                //    if (m_MyEvent != null && centeredBoxAfterScroll != newInfoCenteredBoxAfterScroll)
-                //    {
-                //        centeredBoxAfterScroll = newInfoCenteredBoxAfterScroll;
-                //        scheda_MyEvent.Invoke();
-                //    }
-                //    //loadexcel.ChangeStateTo(loadexcel.coord2position.FirstOrDefault(x => Enumerable.SequenceEqual(x.Value, Convert_coordinates.remapLatLng(loadexcel.aItem.coord))).Key, "selected");
-                //}
-
-            }
 
             // Not to update the state of box after the last frame of movement
             _toRunLateUpdate = false;
@@ -501,9 +486,9 @@ namespace AirFishLab.ScrollingList
                 return;
             else
             {
-
                 if (tagscroll == "Info")
                 {
+
 
                     if (SceneManager.GetActiveScene().name == "Fauna")
                     {
@@ -560,6 +545,7 @@ namespace AirFishLab.ScrollingList
                     }
                     else if (SceneManager.GetActiveScene().name == "Flora")
                     {
+
                         var newSchedaCenteredBoxAfterScroll = GetCenteredBox().GetComponentInChildren<Text>().text;
                         loadexcelFlora = GameObject.FindObjectOfType<LoadExcelFlora>();
 
@@ -574,16 +560,15 @@ namespace AirFishLab.ScrollingList
                         }
                     }
                 }
-                if (tagscroll == "Type")
+                if (tagscroll == "Type" ||tagscroll == null)
                 {
+
                     var newCenteredBoxAfterScroll = GetCenteredBox().GetComponentInChildren<Text>().text;
                     if (SceneManager.GetActiveScene().name == "Fauna")
                     {
                         if (loadexcelFauna == null)
                         {
-                            Debug.Log("LOADEXCELNULL");
                             loadexcelFauna= GameObject.FindObjectOfType<LoadExcelFloraFauna>();
-                            Debug.Log("LOADEXCELFOUNDED");
                         }
                         if (loadexcelFauna.scrolling != null)
                         {
@@ -604,7 +589,7 @@ namespace AirFishLab.ScrollingList
                         centeredBoxAfterScroll = newCenteredBoxAfterScroll;
                         m_MyEvent.Invoke();
                     }
-
+                    
                 }
 
                 _isEndingMovement = false;
@@ -666,7 +651,6 @@ namespace AirFishLab.ScrollingList
 
                 CircularScrollingListFlora circularScrollingListFloraInfo = loadexcelFlora.info.GetComponent<CircularScrollingListFlora>();
 
-                Debug.Log("PRIMA DEL check");
 
                 if (circularScrollingListFloraInfo == null) Debug.Log("Circular scrolling list not found");
                 else
@@ -778,7 +762,6 @@ namespace AirFishLab.ScrollingList
                 Text ita = i.gameObject.transform.GetChild(0).GetComponentInChildren<Text>();
                 Text eng = i.gameObject.transform.GetChild(1).GetComponentInChildren<Text>();
 
-                if (GetCenteredBox() == null) Debug.Log("NULL");
                 if (i != GetCenteredBox())
                 {
                     ita.fontStyle = FontStyle.Normal;
@@ -809,7 +792,6 @@ namespace AirFishLab.ScrollingList
                 Text ita = i.gameObject.transform.GetChild(0).GetComponentInChildren<Text>();
                 Text eng = i.gameObject.transform.GetChild(2).GetComponentInChildren<Text>();
 
-                if (GetCenteredBox() == null) Debug.Log("NULL");
                 if (i != GetCenteredBox())
                 {
                     line.sizeDelta = new Vector2(2f, 40f);
@@ -866,7 +848,6 @@ namespace AirFishLab.ScrollingList
 
                 if (!first)
                 {
-                    Debug.Log("NOT FIRST");
                     if (SoundManager.GetAudioSourceToReproduce() != null)
                     {
 
@@ -937,7 +918,6 @@ namespace AirFishLab.ScrollingList
         public void DeleteAudioSource(GameObject circular, String scene)
         {
             var counter = 0;
-            Debug.Log("PRIMA DEL FOREACH");
             if (scene == "Flora")
             {
                 foreach (AudioSource a in circular.GetComponent<CircularScrollingListFlora>().gameObject.GetComponents<AudioSource>())
@@ -945,9 +925,7 @@ namespace AirFishLab.ScrollingList
                     if (counter != 0)
                         GameObject.Destroy(a);
                     counter++;
-                    Debug.Log("FOREACH");
                 }
-                Debug.Log(" ELIMINATI " + counter);
             }
             else
             {

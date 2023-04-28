@@ -397,11 +397,17 @@ namespace AirFishLab.ScrollingList
             if (!_isInitialized)
                 return;
 
+            Debug.Log("NAME " + this.name);
+
+
             _listPositionCtrl.Update();
             if (tagScroll == "Type")
                 _listPositionCtrl.BoldTheCenterItem();
             else if (tagScroll == "Info")
                 _listPositionCtrl.BoldTheCenterItemImg();
+
+            if (_toFixScheda || _toFixInfo)
+                FixCardInfo();
 
         }
 
@@ -412,8 +418,7 @@ namespace AirFishLab.ScrollingList
 
             _listPositionCtrl.LateUpdate();
 
-            if (_toFixScheda || _toFixInfo)
-                FixCardInfo();
+           
 
             //if (centeredContentId!=oldContentId && tagScroll == "Scheda")_toFixInfo = true;
             //else _toFixInfo = false;
