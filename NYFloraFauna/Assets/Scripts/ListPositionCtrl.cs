@@ -8,6 +8,7 @@ using AirFishLab.ScrollingList.MovementCtrl;
 using UnityEngine.Events;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 namespace AirFishLab.ScrollingList
 {
@@ -20,6 +21,7 @@ namespace AirFishLab.ScrollingList
         public string centeredBoxAfterScroll;
         LoadExcelFloraFauna loadexcelFauna;
         LoadExcelFlora loadexcelFlora;
+        public bool first = true;
 
         #region Enums
 
@@ -470,19 +472,12 @@ namespace AirFishLab.ScrollingList
                 UpdatePositionState();
 
             if (!_movementCtrl.IsMovementEnded())
+            {
                 return;
+            }
             else
             {
-                if (tagscroll == "Type")
-                {
-                    var newCenteredBoxAfterScroll = GetCenteredBox().GetComponentInChildren<Text>().text;
-                    if (m_MyEvent != null && centeredBoxAfterScroll != newCenteredBoxAfterScroll)
-                    {
-                        centeredBoxAfterScroll = newCenteredBoxAfterScroll;
-                        m_MyEvent.Invoke();
-                    }
-
-                }
+                
 
                 //if (tagscroll == "Info")
                 //{
@@ -509,6 +504,7 @@ namespace AirFishLab.ScrollingList
 
                 if (tagscroll == "Info")
                 {
+
                     if (SceneManager.GetActiveScene().name == "Fauna")
                     {
                         
@@ -516,6 +512,8 @@ namespace AirFishLab.ScrollingList
                         loadexcelFauna = GameObject.FindObjectOfType<LoadExcelFloraFauna>();
                         Fauna _centerFauna = loadexcelFauna.LoadFaunaByName(newInfoCenteredBoxAfterScroll);
                         loadexcelFauna.aItem = _centerFauna;
+                        DeleteAudioSource(loadexcelFauna.info, "Fauna");
+
                         if (m_MyEvent != null && centeredBoxAfterScroll != newInfoCenteredBoxAfterScroll)
                         {
                             centeredBoxAfterScroll = newInfoCenteredBoxAfterScroll;
@@ -525,22 +523,27 @@ namespace AirFishLab.ScrollingList
 
                     else if (SceneManager.GetActiveScene().name == "Flora")
                     {
+
                         var newInfoCenteredBoxAfterScroll = GetCenteredBox().GetComponentInChildren<Text>().text;
                         loadexcelFlora = GameObject.FindObjectOfType<LoadExcelFlora>();
                         Fauna _centerFauna = loadexcelFlora.LoadFaunaByName(newInfoCenteredBoxAfterScroll);
                         loadexcelFlora.aItem = _centerFauna;
+                        DeleteAudioSource(loadexcelFlora.info, "Flora");
+
                         if (m_MyEvent != null && centeredBoxAfterScroll != newInfoCenteredBoxAfterScroll)
                         {
                             centeredBoxAfterScroll = newInfoCenteredBoxAfterScroll;
                             info_MyEvent.Invoke();
                         }
                     }
-                    //loadexcel.ChangeStateTo(loadexcel.coord2position.FirstOrDefault(x => Enumerable.SequenceEqual(x.Value, Convert_coordinates.remapLatLng(loadexcel.aItem.coord))).Key, "selected");
                     
+                    //loadexcel.ChangeStateTo(loadexcel.coord2position.FirstOrDefault(x => Enumerable.SequenceEqual(x.Value, Convert_coordinates.remapLatLng(loadexcel.aItem.coord))).Key, "selected");
+
                 }
 
                 if (tagscroll == "Scheda")
                 {
+
                     if (SceneManager.GetActiveScene().name == "Fauna")
                     {
                         var newSchedaCenteredBoxAfterScroll = GetCenteredBox().GetComponentInChildren<Text>().text;
@@ -548,6 +551,7 @@ namespace AirFishLab.ScrollingList
 
                         Fauna _centerFauna = loadexcelFauna.LoadFaunaByName(newSchedaCenteredBoxAfterScroll);
                         loadexcelFauna.aItem = _centerFauna;
+                        DeleteAudioSource(loadexcelFauna.scheda, "Fauna");
                         if (m_MyEvent != null && centeredBoxAfterScroll != newSchedaCenteredBoxAfterScroll)
                         {
                             centeredBoxAfterScroll = newSchedaCenteredBoxAfterScroll;
@@ -561,12 +565,46 @@ namespace AirFishLab.ScrollingList
 
                         Fauna _centerFauna = loadexcelFlora.LoadFaunaByName(newSchedaCenteredBoxAfterScroll);
                         loadexcelFlora.aItem = _centerFauna;
+                        DeleteAudioSource(loadexcelFlora.scheda, "Flora");
+
                         if (m_MyEvent != null && centeredBoxAfterScroll != newSchedaCenteredBoxAfterScroll)
                         {
                             centeredBoxAfterScroll = newSchedaCenteredBoxAfterScroll;
                             scheda_MyEvent.Invoke();
                         }
                     }
+                }
+                if (tagscroll == "Type")
+                {
+                    var newCenteredBoxAfterScroll = GetCenteredBox().GetComponentInChildren<Text>().text;
+                    if (SceneManager.GetActiveScene().name == "Fauna")
+                    {
+                        if (loadexcelFauna == null)
+                        {
+                            Debug.Log("LOADEXCELNULL");
+                            loadexcelFauna= GameObject.FindObjectOfType<LoadExcelFloraFauna>();
+                            Debug.Log("LOADEXCELFOUNDED");
+                        }
+                        if (loadexcelFauna.scrolling != null)
+                        {
+                            DeleteAudioSource(loadexcelFauna.scrolling, "Fauna");
+                        }
+                    }
+                    else
+                    {
+                        if (loadexcelFlora == null) loadexcelFlora=GameObject.FindObjectOfType<LoadExcelFlora>();
+                        if(loadexcelFlora.scrolling!=null)
+                        DeleteAudioSource(loadexcelFlora.scrolling, "Flora");
+
+                    }
+
+
+                    if (m_MyEvent != null && centeredBoxAfterScroll != newCenteredBoxAfterScroll)
+                    {
+                        centeredBoxAfterScroll = newCenteredBoxAfterScroll;
+                        m_MyEvent.Invoke();
+                    }
+
                 }
 
                 _isEndingMovement = false;
@@ -585,18 +623,12 @@ namespace AirFishLab.ScrollingList
                 {
                     circularScrollingListFaunaScheda._toFixScheda = false;
                     circularScrollingListFaunaScheda._toFixInfo = false;
-                    var counter = 0;
-
-                    foreach (AudioSource a in circularScrollingListFaunaScheda.gameObject.GetComponents<AudioSource>())
-                    {
-                        if(counter !=0)
-                            GameObject.Destroy(a);
-                        counter++;
-                    }
+                   
                 }
             }
             if (SceneManager.GetActiveScene().name == "Flora")
             {
+
                 loadexcelFlora = GameObject.FindObjectOfType<LoadExcelFlora>();
 
                 CircularScrollingListFlora circularScrollingListFloraScheda = loadexcelFlora.scheda.GetComponent<CircularScrollingListFlora>();
@@ -604,14 +636,7 @@ namespace AirFishLab.ScrollingList
                 {
                     circularScrollingListFloraScheda._toFixScheda = false;
                     circularScrollingListFloraScheda._toFixInfo = false;
-                    var counter = 0;
-
-                    foreach (AudioSource a in circularScrollingListFloraScheda.gameObject.GetComponents<AudioSource>())
-                    {
-                        if (counter != 0)
-                            GameObject.Destroy(a);
-                        counter++;
-                    }
+                    
                 }
             }
 
@@ -619,7 +644,6 @@ namespace AirFishLab.ScrollingList
 
         void CenteredBoxisChangedInfo()
         {
-
             tagscroll = null;
             if (SceneManager.GetActiveScene().name == "Fauna")
             {
@@ -631,35 +655,25 @@ namespace AirFishLab.ScrollingList
                 {
                     circularScrollingListFaunaInfo._toFixInfo = false;
                     circularScrollingListFaunaInfo._toFixScheda = false;
-                    var counter = 0;
-
-                    foreach (AudioSource a in circularScrollingListFaunaInfo.gameObject.GetComponents<AudioSource>())
-                    {
-                        if(counter!=0)
-                            GameObject.Destroy(a);
-                        counter++;
-                    }
+                    
 
                 }
             }
             if (SceneManager.GetActiveScene().name == "Flora")
             {
+
                 loadexcelFlora = GameObject.FindObjectOfType<LoadExcelFlora>();
 
                 CircularScrollingListFlora circularScrollingListFloraInfo = loadexcelFlora.info.GetComponent<CircularScrollingListFlora>();
+
+                Debug.Log("PRIMA DEL check");
+
                 if (circularScrollingListFloraInfo == null) Debug.Log("Circular scrolling list not found");
                 else
                 {
                     circularScrollingListFloraInfo._toFixInfo = false;
                     circularScrollingListFloraInfo._toFixScheda = false;
-                    var counter = 0;
-
-                    foreach (AudioSource a in circularScrollingListFloraInfo.gameObject.GetComponents<AudioSource>())
-                    {
-                        if (counter != 0)
-                            GameObject.Destroy(a);
-                        counter++;
-                    }
+                    
                 }
             }
 
@@ -667,10 +681,13 @@ namespace AirFishLab.ScrollingList
         }
         public void CenteredBoxisChanged()
         {
+
             if (SceneManager.GetActiveScene().name == "Fauna")
             {
+
                 loadexcelFauna = GameObject.FindObjectOfType<LoadExcelFloraFauna>();
 
+                CircularScrollingListFauna circularScrollingListFaunaType = loadexcelFauna.scrolling.GetComponent<CircularScrollingListFauna>();
                 CircularScrollingListFauna circularScrollingListFaunaInfo = loadexcelFauna.info.GetComponent<CircularScrollingListFauna>();
                 CircularScrollingListFauna circularScrollingListFaunaScheda = loadexcelFauna.scheda.GetComponent<CircularScrollingListFauna>();
 
@@ -684,13 +701,16 @@ namespace AirFishLab.ScrollingList
                     listScheda.ChangeInfoContents(centeredBoxAfterScroll);
 #nullable disable
                 }
+               
             }
             if (SceneManager.GetActiveScene().name == "Flora")
             {
+
                 loadexcelFlora = GameObject.FindObjectOfType<LoadExcelFlora>();
 
                 CircularScrollingListFlora circularScrollingListFloraInfo = loadexcelFlora.info.GetComponent<CircularScrollingListFlora>();
                 CircularScrollingListFlora circularScrollingListFloraScheda = loadexcelFlora.scheda.GetComponent<CircularScrollingListFlora>();
+                CircularScrollingListFlora circularScrollingListFloraType = loadexcelFlora.scrolling.GetComponent<CircularScrollingListFlora>();
 
                 // var firstFilter = GameObject.FindGameObjectsWithTag("FirstFilter");
 #nullable enable
@@ -701,6 +721,7 @@ namespace AirFishLab.ScrollingList
                     listInfo.ChangeInfoContents(centeredBoxAfterScroll);
                     listScheda.ChangeInfoContents(centeredBoxAfterScroll);
                 }
+               
             }
 #nullable disable
             // list.ChangeInfoContents(centeredBoxAfterScroll);
@@ -808,29 +829,21 @@ namespace AirFishLab.ScrollingList
                 _listSetting.onCenteredContentChanged?.Invoke(candidateBox.contentID);
                 candidateBox.PopToFront();
 
-                if (tagscroll == "Info")
+                if (!first)
                 {
+                    Debug.Log("NOT FIRST");
                     if (SoundManager.GetAudioSourceToReproduce() != null)
                     {
-                        AudioClip clip = SoundManager.GetAudioSourceToReproduce().GetComponent<AudioSource>().clip;
-                        AudioSource audioSource = SoundManager.GetAudioSourceToReproduce().AddComponent<AudioSource>();
-                        audioSource.clip = clip;
-                        audioSource.Play();
-                    }
-                }
-                else
-                {
-                    Debug.Log("Scheda hbbubhubu");
-                    //SoundManager.GetAudioSourceToReproduce().Play();
-                    if (SoundManager.GetAudioSourceToReproduce() != null)
-                    {
-                        AudioClip clip = SoundManager.GetAudioSourceToReproduce().GetComponent<AudioSource>().clip;
-                        AudioSource audioSource = SoundManager.GetAudioSourceToReproduce().AddComponent<AudioSource>();
-                        audioSource.clip = clip;
-                        audioSource.Play();
-                    }
 
+                        AudioClip clip = SoundManager.GetAudioSourceToReproduce().GetComponent<AudioSource>().clip;
+                        AudioSource audioSource = SoundManager.GetAudioSourceToReproduce().AddComponent<AudioSource>();
+                        audioSource.clip = clip;
+                        audioSource.playOnAwake = false;
+                        audioSource.Play();
+                    }
+                      
                 }
+                
 
             }
 
@@ -886,6 +899,34 @@ namespace AirFishLab.ScrollingList
             return GetCenteredBox().contentID;
         }
 
+        public void DeleteAudioSource(GameObject circular, String scene)
+        {
+            var counter = 0;
+            Debug.Log("PRIMA DEL FOREACH");
+            if (scene == "Flora")
+            {
+                foreach (AudioSource a in circular.GetComponent<CircularScrollingListFlora>().gameObject.GetComponents<AudioSource>())
+                {
+                    if (counter != 0)
+                        GameObject.Destroy(a);
+                    counter++;
+                    Debug.Log("FOREACH");
+                }
+                Debug.Log(" ELIMINATI " + counter);
+            }
+            else
+            {
+                foreach (AudioSource a in circular.GetComponent<CircularScrollingListFauna>().gameObject.GetComponents<AudioSource>())
+                {
+                    if (counter != 0)
+                        GameObject.Destroy(a);
+                    counter++;
+                    Debug.Log("FOREACH");
+                }
+                Debug.Log(" ELIMINATI " + counter);
+            }
+           
+        }
         #endregion
     }
 }

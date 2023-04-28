@@ -21,7 +21,7 @@ public static class SoundManager
             }
             else if (SceneManager.GetActiveScene().name == "Flora")
             {
-                return circularScrollingListFauna.gameObject; ;
+                return circularScrollingListFlora.gameObject; 
 
             }
             else return null;

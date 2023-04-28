@@ -190,11 +190,13 @@ public class LoadExcelFloraFauna : MonoBehaviour
     public void ResetScroll()
     {
 
-            var i = FindObjectOfType<CircularScrollingListFauna>();
-            i._isInitialized = false;
-            i.Initialize();
+        foreach (CircularScrollingListFauna c in GameObject.FindObjectsOfType<CircularScrollingListFauna>())
+        {
+            c._isInitialized = false;
+            c.Initialize();
+        }
 
-            info.GetComponent<VariableGameObjectListBankFauna>().ChangeInfoContents("Tutte");
+        info.GetComponent<VariableGameObjectListBankFauna>().ChangeInfoContents("Tutte");
       
     }
 

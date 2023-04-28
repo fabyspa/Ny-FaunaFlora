@@ -156,7 +156,6 @@ namespace AirFishLab.ScrollingList
             InitializeListComponents();
             // Make the list position ctrl initialize its position state
             _listPositionCtrl.LateUpdate();
-            UpdateTagScroll();
             if (SceneManager.GetActiveScene().name == Loader.SceneName.FAUNA.ToString()) _listPositionCtrl.CenteredBoxisChanged();
             _listPositionCtrl.InitialImageSorting();
             _isInitialized = true;
@@ -293,9 +292,10 @@ namespace AirFishLab.ScrollingList
             if (_hasNoContent)
                 return;
 
-            if (!_listContentManager.IsIDValid(contentID))
-                throw new IndexOutOfRangeException(
-                    $"{nameof(contentID)} is larger than the number of contents");
+        
+            //if (!_listContentManager.IsIDValid(contentID))
+            //    throw new IndexOutOfRangeException(
+            //        $"{nameof(contentID)} is larger than the number of contents");
 
             var centeredBox = _listPositionCtrl.GetCenteredBox();
             var centeredContentID = centeredBox.contentID;
@@ -309,16 +309,19 @@ namespace AirFishLab.ScrollingList
         #region Event System Callback
         public void UpdateTagScroll()
         {
-            tagScroll = this.gameObject.tag.ToString();
-            if (_listPositionCtrl.tagscroll != tagScroll)
+            _listPositionCtrl.first = false;
+
+            if ( tagScroll != this.gameObject.tag.ToString() && tagScroll!=null)
             {
+                tagScroll = this.gameObject.tag.ToString(); 
                 _listPositionCtrl.tagscroll = tagScroll;
-                SoundManager.circularScrollingListFauna = this.gameObject.GetComponent<CircularScrollingListFauna>();
             }
 
         }
         void MoveScrollUp(PointerEventData e, TouchPhase t)
         {
+            Debug.Log("TAG INFO");
+            SoundManager.circularScrollingListFauna = this;
             //scheda.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.InputPositionHandler(e, t);
             scheda.GetComponent<CircularScrollingListFauna>()._toFixInfo = false;
             _toFixScheda= true;  
@@ -326,6 +329,9 @@ namespace AirFishLab.ScrollingList
         
         void MoveScrollDown(PointerEventData e, TouchPhase t)
         {
+            Debug.Log(" TAG SCHEDA");
+
+            SoundManager.circularScrollingListFauna = this;
             //centeredContentId = GetCenteredContentID();
             //if(_listBank.GetListLength()>4)
             //info.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.InputPositionHandler(e, t);
@@ -354,7 +360,12 @@ namespace AirFishLab.ScrollingList
 
             }
 
-            _listPositionCtrl.InputPositionHandler(eventData, TouchPhase.Began);
+            if (tagScroll == "Type")
+            {
+                SoundManager.circularScrollingListFauna=this;
+            }
+
+                _listPositionCtrl.InputPositionHandler(eventData, TouchPhase.Began);
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -453,14 +464,7 @@ namespace AirFishLab.ScrollingList
                             indice_i = i;
                         }
                     }
-                    for (int j = 0; j < info.GetComponent<VariableGameObjectListBankFauna>()._contents.Length; j++)
-                    {
-                        if (scheda.GetComponent<VariableGameObjectListBankFauna>()._contents[j].index == scheda.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem().index)
-                        {
-                            indice_j = j;
-                        }
-                    }
-                    int diff = Mathf.Abs(indice_j - indice_i);
+                   
                     CircularScrollingListFauna circularScrollingListFauna = scheda.GetComponent<CircularScrollingListFauna>();
                     if (circularScrollingListFauna._isInitialized == false) circularScrollingListFauna.Initialize();
 
@@ -487,7 +491,7 @@ namespace AirFishLab.ScrollingList
                     }
                     for (int j = 0; j < info.GetComponent<VariableGameObjectListBankFauna>()._contents.Length; j++)
                     {
-                        if (scheda.GetComponent<VariableGameObjectListBankFauna>()._contents[j].index == scheda.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem().index)
+                        if (scheda.GetComponent<VariableGameObjectListBankFauna>()._contents[j].nomeLatino == scheda.GetComponent<VariableGameObjectListBankFauna>().GetCenterItem().nomeLatino)
                         {
                             indice_j = j;
                         }

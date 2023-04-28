@@ -58,6 +58,7 @@ public class Loader
             }
             GameObject.FindGameObjectWithTag("TOGGLE").GetComponent<Toggle>().isOn = toggle;
             //if (isRiservaSceneLoaded) SceneManager.UnloadSceneAsync(SceneName.RISERVE.ToString());
+           
             ResetScroll(SceneName.FLORA);
 
             isParkSceneLoaded = true;
@@ -80,6 +81,7 @@ public class Loader
                 obj.SetActive(true);
             }
             GameObject.FindGameObjectWithTag("TOGGLE").GetComponent<Toggle>().isOn = toggle;
+            
             ResetScroll(SceneName.FAUNA);
 
             //if (isParkSceneLoaded) SceneManager.UnloadSceneAsync(SceneName.PARCHI.ToString());
@@ -132,13 +134,23 @@ public class Loader
     {
         if (scene == SceneName.FAUNA)
         {
+            foreach (CircularScrollingListFauna cslf in GameObject.FindObjectsOfType<CircularScrollingListFauna>())
+            {
+                cslf._listPositionCtrl.first = true;
+            }
             LoadExcelFloraFauna loadExcel = GameObject.FindObjectOfType<LoadExcelFloraFauna>();
             loadExcel.ResetScroll();
+           
         }
         if (scene == SceneName.FLORA)
         {
+            foreach (CircularScrollingListFlora cslf in GameObject.FindObjectsOfType<CircularScrollingListFlora>())
+            {
+                cslf._listPositionCtrl.first = true;
+            }
             LoadExcelFlora loadExcel = GameObject.FindObjectOfType<LoadExcelFlora>();
             loadExcel.ResetScroll();
+            
         }
     }
 

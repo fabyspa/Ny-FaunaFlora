@@ -202,10 +202,12 @@ public class LoadExcelFlora : MonoBehaviour
        
         if(SceneManager.GetActiveScene().name =="Flora")
         {
-            var i = FindObjectOfType<CircularScrollingListFlora>();
-            i._isInitialized = false;
-            i.Initialize();
-
+            foreach (CircularScrollingListFlora c in GameObject.FindObjectsOfType<CircularScrollingListFlora>()) 
+            {
+                c._isInitialized = false;
+                c.Initialize();
+            }
+           
             info.GetComponent<VariableGameObjectListBankFlora>().ChangeInfoContents("Tutte");
         }
 

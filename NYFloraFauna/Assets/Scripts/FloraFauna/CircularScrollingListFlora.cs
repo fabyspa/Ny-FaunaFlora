@@ -281,6 +281,7 @@ namespace AirFishLab.ScrollingList
             if (_hasNoContent)
                 return;
 
+            
             if (!_listContentManager.IsIDValid(contentID))
                 throw new IndexOutOfRangeException(
                     $"{nameof(contentID)} is larger than the number of contents");
@@ -297,19 +298,21 @@ namespace AirFishLab.ScrollingList
         #region Event System Callback
         public void UpdateTagScroll()
         {
-            Debug.Log("TAGSCROLL");
             //_toFixScheda = false;
             //_toFixInfo = false;
-            tagScroll = this.gameObject.tag.ToString();
-            if (_listPositionCtrl.tagscroll!= tagScroll)
+            _listPositionCtrl.first = false;
+
+            if (tagScroll != this.gameObject.tag.ToString())
             {
+                tagScroll = this.gameObject.tag.ToString();
                 _listPositionCtrl.tagscroll = tagScroll;
-                SoundManager.circularScrollingListFauna = this.gameObject.GetComponent<CircularScrollingListFauna>();
+
             }
 
         }
         void MoveScrollUp(PointerEventData e, TouchPhase t)
         {
+            SoundManager.circularScrollingListFlora = this;
             //scheda.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.InputPositionHandler(e, t);
             scheda.GetComponent<CircularScrollingListFlora>()._toFixInfo = false;
             _toFixScheda= true;  
@@ -317,8 +320,8 @@ namespace AirFishLab.ScrollingList
         
         void MoveScrollDown(PointerEventData e, TouchPhase t)
         {
-            Debug.Log("move");
-
+            Debug.Log("move"); 
+            SoundManager.circularScrollingListFlora = this;
             //centeredContentId = GetCenteredContentID();
             //info.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.InputPositionHandler(e, t);
             info.GetComponent<CircularScrollingListFlora>()._toFixScheda = false;
@@ -337,6 +340,9 @@ namespace AirFishLab.ScrollingList
             
             if (tagScroll == "Scheda")
                 MoveScrollDown(eventData, TouchPhase.Began);
+
+            if (tagScroll == "Type")
+                SoundManager.circularScrollingListFlora = this;
 
             _listPositionCtrl.InputPositionHandler(eventData, TouchPhase.Began);
         }
