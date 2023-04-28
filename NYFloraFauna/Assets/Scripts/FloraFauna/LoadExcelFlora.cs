@@ -71,6 +71,7 @@ public class LoadExcelFlora : MonoBehaviour
             string typeENG = data[i]["Tipologia ENG"].ToString();
             string descrENG = data[i]["Descrizione ENG"].ToString();
             string livC = data[i]["Livello di Conservazione"].ToString();
+            string livCENG = data[i]["Livello di Conservazione ENG"].ToString();
             bool specB = false;
             if (data[i]["Specie bandiera"].ToString() == "si")
             {
@@ -78,13 +79,13 @@ public class LoadExcelFlora : MonoBehaviour
             }
             string[] regioni = data[i]["Regione"].ToString().Split(delimiters);
             
-            AddFauna(classe, nomeComune, nomeLatino, ADistr, Aprotetta, descr, nameENG, typeENG, descrENG, livC, specB, regioni);
+            AddFauna(classe, nomeComune, nomeLatino, ADistr, Aprotetta, descr, nameENG, typeENG, descrENG, livC, livCENG, specB, regioni);
             
         }
         GetFaunaTypes();
     }
 
-    void AddFauna(string classe, string nomeComune, string nomeLatino,  string ADistr, string AProtetta, string descr, string nomeENG, string typeENG, string descrENG, string livC, bool specB, string[] regioni)
+    void AddFauna(string classe, string nomeComune, string nomeLatino,  string ADistr, string AProtetta, string descr, string nomeENG, string typeENG, string descrENG, string livC, string livCENG, bool specB, string[] regioni)
     {
         Fauna tempItem = new Fauna(blankFauna);
         tempItem.classe = classe;
@@ -97,6 +98,7 @@ public class LoadExcelFlora : MonoBehaviour
         tempItem.descrENG = descrENG;
         tempItem.nameENG = nomeENG;
         tempItem.livC = livC;
+        tempItem.livCENG = livCENG;
         tempItem.specB = specB;
         tempItem.regioni = regioni;
         

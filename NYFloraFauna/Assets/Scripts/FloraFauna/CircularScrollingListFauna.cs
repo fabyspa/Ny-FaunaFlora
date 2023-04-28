@@ -418,8 +418,10 @@ namespace AirFishLab.ScrollingList
                 return;
 
             _listPositionCtrl.Update();
-
-      
+            if (tagScroll == "Type")
+                _listPositionCtrl.BoldTheCenterItem();
+            else if (tagScroll == "Info")
+                _listPositionCtrl.BoldTheCenterItemImg();
 
 
         }
