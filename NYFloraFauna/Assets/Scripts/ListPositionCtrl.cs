@@ -717,12 +717,14 @@ namespace AirFishLab.ScrollingList
 
         public void BoldTheCenterItem()
         {
+            if (_movementCtrl.IsMovementEnded())
+                return;
+
             foreach (ListBox i in _listBoxes)
             {
                 Text ita = i.gameObject.transform.GetChild(0).GetComponentInChildren<Text>();
                 Text eng = i.gameObject.transform.GetChild(1).GetComponentInChildren<Text>();
-                RectTransform line = i.gameObject.transform.GetChild(4).GetComponentInChildren<RectTransform>();
-                //Text t = i.GetComponentInChildren<Text>();
+
                 if (GetCenteredBox() == null) Debug.Log("NULL");
                 if (i != GetCenteredBox())
                 {
@@ -730,7 +732,7 @@ namespace AirFishLab.ScrollingList
                     ita.fontSize = 25;
                     eng.fontStyle = FontStyle.Normal;
                     eng.fontSize = 25;
-                    //line.rect = 60;
+                   
                 }
                 else
                 {
@@ -741,6 +743,37 @@ namespace AirFishLab.ScrollingList
                 }
             }
 
+        }
+
+        public void BoldTheCenterItemImg() {
+
+            if (_movementCtrl.IsMovementEnded())
+                return;
+
+            foreach (ListBox i in _listBoxes)
+            {
+                RectTransform line = i.gameObject.transform.GetChild(3).GetComponentInChildren<RectTransform>();
+                Text ita = i.gameObject.transform.GetChild(0).GetComponentInChildren<Text>();
+                Text eng = i.gameObject.transform.GetChild(2).GetComponentInChildren<Text>();
+
+                if (GetCenteredBox() == null) Debug.Log("NULL");
+                if (i != GetCenteredBox())
+                {
+                    line.sizeDelta = new Vector2(2f, 40f);
+                    ita.fontStyle = FontStyle.Normal;
+                    ita.fontSize = 25;
+                    eng.fontStyle = FontStyle.Normal;
+                    eng.fontSize = 25;
+                }
+                else
+                {
+                    line.sizeDelta = new Vector2(3f, 60f);
+                    ita.fontSize = 30;
+                    ita.fontStyle = FontStyle.Bold;
+                    eng.fontSize = 30;
+                    eng.fontStyle = FontStyle.Bold;
+                }
+            }
         }
 
         #endregion

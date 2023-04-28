@@ -38,6 +38,10 @@ public class SwitchITAENG : MonoBehaviour
     {
         foreach(GameObject c in GameObject.FindGameObjectsWithTag(tag1))
         {
+            if(c.transform.parent.tag == "Bandiera")
+            {
+
+            }else
             c.GetComponent<Text>().enabled = true;
         }
         foreach (GameObject g in GameObject.FindGameObjectsWithTag(tag2))

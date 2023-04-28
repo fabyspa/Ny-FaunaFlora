@@ -36,12 +36,20 @@ namespace AirFishLab.ScrollingList.Demo
             _type.text = dataWrapper.data.classe;
              _image.sprite = UpdateImage(dataWrapper.data.nomeComune);
              _vector.sprite = UpdateImageIcon(dataWrapper.data.nomeComune);
+            
 
             infos.transform.GetChild(0).GetComponentInChildren<Text>().text = dataWrapper.data.ADistr;
             infos.transform.GetChild(1).GetComponentInChildren<Text>().text = dataWrapper.data.AProtetta;
-            infos.transform.GetChild(2).GetComponentInChildren<Text>().text = dataWrapper.data.livC;
+            
+            Text[] l = infos.transform.GetChild(2).GetComponentsInChildren<Text>();
+            l[0].text = dataWrapper.data.livC;
+            l[1].text = dataWrapper.data.livCENG;
+
             if (dataWrapper.data.specB)
-                infos.transform.GetChild(3).gameObject.SetActive(true);
+            {
+                infos.transform.GetChild(3).GetComponentInChildren<Text>().enabled = true;
+                infos.transform.GetChild(3).GetComponentInChildren<Image>().enabled = true;
+            }
 
             if (isLoaded==false)
             LoadGameObject();

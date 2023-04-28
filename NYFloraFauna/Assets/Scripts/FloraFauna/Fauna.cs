@@ -17,6 +17,7 @@ public class Fauna
     public string typeENG;
     public string nameENG;
     public string livC;
+    public string livCENG;
     public bool specB;
 
     public string[] regioni;
@@ -35,6 +36,7 @@ public class Fauna
         typeENG= r.typeENG;
         regioni = r.regioni;
         livC = r.livC;
+        livCENG = r.livCENG;
         specB = r.specB;
     }
 }
