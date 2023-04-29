@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SwitchITAENG : MonoBehaviour
 {
     Toggle m_Toggle;
-    bool flag;
+
     //public Text m_Text;
     public string tag1, tag2;
     void Start()
@@ -39,14 +39,12 @@ public class SwitchITAENG : MonoBehaviour
     {
         foreach(GameObject c in GameObject.FindGameObjectsWithTag(tag1))
         {
-            if(c.transform.parent.tag == "Bandiera")
-            {
+                
+            if(c.transform.parent.tag=="Bandiera"&& (c.name == "Text" || c.name == "Text_ENG"))
                 SwitchBandiera(c);
-            }
             else
-            {
                 c.GetComponent<Text>().enabled = true;
-            }
+            
             
         }
         foreach (GameObject g in GameObject.FindGameObjectsWithTag(tag2))
@@ -62,16 +60,16 @@ public class SwitchITAENG : MonoBehaviour
     
     public void SwitchBandiera(GameObject c)
     {
-        flag = false;
-        if (c.name == "Icon")
-            flag = c.GetComponent<Image>().enabled;
-
+        GameObject p = c.transform.parent.gameObject;
+        bool flag = p.GetComponentInChildren<Image>().enabled;
         if (flag)
         {
-           if (c.name == "Text_ENG" || c.name == "Text")
-                c.GetComponent<Text>().enabled = true;
+            c.GetComponent<Text>().enabled = true;
         }
+        
     }
+
+
 }
 
 
