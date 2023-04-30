@@ -223,7 +223,7 @@ namespace AirFishLab.ScrollingList
             if (_hasNoContent)
                 return;
             Debug.Log("Movimento bottoni");
-            if(tag== "Info")
+            if(tag== "Type")
             _listPositionCtrl.SetUnitMove(2);
             else
             _listPositionCtrl.SetUnitMove(8);
@@ -236,7 +236,7 @@ namespace AirFishLab.ScrollingList
         {
             if (_hasNoContent)
                 return;
-            if (tag == "Info")
+            if (tag == "Type")
                 _listPositionCtrl.SetUnitMove(-2);
             else
                 _listPositionCtrl.SetUnitMove(-8);

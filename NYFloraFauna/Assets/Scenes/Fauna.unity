@@ -2345,7 +2345,7 @@ GameObject:
   - component: {fileID: 317315571}
   - component: {fileID: 317315572}
   m_Layer: 0
-  m_Name: CircularScrollingListFAUNA
+  m_Name: CircularScrollingListFAUNAINFO
   m_TagString: Info
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4181,7 +4181,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 317315570}
+      - m_Target: {fileID: 1476369184}
         m_TargetAssemblyTypeName: AirFishLab.ScrollingList.CircularScrollingListFauna,
           Assembly-CSharp
         m_MethodName: MoveOneUnitUp
@@ -4192,6 +4192,19 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Scheda
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 317315570}
+        m_TargetAssemblyTypeName: AirFishLab.ScrollingList.CircularScrollingListFauna,
+          Assembly-CSharp
+        m_MethodName: MoveOneUnitUp
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Info
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &504473585
@@ -6744,7 +6757,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 317315570}
+      - m_Target: {fileID: 1476369184}
         m_TargetAssemblyTypeName: AirFishLab.ScrollingList.CircularScrollingListFauna,
           Assembly-CSharp
         m_MethodName: MoveOneUnitDown
@@ -6755,6 +6768,19 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Scheda
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 317315570}
+        m_TargetAssemblyTypeName: AirFishLab.ScrollingList.CircularScrollingListFauna,
+          Assembly-CSharp
+        m_MethodName: MoveOneUnitDown
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Info
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &769360177
@@ -13485,7 +13511,7 @@ GameObject:
   - component: {fileID: 1476369183}
   - component: {fileID: 1476369185}
   m_Layer: 0
-  m_Name: CircularScrollingListFAUNA
+  m_Name: CircularScrollingListFAUNASCHEDA
   m_TagString: Scheda
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14355,7 +14381,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Info
+          m_StringArgument: Type
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1554780623
@@ -17625,7 +17651,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Info
+          m_StringArgument: Type
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1861153937

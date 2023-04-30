@@ -8,7 +8,6 @@ using AirFishLab.ScrollingList.MovementCtrl;
 using UnityEngine.Events;
 using System.Linq;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 namespace AirFishLab.ScrollingList
 {
@@ -848,9 +847,10 @@ namespace AirFishLab.ScrollingList
                 {
                     if (SoundManager.GetAudioSourceToReproduce() != null)
                     {
-
-                        AudioClip clip = SoundManager.GetAudioSourceToReproduce().GetComponent<AudioSource>().clip;
-                        AudioSource audioSource = SoundManager.GetAudioSourceToReproduce().AddComponent<AudioSource>();
+                        Debug.Log("RIPRODUCI");
+                        GameObject scroll = SoundManager.GetAudioSourceToReproduce();
+                        AudioClip clip = scroll.GetComponent<AudioSource>().clip;
+                        AudioSource audioSource = scroll.AddComponent<AudioSource>();
                         audioSource.clip = clip;
                         audioSource.playOnAwake = false;
                         audioSource.Play();

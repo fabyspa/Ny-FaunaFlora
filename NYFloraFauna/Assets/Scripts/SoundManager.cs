@@ -2,7 +2,6 @@ using AirFishLab.ScrollingList;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,10 +15,12 @@ public static class SoundManager
         {
             if (SceneManager.GetActiveScene().name == "Fauna")
             {
+                Debug.Log("GAMEOBJECT " + circularScrollingListFauna.gameObject);
                 return circularScrollingListFauna.gameObject ;
             }
             else if (SceneManager.GetActiveScene().name == "Flora")
             {
+                
                 return circularScrollingListFlora.gameObject; 
 
             }
