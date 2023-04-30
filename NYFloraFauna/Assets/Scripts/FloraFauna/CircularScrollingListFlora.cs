@@ -406,8 +406,7 @@ namespace AirFishLab.ScrollingList
             else if (tagScroll == "Info")
                 _listPositionCtrl.BoldTheCenterItemImg();
 
-            if (_toFixScheda || _toFixInfo)
-                FixCardInfo();
+            
 
         }
 
@@ -418,7 +417,8 @@ namespace AirFishLab.ScrollingList
 
             _listPositionCtrl.LateUpdate();
 
-           
+            if (_toFixScheda || _toFixInfo)
+                FixCardInfo();
 
             //if (centeredContentId!=oldContentId && tagScroll == "Scheda")_toFixInfo = true;
             //else _toFixInfo = false;

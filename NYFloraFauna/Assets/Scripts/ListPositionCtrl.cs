@@ -488,8 +488,6 @@ namespace AirFishLab.ScrollingList
             {
                 if (tagscroll == "Info")
                 {
-
-
                     if (SceneManager.GetActiveScene().name == "Fauna")
                     {
                         
@@ -560,7 +558,7 @@ namespace AirFishLab.ScrollingList
                         }
                     }
                 }
-                if (tagscroll == "Type" ||tagscroll == null)
+                if (tagscroll == "Type" || tagscroll == null)
                 {
 
                     var newCenteredBoxAfterScroll = GetCenteredBox().GetComponentInChildren<Text>().text;
