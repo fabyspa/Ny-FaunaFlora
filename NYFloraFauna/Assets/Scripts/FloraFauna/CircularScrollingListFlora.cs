@@ -206,29 +206,29 @@ namespace AirFishLab.ScrollingList
         /// <summary>
         /// Move the list one unit up or right
         /// </summary>
-        public void MoveOneUnitUp()
+        public void MoveOneUnitUp(string tag)
         {
             if (_hasNoContent)
                 return;
 
-            if (tag == "Info")
-                _listPositionCtrl.SetUnitMove(8);
-            else
+            if (tag == "Type")
                 _listPositionCtrl.SetUnitMove(2);
+            else
+                _listPositionCtrl.SetUnitMove(8);
         }
 
         /// <summary>
         /// Move the list one unit down or left
         /// </summary>
-        public void MoveOneUnitDown()
+        public void MoveOneUnitDown(string tag)
         {
             if (_hasNoContent)
                 return;
 
-            if (tag == "Info")
-                _listPositionCtrl.SetUnitMove(-8);
-            else
+            if (tag == "Type")
                 _listPositionCtrl.SetUnitMove(-2);
+            else
+                _listPositionCtrl.SetUnitMove(-8);
         }
 
         /// <summary>
