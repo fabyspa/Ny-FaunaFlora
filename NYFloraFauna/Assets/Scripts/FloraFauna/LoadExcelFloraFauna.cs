@@ -199,6 +199,7 @@ public class LoadExcelFloraFauna : MonoBehaviour
         }
 
         info.GetComponent<VariableGameObjectListBankFauna>().ChangeInfoContents("Tutte");
+        scheda.GetComponent<VariableGameObjectListBankFauna>().ChangeInfoContents("Tutte");
       
     }
 

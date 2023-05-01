@@ -193,17 +193,7 @@ public class LoadExcelFlora : MonoBehaviour
 
     public void ResetScroll()
     {
-        if (SceneManager.GetActiveScene().name == "Fauna")
-        {
-            var i = FindObjectOfType<CircularScrollingListFauna>();
-            i._isInitialized = false;
-            i.Initialize();
-
-            info.GetComponent<VariableGameObjectListBankFauna>().ChangeInfoContents("Tutte");
-        }
-       
-        if(SceneManager.GetActiveScene().name =="Flora")
-        {
+        
             foreach (CircularScrollingListFlora c in GameObject.FindObjectsOfType<CircularScrollingListFlora>()) 
             {
                 c._isInitialized = false;
@@ -211,7 +201,8 @@ public class LoadExcelFlora : MonoBehaviour
             }
            
             info.GetComponent<VariableGameObjectListBankFlora>().ChangeInfoContents("Tutte");
-        }
+            scheda.GetComponent<VariableGameObjectListBankFlora>().ChangeInfoContents("Tutte");
+        
 
         
     }

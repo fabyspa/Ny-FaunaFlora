@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Threading.Tasks;
 
@@ -20,6 +21,7 @@ namespace AirFishLab.ScrollingList
         private GameObject info,scheda;
         public string tagScroll;
 
+        private LoadExcelFlora loadexcel;
         public bool _toFixInfo;
         public bool _toFixScheda;
 
@@ -122,6 +124,8 @@ namespace AirFishLab.ScrollingList
         private void Awake()
         {
             GetComponentReference();
+            //info = GameObject.FindGameObjectWithTag("Info");
+            //scheda = GameObject.FindGameObjectWithTag("Scheda");
 
         }
 
@@ -142,9 +146,12 @@ namespace AirFishLab.ScrollingList
             if (_isInitialized)
                 return;
 
+            loadexcel= FindAnyObjectByType<LoadExcelFlora>();
             InitializeListComponents();
             // Make the list position ctrl initialize its position state
             _listPositionCtrl.LateUpdate();
+            if (SceneManager.GetActiveScene().name == Loader.SceneName.FLORA.ToString()) _listPositionCtrl.CenteredBoxisChanged();
+
             _listPositionCtrl.InitialImageSorting();
             _isInitialized = true;
         }
@@ -208,8 +215,11 @@ namespace AirFishLab.ScrollingList
         /// </summary>
         public void MoveOneUnitUp(string tag)
         {
+            Debug.Log("MOVE BEFORE");
             if (_hasNoContent)
                 return;
+
+            Debug.Log("MOVE AFTER");
 
             if (tag == "Type")
                 _listPositionCtrl.SetUnitMove(2);
@@ -298,23 +308,23 @@ namespace AirFishLab.ScrollingList
         #region Event System Callback
         public void UpdateTagScroll()
         {
-            //_toFixScheda = false;
-            //_toFixInfo = false;
             _listPositionCtrl.first = false;
 
-            if (tagScroll != this.gameObject.tag.ToString())
+            if (_listPositionCtrl.tagscroll != tagScroll && tagScroll != null)
             {
-                tagScroll = this.gameObject.tag.ToString();
                 _listPositionCtrl.tagscroll = tagScroll;
-
             }
 
         }
         void MoveScrollUp(PointerEventData e, TouchPhase t)
         {
-            SoundManager.circularScrollingListFlora = this;
+            if(scheda== null) { scheda = loadexcel.scheda; }
             //scheda.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.InputPositionHandler(e, t);
-            scheda.GetComponent<CircularScrollingListFlora>()._toFixInfo = false;
+            if (scheda != null)
+            {
+                Debug.Log("Scheda " + scheda.name);
+                scheda.GetComponent<CircularScrollingListFlora>()._toFixInfo = false;
+            }
             _toFixScheda= true;  
         } 
         
@@ -322,9 +332,14 @@ namespace AirFishLab.ScrollingList
         {
             Debug.Log("move"); 
             SoundManager.circularScrollingListFlora = this;
+            if (info == null) { info = loadexcel.info; }
+
             //centeredContentId = GetCenteredContentID();
             //info.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.InputPositionHandler(e, t);
-            info.GetComponent<CircularScrollingListFlora>()._toFixScheda = false;
+            if (info != null)
+            {
+                info.GetComponent<CircularScrollingListFlora>()._toFixScheda = false;
+            }
             _toFixInfo = true;
             
    
@@ -334,15 +349,27 @@ namespace AirFishLab.ScrollingList
             if (_hasNoContent)
                 return;
             UpdateTagScroll();
+            Debug.Log("DRAG" + tagScroll);
             //_toFix = false;
             if (tagScroll == "Info")
+            {
+                _listPositionCtrl.tagscroll = tagScroll;
+
                 MoveScrollUp(eventData, TouchPhase.Began);
-            
+
+            }
+
             if (tagScroll == "Scheda")
+            {
+                _listPositionCtrl.tagscroll = tagScroll;
+
                 MoveScrollDown(eventData, TouchPhase.Began);
 
+            }
+
+
             if (tagScroll == "Type")
-                SoundManager.circularScrollingListFlora = this;
+                _listPositionCtrl.tagscroll = tagScroll;
 
             _listPositionCtrl.InputPositionHandler(eventData, TouchPhase.Began);
         }
@@ -396,8 +423,6 @@ namespace AirFishLab.ScrollingList
         {
             if (!_isInitialized)
                 return;
-
-            Debug.Log("NAME " + this.name);
 
 
             _listPositionCtrl.Update();
@@ -464,7 +489,7 @@ namespace AirFishLab.ScrollingList
                     circularScrollingListFlora.SelectContentID(indice_i);
 
                     //scheda.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.Update();
-                    circularScrollingListFlora._listPositionCtrl.LateUpdate();
+                    circularScrollingListFlora._listPositionCtrl.Update();
                     //oldContentId = centeredContentId;
                 }
                 //_toFixScheda= false;

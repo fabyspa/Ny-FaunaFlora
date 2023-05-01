@@ -2495,6 +2495,7 @@ GameObject:
   m_Component:
   - component: {fileID: 269888962}
   - component: {fileID: 269888961}
+  - component: {fileID: 269888963}
   m_Layer: 0
   m_Name: AudioListener
   m_TagString: Untagged
@@ -2525,6 +2526,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &269888963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269888960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32761b47d5a0b604f82e277e331a8722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &274978937
 GameObject:
   m_ObjectHideFlags: 0
@@ -2953,7 +2966,7 @@ GameObject:
   - component: {fileID: 317315571}
   - component: {fileID: 317315572}
   m_Layer: 0
-  m_Name: CircularScrollingListFLORA
+  m_Name: CircularScrollingListFLORAinfo
   m_TagString: Info
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3063,7 +3076,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   info: {fileID: 317315564}
   scheda: {fileID: 1476369178}
-  tagScroll: 
+  tagScroll: Info
   _toFixInfo: 0
   _toFixScheda: 0
   _listBank: {fileID: 317315569}
@@ -4486,7 +4499,7 @@ GameObject:
   - component: {fileID: 504473584}
   m_Layer: 5
   m_Name: btnLeft
-  m_TagString: Untagged
+  m_TagString: SchedaFrecc
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4582,6 +4595,19 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 317315570}
+        m_TargetAssemblyTypeName: AirFishLab.ScrollingList.CircularScrollingListFlora,
+          Assembly-CSharp
+        m_MethodName: MoveOneUnitUp
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Info
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1476369184}
         m_TargetAssemblyTypeName: AirFishLab.ScrollingList.CircularScrollingListFlora,
           Assembly-CSharp
         m_MethodName: MoveOneUnitUp
@@ -6942,7 +6968,7 @@ GameObject:
   - component: {fileID: 769360176}
   m_Layer: 5
   m_Name: btnRight
-  m_TagString: Untagged
+  m_TagString: SchedaFrecc
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7038,6 +7064,19 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 317315570}
+        m_TargetAssemblyTypeName: AirFishLab.ScrollingList.CircularScrollingListFlora,
+          Assembly-CSharp
+        m_MethodName: MoveOneUnitDown
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Info
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1476369184}
         m_TargetAssemblyTypeName: AirFishLab.ScrollingList.CircularScrollingListFlora,
           Assembly-CSharp
         m_MethodName: MoveOneUnitDown
@@ -7312,7 +7351,7 @@ GameObject:
   - component: {fileID: 817779961}
   - component: {fileID: 817779962}
   m_Layer: 0
-  m_Name: CircularScrollingListFLORA
+  m_Name: CircularScrollingListFLORAtype
   m_TagString: Type
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7355,9 +7394,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45595684d96914047b375187779a26b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: {fileID: 0}
-  scheda: {fileID: 0}
-  tagScroll: 
+  info: {fileID: 317315564}
+  scheda: {fileID: 1476369178}
+  tagScroll: Type
   _toFixInfo: 0
   _toFixScheda: 0
   _listBank: {fileID: 817779960}
@@ -13603,7 +13642,7 @@ GameObject:
   - component: {fileID: 1476369185}
   - component: {fileID: 1476369186}
   m_Layer: 0
-  m_Name: CircularScrollingListFLORA
+  m_Name: CircularScrollingListFLORASCHEDA
   m_TagString: Scheda
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13648,7 +13687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   info: {fileID: 317315564}
   scheda: {fileID: 1476369178}
-  tagScroll: 
+  tagScroll: Scheda
   _toFixInfo: 0
   _toFixScheda: 0
   _listBank: {fileID: 1476369185}
@@ -14517,7 +14556,7 @@ GameObject:
   - component: {fileID: 1554780622}
   m_Layer: 5
   m_Name: btnRight
-  m_TagString: Untagged
+  m_TagString: TypeFrecc
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14596,20 +14635,20 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Type
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 817779959}
         m_TargetAssemblyTypeName: AirFishLab.ScrollingList.CircularScrollingListFlora,
           Assembly-CSharp
         m_MethodName: MoveOneUnitDown
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Type
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1554780623
@@ -17204,7 +17243,7 @@ GameObject:
   - component: {fileID: 1861153936}
   m_Layer: 5
   m_Name: btnLeft
-  m_TagString: Untagged
+  m_TagString: TypeFrecc
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17283,20 +17322,20 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Type
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 817779959}
         m_TargetAssemblyTypeName: AirFishLab.ScrollingList.CircularScrollingListFlora,
           Assembly-CSharp
         m_MethodName: MoveOneUnitUp
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Type
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1861153937

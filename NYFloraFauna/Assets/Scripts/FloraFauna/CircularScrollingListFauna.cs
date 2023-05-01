@@ -227,6 +227,8 @@ namespace AirFishLab.ScrollingList
             _listPositionCtrl.SetUnitMove(2);
             else
             _listPositionCtrl.SetUnitMove(8);
+
+            _listPositionCtrl.tagscroll = this.gameObject.tag;
         }
 
         /// <summary>
@@ -292,10 +294,10 @@ namespace AirFishLab.ScrollingList
             if (_hasNoContent)
                 return;
 
-        
-            //if (!_listContentManager.IsIDValid(contentID))
-            //    throw new IndexOutOfRangeException(
-            //        $"{nameof(contentID)} is larger than the number of contents");
+
+            if (!_listContentManager.IsIDValid(contentID))
+                throw new IndexOutOfRangeException(
+                    $"{nameof(contentID)} is larger than the number of contents");
 
             var centeredBox = _listPositionCtrl.GetCenteredBox();
             var centeredContentID = centeredBox.contentID;
@@ -316,11 +318,18 @@ namespace AirFishLab.ScrollingList
                 tagScroll = this.gameObject.tag.ToString(); 
                 _listPositionCtrl.tagscroll = tagScroll;
             }
+            else
+            {
+
+                if (_listPositionCtrl.tagscroll != tagScroll && tagScroll != null)
+                {
+                    _listPositionCtrl.tagscroll = tagScroll;
+                }
+            }
 
         }
         void MoveScrollUp(PointerEventData e, TouchPhase t)
         {
-            Debug.Log("TAG INFO");
             SoundManager.circularScrollingListFauna = this;
             //scheda.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.InputPositionHandler(e, t);
             scheda.GetComponent<CircularScrollingListFauna>()._toFixInfo = false;
@@ -329,8 +338,6 @@ namespace AirFishLab.ScrollingList
         
         void MoveScrollDown(PointerEventData e, TouchPhase t)
         {
-            Debug.Log(" TAG SCHEDA");
-
             SoundManager.circularScrollingListFauna = this;
             //centeredContentId = GetCenteredContentID();
             //if(_listBank.GetListLength()>4)
@@ -348,24 +355,29 @@ namespace AirFishLab.ScrollingList
             //_toFix = false;
             if (tagScroll == "Info")
             {
-                MoveScrollUp(eventData, TouchPhase.Began);
+                Debug.Log("BEGINDRAG INFo");
+
                 _listPositionCtrl.tagscroll = tagScroll;
+
+                MoveScrollUp(eventData, TouchPhase.Began);
 
             }
 
             if (tagScroll == "Scheda")
             {
-                MoveScrollDown(eventData, TouchPhase.Began);
+                Debug.Log("BEGINDRAG SCHEDA");
                 _listPositionCtrl.tagscroll = tagScroll;
+
+                MoveScrollDown(eventData, TouchPhase.Began);
 
             }
 
             if (tagScroll == "Type")
             {
-                SoundManager.circularScrollingListFauna=this;
+                _listPositionCtrl.tagscroll = tagScroll;
             }
 
-                _listPositionCtrl.InputPositionHandler(eventData, TouchPhase.Began);
+            _listPositionCtrl.InputPositionHandler(eventData, TouchPhase.Began);
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -416,7 +428,6 @@ namespace AirFishLab.ScrollingList
         {
             if (!_isInitialized)
                 return;
-            Debug.Log("NAME "+ this.name);
 
             _listPositionCtrl.Update();
             if (tagScroll == "Type")
@@ -469,7 +480,7 @@ namespace AirFishLab.ScrollingList
                     }
                    
                     CircularScrollingListFauna circularScrollingListFauna = scheda.GetComponent<CircularScrollingListFauna>();
-                    if (circularScrollingListFauna._isInitialized == false) circularScrollingListFauna.Initialize();
+                    //if (circularScrollingListFauna._isInitialized == false) circularScrollingListFauna.Initialize();
 
                     circularScrollingListFauna.SelectContentID(indice_i);
                     circularScrollingListFauna._listPositionCtrl.Update();
@@ -501,7 +512,7 @@ namespace AirFishLab.ScrollingList
                     }
 
                     CircularScrollingListFauna circularScrollingListFauna = info.GetComponent<CircularScrollingListFauna>();
-                    if (circularScrollingListFauna._isInitialized == false) circularScrollingListFauna.Initialize();
+                    //if (circularScrollingListFauna._isInitialized == false) circularScrollingListFauna.Initialize();
 
                     circularScrollingListFauna.SelectContentID(indice_j);
                     circularScrollingListFauna._listPositionCtrl.Update();
