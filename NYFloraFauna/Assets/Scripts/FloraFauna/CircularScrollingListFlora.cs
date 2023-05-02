@@ -18,7 +18,7 @@ namespace AirFishLab.ScrollingList
         IBeginDragHandler, IDragHandler, IEndDragHandler, IScrollHandler
     {
         [SerializeField]
-        private GameObject info,scheda;
+        private GameObject info,scheda,type;
         public string tagScroll;
 
         private LoadExcelFlora loadexcel;
@@ -310,13 +310,20 @@ namespace AirFishLab.ScrollingList
         #region Event System Callback
         public void UpdateTagScroll()
         {
-            _listPositionCtrl.first = false;
+
 
             tagScroll = this.gameObject.tag;
 
             if (_listPositionCtrl.tagscroll != tagScroll && tagScroll != null)
             {
                 _listPositionCtrl.tagscroll = tagScroll;
+                scheda.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.tagscroll = tagScroll;
+
+            }
+            else
+            {
+                _listPositionCtrl.tagscroll = tagScroll;
+
             }
 
         }
@@ -353,12 +360,16 @@ namespace AirFishLab.ScrollingList
             if (_hasNoContent)
                 return;
             UpdateTagScroll();
-            _listPositionCtrl.oneTime = false;
-            _listPositionCtrl.first = false;
+           
+           // _listPositionCtrl.first = false;
             //_toFix = false;
             if (tagScroll == "Info")
             {
                 _listPositionCtrl.tagscroll = tagScroll;
+                scheda.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.tagscroll = tagScroll;
+
+                _listPositionCtrl.first = false;
+                scheda.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.first = false;
 
                 MoveScrollUp(eventData, TouchPhase.Began);
 
@@ -367,6 +378,10 @@ namespace AirFishLab.ScrollingList
             if (tagScroll == "Scheda")
             {
                 _listPositionCtrl.tagscroll = tagScroll;
+                scheda.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.tagscroll = tagScroll;
+
+                _listPositionCtrl.first = false;
+                info.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.first = false;
 
                 MoveScrollDown(eventData, TouchPhase.Began);
 
@@ -374,9 +389,20 @@ namespace AirFishLab.ScrollingList
 
 
             if (tagScroll == "Type")
+            {
                 _listPositionCtrl.tagscroll = tagScroll;
+                _listPositionCtrl.first = false;
+            }
 
             _listPositionCtrl.InputPositionHandler(eventData, TouchPhase.Began);
+        }
+
+        public void SetFirst(bool b)
+        {
+            info.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.first = b;
+            scheda.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.first = b;
+            type.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.first = b;
+            
         }
 
         public void OnDrag(PointerEventData eventData)

@@ -488,7 +488,6 @@ namespace AirFishLab.ScrollingList
             }
             else
             {
-                Debug.Log("LISTPOSITION" + tagscroll);
                 if (tagscroll == "Type")
                 {
 
@@ -858,29 +857,19 @@ namespace AirFishLab.ScrollingList
             {
                 _listSetting.onCenteredContentChanged?.Invoke(candidateBox.contentID);
                 candidateBox.PopToFront();
-                Debug.Log("DELTADISTANCE "+ tagscroll );
-                if (!first && tagscroll == null) tagscroll = "Info";
-                if (tagscroll!=null)
+
+                Debug.Log("TAGGGGGGGGGG" + tagscroll);
+                if (!first &&tagscroll!=null)
                 {
                     if(SceneManager.GetActiveScene().name=="Fauna")
                     {
-                        Debug.Log("DELTADISTANCE NOT NULL");
-                        if (tagscroll == "Info")
+                        if (tagscroll == "Info" && !isRunning )
                         {
-                            if (oneTime == true)
-                            {
-                                scroll = loadexcelFauna.info;
-                            }
-                            else if ( !isRunning)
-                            {
-                                scroll = loadexcelFauna.info;
-
-                            }
-
+                            scroll = loadexcelFauna.info;
                         }
                         if (tagscroll == "Scheda" && isRunning == false)
                         {
-
+                            Debug.Log("AUDIO SCHEDA");
                             scroll = loadexcelFauna.scheda;
                             
                         }
@@ -893,19 +882,11 @@ namespace AirFishLab.ScrollingList
 
                     if (SceneManager.GetActiveScene().name == "Flora")
                     {
-                        if (tagscroll == "Info")
+                        if (tagscroll == "Info" && !isRunning)
                         {
-                            if (oneTime == true)
-                            {
-                                Debug.Log("iiiiiiiiiiiiiiiiiiiiiiiiiiiQUI");
+                            
                                 scroll = loadexcelFlora.info;
-                            }
-                            else if (!isRunning)
-                            {
-                                Debug.Log("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiQUo");
-
-                                scroll = loadexcelFlora.info;
-                            }
+                         
                         }
                         if (tagscroll == "Scheda" && isRunning==false)
                         {
@@ -921,8 +902,9 @@ namespace AirFishLab.ScrollingList
                         }
                      
                     }
-                    if (scroll != null)
+                    if (scroll != null && !isRunning) 
                     {
+                        Debug.Log("SCROLL " + scroll);
                         AudioClip clip = scroll.GetComponent<AudioSource>().clip;
                         AudioSource audioSource = scroll.AddComponent<AudioSource>();
                         audioSource.clip = clip;
@@ -1024,7 +1006,7 @@ namespace AirFishLab.ScrollingList
         {
             isRunning = true;
             var clip = scroll.GetComponents<AudioSource>()[0].clip;
-            yield return new WaitForSeconds(clip.length);
+            yield return new WaitForSeconds(clip.length + 0.5f);
             DeleteAudioSource(scroll, scene);
             isRunning = false;
         }
