@@ -24,8 +24,9 @@ namespace AirFishLab.ScrollingList
         LoadExcelFlora loadexcelFlora;
         public bool first = true;
         public bool isRunning = false;
-        GameObject scroll = null;
-        private bool oneTime = true;
+        GameObject scroll;
+        public bool oneTime = true;
+
 
 
         #region Enums
@@ -471,10 +472,8 @@ namespace AirFishLab.ScrollingList
 
         public void LateUpdate()
         {
-            Debug.Log("PRIMALATEUDATE");
             if (!_toRunLateUpdate)
                 return;
-            Debug.Log("DOPOLATEUDATE");
 
             // Update the state of the boxes
             FindDeltaDistanceToCenter();
@@ -612,7 +611,7 @@ namespace AirFishLab.ScrollingList
         {
             tagscroll = type;
         }
-        void CenteredBoxisChangedScheda()
+        public void CenteredBoxisChangedScheda()
         {
             //tagscroll = null;
             if (SceneManager.GetActiveScene().name == "Fauna")
@@ -642,7 +641,7 @@ namespace AirFishLab.ScrollingList
 
         }
 
-        void CenteredBoxisChangedInfo()
+        public void CenteredBoxisChangedInfo()
         {
             //tagscroll = null;
             if (SceneManager.GetActiveScene().name == "Fauna")
@@ -859,23 +858,30 @@ namespace AirFishLab.ScrollingList
             {
                 _listSetting.onCenteredContentChanged?.Invoke(candidateBox.contentID);
                 candidateBox.PopToFront();
-
-                if (!first && tagscroll!=null)
+                Debug.Log("DELTADISTANCE "+ tagscroll );
+                if (!first && tagscroll == null) tagscroll = "Info";
+                if (tagscroll!=null)
                 {
                     if(SceneManager.GetActiveScene().name=="Fauna")
                     {
+                        Debug.Log("DELTADISTANCE NOT NULL");
                         if (tagscroll == "Info")
                         {
-                            Debug.Log("audioINFO");
-                             scroll = loadexcelFauna.scheda;
-                           // oneTime = false;
+                            if (oneTime == true)
+                            {
+                                scroll = loadexcelFauna.info;
+                            }
+                            else if ( !isRunning)
+                            {
+                                scroll = loadexcelFauna.info;
+
+                            }
 
                         }
-                        if (tagscroll == "Scheda" )
+                        if (tagscroll == "Scheda" && isRunning == false)
                         {
-                            Debug.Log("audioINFO");
 
-                            scroll = loadexcelFauna.info;
+                            scroll = loadexcelFauna.scheda;
                             
                         }
                         if (tagscroll == "Type")
@@ -889,11 +895,23 @@ namespace AirFishLab.ScrollingList
                     {
                         if (tagscroll == "Info")
                         {
-                            scroll = loadexcelFlora.scheda;
+                            if (oneTime == true)
+                            {
+                                Debug.Log("iiiiiiiiiiiiiiiiiiiiiiiiiiiQUI");
+                                scroll = loadexcelFlora.info;
+                            }
+                            else if (!isRunning)
+                            {
+                                Debug.Log("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiQUo");
+
+                                scroll = loadexcelFlora.info;
+                            }
                         }
-                        if (tagscroll == "Scheda")
+                        if (tagscroll == "Scheda" && isRunning==false)
                         {
-                           scroll = loadexcelFlora.info;
+                            Debug.Log("iiiiiiiiiiiiiiiiiiiiiiiiiiiiQUa");
+
+                            scroll = loadexcelFlora.scheda;
                            
                         }
                         if (tagscroll == "Type")
@@ -901,15 +919,10 @@ namespace AirFishLab.ScrollingList
                             scroll = loadexcelFlora.scrolling;
                            
                         }
-                        else
-                        {
-                            Debug.Log("DRAG " + tagscroll);
-                        }
-                      
+                     
                     }
                     if (scroll != null)
                     {
-                        Debug.Log("DRAG" + scroll.name);
                         AudioClip clip = scroll.GetComponent<AudioSource>().clip;
                         AudioSource audioSource = scroll.AddComponent<AudioSource>();
                         audioSource.clip = clip;
@@ -964,6 +977,7 @@ namespace AirFishLab.ScrollingList
         /// </summary>
         public ListBox GetCenteredBox()
         {
+          
             return _centeredBox;
         }
 

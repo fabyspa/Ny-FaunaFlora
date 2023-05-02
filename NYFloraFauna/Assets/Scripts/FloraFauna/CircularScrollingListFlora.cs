@@ -133,6 +133,8 @@ namespace AirFishLab.ScrollingList
         {
             if (_setting.initializeOnStart)
                 Initialize();
+           
+            UpdateTagScroll();
         }
 
         #region Initialization
@@ -310,6 +312,8 @@ namespace AirFishLab.ScrollingList
         {
             _listPositionCtrl.first = false;
 
+            tagScroll = this.gameObject.tag;
+
             if (_listPositionCtrl.tagscroll != tagScroll && tagScroll != null)
             {
                 _listPositionCtrl.tagscroll = tagScroll;
@@ -349,7 +353,8 @@ namespace AirFishLab.ScrollingList
             if (_hasNoContent)
                 return;
             UpdateTagScroll();
-            Debug.Log("DRAG" + tagScroll);
+            _listPositionCtrl.oneTime = false;
+            _listPositionCtrl.first = false;
             //_toFix = false;
             if (tagScroll == "Info")
             {

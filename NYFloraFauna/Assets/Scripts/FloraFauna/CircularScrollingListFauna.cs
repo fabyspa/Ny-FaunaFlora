@@ -140,11 +140,15 @@ namespace AirFishLab.ScrollingList
         {
             if (_setting.initializeOnStart)
                 Initialize();
+
+            UpdateTagScroll();
+
+
         }
 
         #region Initialization
         ///FABI
-        
+
         /// <summary>
         /// Initialize the list
         /// </summary>
@@ -153,10 +157,12 @@ namespace AirFishLab.ScrollingList
             if (_isInitialized)
                 return;
 
+            Debug.Log("INIZIALIZE" +  this.gameObject.name);
             InitializeListComponents();
             // Make the list position ctrl initialize its position state
             _listPositionCtrl.LateUpdate();
             if (SceneManager.GetActiveScene().name == Loader.SceneName.FAUNA.ToString()) _listPositionCtrl.CenteredBoxisChanged();
+      
             _listPositionCtrl.InitialImageSorting();
             _isInitialized = true;
         }
@@ -300,7 +306,10 @@ namespace AirFishLab.ScrollingList
                     $"{nameof(contentID)} is larger than the number of contents");
 
             var centeredBox = _listPositionCtrl.GetCenteredBox();
-            var centeredContentID = centeredBox.contentID;
+            var centeredContentID = 0;
+            if (centeredBox != null) centeredContentID = centeredBox.contentID;
+            else centeredContentID = 0;
+
             _listPositionCtrl.SetSelectionMovement(
                 _listContentManager.GetShortestDiff(centeredContentID, contentID));
             //_listPositionCtrl.SetSelectionMovement( contentID - centeredContentID );
@@ -313,19 +322,21 @@ namespace AirFishLab.ScrollingList
         {
             _listPositionCtrl.first = false;
 
-            if ( tagScroll != this.gameObject.tag.ToString() && tagScroll!=null)
+            Debug.Log(" PRIMA UPDATE" + tagScroll);
+            if ( tagScroll != this.gameObject.tag.ToString())
             {
                 tagScroll = this.gameObject.tag.ToString(); 
-                _listPositionCtrl.tagscroll = tagScroll;
+               // _listPositionCtrl.tagscroll = tagScroll;
             }
-            else
-            {
+            //else
+            //{
 
-                if (_listPositionCtrl.tagscroll != tagScroll && tagScroll != null)
-                {
-                    _listPositionCtrl.tagscroll = tagScroll;
-                }
-            }
+            //    if (_listPositionCtrl.tagscroll != tagScroll && tagScroll != null)
+            //    {
+            //        _listPositionCtrl.tagscroll = tagScroll;
+            //    }
+            //}
+            Debug.Log("DOPO UPDATE " + tagScroll);
 
         }
         void MoveScrollUp(PointerEventData e, TouchPhase t)
@@ -352,6 +363,8 @@ namespace AirFishLab.ScrollingList
             if (_hasNoContent)
                 return;
             UpdateTagScroll();
+            Debug.Log("EVENTDATA" + eventData);
+
             //_toFix = false;
             if (tagScroll == "Info")
             {
@@ -366,6 +379,7 @@ namespace AirFishLab.ScrollingList
             if (tagScroll == "Scheda")
             {
                 Debug.Log("BEGINDRAG SCHEDA");
+                _listPositionCtrl.oneTime = false;
                 _listPositionCtrl.tagscroll = tagScroll;
 
                 MoveScrollDown(eventData, TouchPhase.Began);
@@ -374,7 +388,7 @@ namespace AirFishLab.ScrollingList
 
             if (tagScroll == "Type")
             {
-                _listPositionCtrl.tagscroll = tagScroll;
+               // _listPositionCtrl.tagscroll = tagScroll;
             }
 
             _listPositionCtrl.InputPositionHandler(eventData, TouchPhase.Began);
@@ -480,10 +494,10 @@ namespace AirFishLab.ScrollingList
                     }
                    
                     CircularScrollingListFauna circularScrollingListFauna = scheda.GetComponent<CircularScrollingListFauna>();
-                    //if (circularScrollingListFauna._isInitialized == false) circularScrollingListFauna.Initialize();
+                    if (circularScrollingListFauna._isInitialized == false) circularScrollingListFauna.Initialize();
 
                     circularScrollingListFauna.SelectContentID(indice_i);
-                    circularScrollingListFauna._listPositionCtrl.Update();
+                    circularScrollingListFauna._listPositionCtrl.LateUpdate();
                     //scheda.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.LateUpdate();
 
                     //else
@@ -512,10 +526,11 @@ namespace AirFishLab.ScrollingList
                     }
 
                     CircularScrollingListFauna circularScrollingListFauna = info.GetComponent<CircularScrollingListFauna>();
-                    //if (circularScrollingListFauna._isInitialized == false) circularScrollingListFauna.Initialize();
+                    if (circularScrollingListFauna._isInitialized == false) circularScrollingListFauna.Initialize();
 
                     circularScrollingListFauna.SelectContentID(indice_j);
-                    circularScrollingListFauna._listPositionCtrl.Update();
+
+                    circularScrollingListFauna._listPositionCtrl.LateUpdate();
                     //info.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.LateUpdate();
 
                     //else

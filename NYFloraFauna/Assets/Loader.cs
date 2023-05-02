@@ -60,6 +60,7 @@ public class Loader
             //if (isRiservaSceneLoaded) SceneManager.UnloadSceneAsync(SceneName.RISERVE.ToString());
            
             ResetScroll(SceneName.FLORA);
+            GameObject.FindAnyObjectByType<CircularScrollingListFlora>()._listPositionCtrl.oneTime = true;
 
             isParkSceneLoaded = true;
             isRiservaSceneLoaded = false;
@@ -83,6 +84,7 @@ public class Loader
             GameObject.FindGameObjectWithTag("TOGGLE").GetComponent<Toggle>().isOn = toggle;
             
             ResetScroll(SceneName.FAUNA);
+            GameObject.FindAnyObjectByType<CircularScrollingListFauna>()._listPositionCtrl.oneTime = true;
 
             //if (isParkSceneLoaded) SceneManager.UnloadSceneAsync(SceneName.PARCHI.ToString());
             isRiservaSceneLoaded = true;

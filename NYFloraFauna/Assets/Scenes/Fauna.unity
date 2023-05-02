@@ -2453,7 +2453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf19196137b248144b9c1d51bd817e24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagScroll: 
+  tagScroll: Info
   _toFixInfo: 0
   _toFixScheda: 0
   _listBank: {fileID: 317315569}
@@ -7235,7 +7235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf19196137b248144b9c1d51bd817e24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagScroll: 
+  tagScroll: Type
   _toFixInfo: 0
   _toFixScheda: 0
   _listBank: {fileID: 817779959}
@@ -13581,7 +13581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf19196137b248144b9c1d51bd817e24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagScroll: 
+  tagScroll: Scheda
   _toFixInfo: 0
   _toFixScheda: 0
   _listBank: {fileID: 1476369183}
