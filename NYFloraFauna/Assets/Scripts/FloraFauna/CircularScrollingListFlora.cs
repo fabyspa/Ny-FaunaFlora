@@ -134,7 +134,7 @@ namespace AirFishLab.ScrollingList
             if (_setting.initializeOnStart)
                 Initialize();
            
-            UpdateTagScroll();
+            //UpdateTagScroll();
         }
 
         #region Initialization

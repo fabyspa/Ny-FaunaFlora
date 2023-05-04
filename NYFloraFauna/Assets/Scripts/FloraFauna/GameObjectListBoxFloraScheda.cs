@@ -50,6 +50,11 @@ namespace AirFishLab.ScrollingList.Demo
                 infos.transform.GetChild(3).GetComponentInChildren<Text>().enabled = true;
                 infos.transform.GetChild(3).GetComponentInChildren<Image>().enabled = true;
             }
+            else
+            {
+                infos.transform.GetChild(3).GetComponentInChildren<Text>().enabled = false;
+                infos.transform.GetChild(3).GetComponentInChildren<Image>().enabled = false;
+            }
 
             if (isLoaded==false)
             LoadGameObject();
