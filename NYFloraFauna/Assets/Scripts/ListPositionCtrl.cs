@@ -858,7 +858,6 @@ namespace AirFishLab.ScrollingList
                 _listSetting.onCenteredContentChanged?.Invoke(candidateBox.contentID);
                 candidateBox.PopToFront();
 
-                Debug.Log("TAGGGGGGGGGG" + tagscroll);
                 if (!first &&tagscroll!=null)
                 {
                     if(SceneManager.GetActiveScene().name=="Fauna")
@@ -869,9 +868,7 @@ namespace AirFishLab.ScrollingList
                         }
                         if (tagscroll == "Scheda" && isRunning == false)
                         {
-                            Debug.Log("AUDIO SCHEDA");
-                            scroll = loadexcelFauna.scheda;
-                            
+                            scroll = loadexcelFauna.scheda; 
                         }
                         if (tagscroll == "Type")
                         {
@@ -890,7 +887,6 @@ namespace AirFishLab.ScrollingList
                         }
                         if (tagscroll == "Scheda" && isRunning==false)
                         {
-                            Debug.Log("iiiiiiiiiiiiiiiiiiiiiiiiiiiiQUa");
 
                             scroll = loadexcelFlora.scheda;
                            
@@ -904,7 +900,6 @@ namespace AirFishLab.ScrollingList
                     }
                     if (scroll != null && !isRunning) 
                     {
-                        Debug.Log("SCROLL " + scroll);
                         AudioClip clip = scroll.GetComponent<AudioSource>().clip;
                         AudioSource audioSource = scroll.AddComponent<AudioSource>();
                         audioSource.clip = clip;
@@ -928,7 +923,6 @@ namespace AirFishLab.ScrollingList
         /// <param name="unit">The number of units</param>
         public void SetUnitMove(int unit)
         {
-            Debug.Log("SetUnitMove" + unit);
             _movementCtrl.SetMovement(unit * unitPos, false);
 
             _toRunLateUpdate = true;

@@ -217,11 +217,8 @@ namespace AirFishLab.ScrollingList
         /// </summary>
         public void MoveOneUnitUp(string tag)
         {
-            Debug.Log("MOVE BEFORE");
             if (_hasNoContent)
                 return;
-
-            Debug.Log("MOVE AFTER");
 
             if (tag == "Type")
                 _listPositionCtrl.SetUnitMove(2);
@@ -333,7 +330,6 @@ namespace AirFishLab.ScrollingList
             //scheda.GetComponent<CircularScrollingListFlora>()._listPositionCtrl.InputPositionHandler(e, t);
             if (scheda != null)
             {
-                Debug.Log("Scheda " + scheda.name);
                 scheda.GetComponent<CircularScrollingListFlora>()._toFixInfo = false;
             }
             _toFixScheda= true;  
@@ -341,7 +337,6 @@ namespace AirFishLab.ScrollingList
         
         void MoveScrollDown(PointerEventData e, TouchPhase t)
         {
-            Debug.Log("move"); 
             SoundManager.circularScrollingListFlora = this;
             if (info == null) { info = loadexcel.info; }
 

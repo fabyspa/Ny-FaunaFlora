@@ -21,7 +21,8 @@ namespace AirFishLab.ScrollingList.Demo
         private List<string> loadedRegions;
         [SerializeField]
         private GameObject infos;
-
+        private SwitchITAENG toggle;
+        private bool isInitialized= true;
 
         protected override void UpdateDisplayContent(object content)
         {
@@ -44,17 +45,28 @@ namespace AirFishLab.ScrollingList.Demo
             Text[] l = infos.transform.GetChild(2).GetComponentsInChildren<Text>();
             l[0].text = dataWrapper.data.livC;
             l[1].text = dataWrapper.data.livCENG;
-            
+
+            if (isInitialized)
+            {
+                toggle = GameObject.FindObjectOfType<SwitchITAENG>();
+                isInitialized = false;
+            }
+
             if (dataWrapper.data.specB)
             {
-                infos.transform.GetChild(3).Find("Text").GetComponent<Text>().enabled = true;
-                //infos.transform.GetChild(3).Find("Text_ENG").GetComponent<Text>().enabled = true;
+                infos.transform.GetChild(3).Find("Text").GetComponent<Text>().text = "Specie bandiera";
+                infos.transform.GetChild(3).Find("Text_ENG").GetComponent<Text>().text = "Flagship species";
                 infos.transform.GetChild(3).GetComponentInChildren<Image>().enabled = true;
+                
+                if(toggle.tag1=="ENG")
+                    infos.transform.GetChild(3).Find("Text").GetComponent<Text>().enabled = true;
+                else
+                    infos.transform.GetChild(3).Find("Text_ENG").GetComponent<Text>().enabled = true;
             }
             else
             {
-                infos.transform.GetChild(3).Find("Text").GetComponent<Text>().enabled = false;
-                infos.transform.GetChild(3).Find("Text_ENG").GetComponent<Text>().enabled = false;
+                infos.transform.GetChild(3).Find("Text").GetComponent<Text>().text = "";
+                infos.transform.GetChild(3).Find("Text_ENG").GetComponent<Text>().text = "";
                 infos.transform.GetChild(3).GetComponentInChildren<Image>().enabled = false;
             }
 
@@ -62,7 +74,6 @@ namespace AirFishLab.ScrollingList.Demo
             if (isLoaded==false)
             LoadGameObject();
             ActivateRegions(dataWrapper.data.regioni);
-
         }
         public Sprite UpdateImageIcon(string _name)
         {

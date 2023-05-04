@@ -117,12 +117,10 @@ public class LoadExcelFloraFauna : MonoBehaviour
             {
                 if (r.typeENG != "")
                 {
-                    Debug.Log(r.typeENG);
                     ita2engType.Add(r.typeENG, r.classe);
                 }
                 else
-                {
-                    Debug.Log("type vuoto");
+                { 
                     ita2engType.Add("val" + index, r.classe);
                     index++;
                 }

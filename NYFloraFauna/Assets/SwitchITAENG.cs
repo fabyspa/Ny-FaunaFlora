@@ -21,7 +21,6 @@ public class SwitchITAENG : MonoBehaviour
         });
 
         SwitchActiveTag();
-
         //Initialize the Text to say whether the Toggle is in a positive or negative state
         //m_Text.text = "Toggle is : " + m_Toggle.isOn;
     }
@@ -41,11 +40,15 @@ public class SwitchITAENG : MonoBehaviour
         {
                 
             if(c.transform.parent.tag=="Bandiera"&& (c.name == "Text" || c.name == "Text_ENG"))
+            {
+                
                 SwitchBandiera(c);
+            }
             else
+            {
                 c.GetComponent<Text>().enabled = true;
-            
-            
+            }
+
         }
         foreach (GameObject g in GameObject.FindGameObjectsWithTag(tag2))
         {

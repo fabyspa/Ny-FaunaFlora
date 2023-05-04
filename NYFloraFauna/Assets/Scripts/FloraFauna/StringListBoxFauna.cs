@@ -25,9 +25,7 @@ namespace AirFishLab.ScrollingList
             if (dataWrapper.data == "Tutte") _textENG.text = "All";
             else
             {
-                Debug.Log("DATAWRAPPER" + dataWrapper.data);
                 _textENG.text = loadexcel.ita2engType.FirstOrDefault(x => x.Value == dataWrapper.data).Key;
-                Debug.Log("textENGG" + _textENG.text);
             }
             
             

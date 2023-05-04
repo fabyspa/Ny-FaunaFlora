@@ -159,7 +159,6 @@ namespace AirFishLab.ScrollingList
             if (_isInitialized)
                 return;
 
-            Debug.Log("INIZIALIZE" +  this.gameObject.name);
             InitializeListComponents();
             // Make the list position ctrl initialize its position state
              _listPositionCtrl.LateUpdate();
@@ -230,7 +229,7 @@ namespace AirFishLab.ScrollingList
         {
             if (_hasNoContent)
                 return;
-            Debug.Log("Movimento bottoni");
+
             if(tag== "Type")
             _listPositionCtrl.SetUnitMove(2);
             else
@@ -348,7 +347,6 @@ namespace AirFishLab.ScrollingList
 
             }
             //}
-            Debug.Log("DOPO UPDATE " + tagScroll);
 
         }
         void MoveScrollUp(PointerEventData e, TouchPhase t)
@@ -382,13 +380,10 @@ namespace AirFishLab.ScrollingList
             if (_hasNoContent)
                 return;
             UpdateTagScroll();
-            Debug.Log("EVENTDATA" + eventData);
 
             //_toFix = false;
             if (tagScroll == "Info")
             {
-                Debug.Log("BEGINDRAG INFo");
-
                 _listPositionCtrl.tagscroll = tagScroll;
                 scheda.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.tagscroll = tagScroll;
 
@@ -401,7 +396,6 @@ namespace AirFishLab.ScrollingList
 
             if (tagScroll == "Scheda")
             {
-                Debug.Log("BEGINDRAG SCHEDA");
                 info.GetComponent<CircularScrollingListFauna>()._listPositionCtrl.oneTime = false;
 
                 _listPositionCtrl.tagscroll = tagScroll;
