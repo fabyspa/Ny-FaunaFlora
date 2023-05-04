@@ -47,12 +47,14 @@ namespace AirFishLab.ScrollingList.Demo
             
             if (dataWrapper.data.specB)
             {
-                infos.transform.GetChild(3).GetComponentInChildren<Text>().enabled=true;
+                infos.transform.GetChild(3).Find("Text").GetComponent<Text>().enabled = true;
+                //infos.transform.GetChild(3).Find("Text_ENG").GetComponent<Text>().enabled = true;
                 infos.transform.GetChild(3).GetComponentInChildren<Image>().enabled = true;
             }
             else
             {
-                infos.transform.GetChild(3).GetComponentInChildren<Text>().enabled = false;
+                infos.transform.GetChild(3).Find("Text").GetComponent<Text>().enabled = false;
+                infos.transform.GetChild(3).Find("Text_ENG").GetComponent<Text>().enabled = false;
                 infos.transform.GetChild(3).GetComponentInChildren<Image>().enabled = false;
             }
 
