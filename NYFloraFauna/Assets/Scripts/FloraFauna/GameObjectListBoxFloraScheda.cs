@@ -8,7 +8,9 @@ namespace AirFishLab.ScrollingList.Demo
     public class GameObjectListBoxFloraScheda : ListBox
     {
         [SerializeField]
-        private Text _name, _latinName, _descr, _type, _descrENG, _nameENG, _typeENG;
+        private Text _name, _descr, _type, _descrENG, _nameENG, _typeENG;
+        [SerializeField]
+        private TextMeshProUGUI _latinName;
         [SerializeField]
         private Image _vector,_image;
         private Sprite tex; 

@@ -31,7 +31,7 @@ namespace AirFishLab.ScrollingList.Demo
         {
             var dataWrapper = (VariableGameObjectListBankFauna.DataWrapper) content;
             _name.text = dataWrapper.data.nomeComune;
-            _latinName.text = "<i>"+dataWrapper.data.nomeLatino + " </i> " + dataWrapper.data.scop;
+            _latinName.text = dataWrapper.data.nomeLatino;
             _descr.text = dataWrapper.data.descr;
             _descrENG.text = dataWrapper.data.descrENG;
             _nameENG.text = dataWrapper.data.nameENG;

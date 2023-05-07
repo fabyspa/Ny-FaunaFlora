@@ -10,7 +10,6 @@ public class Fauna
     public string classe; //mammiferp,anfibi ecc..
     public string nomeComune; //capriolo,capra..
     public string nomeLatino;
-    public string scop;
     public string ADistr;
     public string AProtetta;
     public string descr;
@@ -29,7 +28,6 @@ public class Fauna
         classe = r.classe;
         nomeComune = r.nomeComune;
         nomeLatino = r.nomeLatino;
-        scop = r.scop;
         ADistr = r.ADistr;
         AProtetta = r.AProtetta;
         descr = r.descr;
