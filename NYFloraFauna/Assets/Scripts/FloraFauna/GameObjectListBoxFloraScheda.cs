@@ -12,7 +12,7 @@ namespace AirFishLab.ScrollingList.Demo
         [SerializeField]
         private TextMeshProUGUI _latinName;
         [SerializeField]
-        private Image _vector,_image;
+        private Image _vector,_image,_livC;
         private Sprite tex; 
         private GameObject regGameObject;
         [SerializeField]
@@ -39,14 +39,12 @@ namespace AirFishLab.ScrollingList.Demo
             _type.text = dataWrapper.data.classe;
              _image.sprite = UpdateImage(dataWrapper.data.nomeComune);
              _vector.sprite = UpdateImageIcon(dataWrapper.data.nomeComune);
-            
+            _livC.sprite = UpdateLivC(dataWrapper.data.livC);
+
 
             infos.transform.GetChild(0).GetComponentInChildren<Text>().text = dataWrapper.data.ADistr;
             infos.transform.GetChild(1).GetComponentInChildren<Text>().text = dataWrapper.data.AProtetta;
             
-            Text[] l = infos.transform.GetChild(2).GetComponentsInChildren<Text>();
-            l[0].text = dataWrapper.data.livC;
-            l[1].text = dataWrapper.data.livCENG;
 
             if (isInitialized)
             {
@@ -55,20 +53,20 @@ namespace AirFishLab.ScrollingList.Demo
             }
             if (dataWrapper.data.specB)
             {
-                infos.transform.GetChild(3).Find("Text").GetComponent<Text>().text = "Specie bandiera";
-                infos.transform.GetChild(3).Find("Text_ENG").GetComponent<Text>().text = "Flagship species";
-                infos.transform.GetChild(3).GetComponentInChildren<Image>().enabled = true;
+                infos.transform.GetChild(2).Find("Text").GetComponent<Text>().text = "Specie bandiera";
+                infos.transform.GetChild(2).Find("Text_ENG").GetComponent<Text>().text = "Flagship species";
+                infos.transform.GetChild(2).GetComponentInChildren<Image>().enabled = true;
 
                 if (toggle.tag1 == "ENG")
-                    infos.transform.GetChild(3).Find("Text").GetComponent<Text>().enabled = true;
+                    infos.transform.GetChild(2).Find("Text").GetComponent<Text>().enabled = true;
                 else
-                    infos.transform.GetChild(3).Find("Text_ENG").GetComponent<Text>().enabled = true;
+                    infos.transform.GetChild(2).Find("Text_ENG").GetComponent<Text>().enabled = true;
             }
             else
             {
-                infos.transform.GetChild(3).Find("Text").GetComponent<Text>().text = "";
-                infos.transform.GetChild(3).Find("Text_ENG").GetComponent<Text>().text = "";
-                infos.transform.GetChild(3).GetComponentInChildren<Image>().enabled = false;
+                infos.transform.GetChild(2).Find("Text").GetComponent<Text>().text = "";
+                infos.transform.GetChild(2).Find("Text_ENG").GetComponent<Text>().text = "";
+                infos.transform.GetChild(2).GetComponentInChildren<Image>().enabled = false;
             }
 
             if (isLoaded==false)
@@ -96,6 +94,18 @@ namespace AirFishLab.ScrollingList.Demo
             }
             return null;
             
+
+        }
+        public Sprite UpdateLivC(string _name)
+        {
+            if (Resources.Load<Sprite>("Images_IUCN/" + _name) != null)
+            {
+                tex = Resources.Load<Sprite>("Images_IUCN/" + _name);
+                return tex;
+
+            }
+            return null;
+
 
         }
 
