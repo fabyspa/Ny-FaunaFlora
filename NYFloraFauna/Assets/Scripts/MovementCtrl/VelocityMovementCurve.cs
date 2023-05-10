@@ -71,7 +71,8 @@ namespace AirFishLab.ScrollingList.MovementCtrl
         /// <returns>The moving distance</returns>
         public float GetDistance(float deltaTime)
         {
-            lastVelocity = _velocityFactorCurve.Evaluate(deltaTime) * _baseVelocity;
+            //Debug.Log("4");
+            lastVelocity = _velocityFactorCurve.Evaluate(deltaTime*2f) * _baseVelocity;
             return lastVelocity * deltaTime;
         }
     }

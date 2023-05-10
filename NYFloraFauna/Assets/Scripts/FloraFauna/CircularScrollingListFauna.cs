@@ -231,9 +231,9 @@ namespace AirFishLab.ScrollingList
                 return;
 
             if(tag== "Type")
-            _listPositionCtrl.SetUnitMove(2);
+            _listPositionCtrl.SetUnitMove(4);
             else
-            _listPositionCtrl.SetUnitMove(8);
+            _listPositionCtrl.SetUnitMove(16);
 
             _listPositionCtrl.tagscroll = this.gameObject.tag;
         }
@@ -246,9 +246,9 @@ namespace AirFishLab.ScrollingList
             if (_hasNoContent)
                 return;
             if (tag == "Type")
-                _listPositionCtrl.SetUnitMove(-2);
+                _listPositionCtrl.SetUnitMove(-4);
             else
-                _listPositionCtrl.SetUnitMove(-8);
+                _listPositionCtrl.SetUnitMove(-16);
         }
 
         /// <summary>

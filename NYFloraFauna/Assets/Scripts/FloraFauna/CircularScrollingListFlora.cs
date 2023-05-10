@@ -221,9 +221,9 @@ namespace AirFishLab.ScrollingList
                 return;
 
             if (tag == "Type")
-                _listPositionCtrl.SetUnitMove(2);
+                _listPositionCtrl.SetUnitMove(4);
             else
-                _listPositionCtrl.SetUnitMove(8);
+                _listPositionCtrl.SetUnitMove(16);
         }
 
         /// <summary>
@@ -235,9 +235,9 @@ namespace AirFishLab.ScrollingList
                 return;
 
             if (tag == "Type")
-                _listPositionCtrl.SetUnitMove(-2);
+                _listPositionCtrl.SetUnitMove(-4);
             else
-                _listPositionCtrl.SetUnitMove(-8);
+                _listPositionCtrl.SetUnitMove(-16);
         }
 
         /// <summary>
