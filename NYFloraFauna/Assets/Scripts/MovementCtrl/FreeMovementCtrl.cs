@@ -167,11 +167,13 @@ namespace AirFishLab.ScrollingList.MovementCtrl
             }
             /* Aligning */
             else if (!_aligningMovementCurve.IsMovementEnded()) {
-                distance = _aligningMovementCurve.GetDistance(deltaTime);
+                
+                distance = _aligningMovementCurve.GetDistance(deltaTime*0.4f);
             }
             /* Releasing */
             else if (!_releasingMovementCurve.IsMovementEnded()) {
-                distance = _releasingMovementCurve.GetDistance(deltaTime);
+                
+                distance = _releasingMovementCurve.GetDistance(deltaTime * 1f);
 
                 if (!NeedToAlign(distance))
                     return distance;
@@ -181,7 +183,8 @@ namespace AirFishLab.ScrollingList.MovementCtrl
 
                 // Start the aligning movement instead
                 _aligningMovementCurve.SetMovement(_getAligningDistance());
-                distance = _aligningMovementCurve.GetDistance(deltaTime);
+               
+                distance = _aligningMovementCurve.GetDistance(deltaTime * 1f);
             }
 
             return distance;

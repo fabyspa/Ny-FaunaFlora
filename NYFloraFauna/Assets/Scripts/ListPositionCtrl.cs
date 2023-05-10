@@ -455,7 +455,7 @@ namespace AirFishLab.ScrollingList
         {
             if (_movementCtrl.IsMovementEnded())
                 return;
-
+            //Debug.Log("Ho modificato questo");
             var distance = _movementCtrl.GetDistance(Time.deltaTime);
             foreach (var listBox in _listBoxes)
             {
