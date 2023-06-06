@@ -41,8 +41,8 @@ namespace AirFishLab.ScrollingList.Demo
              _vector.sprite = UpdateImageIcon(dataWrapper.data.nomeComune);
             _livC.sprite = UpdateLivC(dataWrapper.data.livC);
 
-
-            infos.transform.GetChild(0).GetComponentInChildren<Text>().text = dataWrapper.data.ADistr;
+            infos.transform.GetChild(0).Find("Text").GetComponent<Text>().text = dataWrapper.data.ADistr;
+            infos.transform.GetChild(0).Find("Text_ENG").GetComponent<Text>().text = dataWrapper.data.ADistrENG;
             infos.transform.GetChild(1).GetComponentInChildren<Text>().text = dataWrapper.data.AProtetta;
             
 

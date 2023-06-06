@@ -11,6 +11,7 @@ public class Fauna
     public string nomeComune; //capriolo,capra..
     public string nomeLatino;
     public string ADistr;
+    public string ADistrENG;
     public string AProtetta;
     public string descr;
     public string descrENG;
@@ -29,6 +30,7 @@ public class Fauna
         nomeComune = r.nomeComune;
         nomeLatino = r.nomeLatino;
         ADistr = r.ADistr;
+        ADistrENG = r.ADistrENG;
         AProtetta = r.AProtetta;
         descr = r.descr;
         descrENG = r.descrENG;

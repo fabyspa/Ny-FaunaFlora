@@ -63,6 +63,7 @@ public class LoadExcelFloraFauna : MonoBehaviour
             string nomeLatino = data[i]["Nome latino"].ToString();
             string Aprotetta = data[i]["Area protetta raggruppamento cc biodiversita"].ToString();
             string ADistr = data[i]["Areale di distribuzione"].ToString();
+            string ADistrENG = data[i]["Areale di distribuzione ENG"].ToString();
             string nomeComune = data[i]["Nome ITA"].ToString();
             string nameENG = data[i]["Nome ENG"].ToString();
             string typeENG = data[i]["Tipologia ENG"].ToString();
@@ -76,19 +77,20 @@ public class LoadExcelFloraFauna : MonoBehaviour
             }
             string[] regioni = data[i]["Regione"].ToString().Split(delimiters);
 
-            AddFauna(classe, nomeComune, nomeLatino, ADistr, Aprotetta, descr, nameENG, typeENG, descrENG, livC,livCENG,specB, regioni);
+            AddFauna(classe, nomeComune, nomeLatino, ADistr, ADistrENG, Aprotetta, descr, nameENG, typeENG, descrENG, livC,livCENG,specB, regioni);
 
         }
         GetFaunaTypes();
     }
 
-    void AddFauna(string classe, string nomeComune, string nomeLatino, string ADistr, string AProtetta, string descr, string nomeENG, string typeENG, string descrENG, string livC,string livcENG, bool specB, string[] regioni)
+    void AddFauna(string classe, string nomeComune, string nomeLatino, string ADistr, string ADistrENG, string AProtetta, string descr, string nomeENG, string typeENG, string descrENG, string livC,string livcENG, bool specB, string[] regioni)
     {
         Fauna tempItem = new Fauna(blankFauna);
         tempItem.classe = classe;
         tempItem.nomeComune = nomeComune;
         tempItem.nomeLatino = nomeLatino;
         tempItem.ADistr = ADistr;
+        tempItem.ADistrENG = ADistrENG;
         tempItem.AProtetta = AProtetta;
         tempItem.descr = descr;
         tempItem.typeENG = typeENG;
